@@ -1,6 +1,6 @@
-#TEAM FLEX
+# TEAM FLEX
 
-##Team Norms
+## Team Norms
 
 - Don't be shitty
 - Don't fix what's not broken
@@ -14,7 +14,7 @@
 - Share what you learn
 - Srong/weak pairing
 
-##Goals
+## Goals
 
 - MVP by Sunday night - stay until it's done
 - Strong, but basic MVP
