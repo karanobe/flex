@@ -1,3 +1,6 @@
 class Gym < ApplicationRecord
-  self.abstract_class = true
+  has_many  :memberships
+  has_many  :members, through: :memberships, source: :user
+
+  validates :name, :street_address, :state, :zip, presence: true
 end

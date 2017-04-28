@@ -1,3 +1,5 @@
 class Preference < ApplicationRecord
-  self.abstract_class = true
+  belongs_to  :user
+
+  validates :age_range, :gender, :user_id, presence: true
 end
