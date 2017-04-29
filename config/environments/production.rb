@@ -79,10 +79,10 @@ Rails.application.configure do
 config.paperclip_defaults = {
   storage: :s3,
   s3_credentials: {
-    bucket: ENV.fetch('dbcflexbucket'),
-    access_key_id: ENV.fetch('AKIAI6RHVQKNSMLEZ42Q'),
-    secret_access_key: ENV.fetch('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'),
-    s3_region: ENV.fetch('Canada (Central)'),
+    bucket: ENV.fetch('S3_BUCKET_NAME'),
+    access_key_id: ENV.fetch('AWS_ACCESS_KEY'),
+    secret_access_key: ENV.fetch('SECRET_ACCESS_KEY'),
+    s3_region: 'us-west-2',
   }
 }
 
