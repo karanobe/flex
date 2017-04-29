@@ -40,6 +40,7 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'capybara', "~> 2.5"
   gem 'launchy'
