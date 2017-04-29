@@ -19,6 +19,6 @@ class User < ApplicationRecord
 
   # in progress, needs logic to filter by gym (zip)????
   def self.ordered_json
-    select("*").limit(5).to_json
+    select("*").limit(10).to_json
   end
 end

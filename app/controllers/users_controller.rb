@@ -2,12 +2,13 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # displays list of users
+    users = User.ordered_json
+    render json: users
   end
 
   def show
-    @user = current_user
-    users = User.ordered_json
-    render json: users
+    #for user profile pages
   end
 
 end
