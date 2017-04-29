@@ -1,0 +1,17 @@
+<%= form_for @preference do |f| %>
+  <div class="field">
+    <%= f.label :age_range %><br />
+    <%= f.select :age_range, ['Select','18-24','25-30','31-36','37-45','Any']%>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select :gender, ['Select','Male', 'Female'] %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save Preferences" %>
+  </div>
+
+
+<% end %>
