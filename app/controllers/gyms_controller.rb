@@ -3,3 +3,4 @@ class GymsController < ApplicationController
     @google_key = ENV['GOOGLE']
   end
 end
+
