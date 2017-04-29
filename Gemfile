@@ -39,6 +39,10 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara', "~> 2.5"
+  gem 'launchy'
+  gem 'pry'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 end
