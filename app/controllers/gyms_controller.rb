@@ -1,6 +1,8 @@
 class GymsController < ApplicationController
   def index
-    @google_key = ENV['GOOGLE']
+    google = ENV['GOOGLE']
+
+    render :index, locals: {google_key: google}
   end
 end
 
