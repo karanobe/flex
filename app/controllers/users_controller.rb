@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @users = User.all
+    users = User.ordered_json
+    render json: users
   end
 
 end
