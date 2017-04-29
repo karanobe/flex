@@ -75,6 +75,17 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
+
+config.paperclip_defaults = {
+  storage: :s3,
+  s3_credentials: {
+    bucket: ENV.fetch('dbcflexbucket'),
+    access_key_id: ENV.fetch('AKIAI6RHVQKNSMLEZ42Q'),
+    secret_access_key: ENV.fetch('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'),
+    s3_region: ENV.fetch('Canada (Central)'),
+  }
+}
+
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
