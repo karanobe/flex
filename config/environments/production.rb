@@ -79,10 +79,10 @@ Rails.application.configure do
 config.paperclip_defaults = {
   storage: :s3,
   s3_credentials: {
-    bucket: ENV.fetch('dbcflexbucket'),
-    access_key_id: ENV.fetch('AKIAI6RHVQKNSMLEZ42Q'),
-    secret_access_key: ENV.fetch('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'),
-    s3_region: ENV.fetch('Canada (Central)'),
+    bucket: ENV.fetch('flex-pics'),
+    access_key_id: ENV.fetch('AKIAJW5RJZ5XHOQ7DFIQ'),
+    secret_access_key: ENV.fetch('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'),
+    s3_region: ENV.fetch('us-west-2'),
   }
 }
 
