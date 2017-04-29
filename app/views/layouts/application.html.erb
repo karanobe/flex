@@ -5,10 +5,36 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+     <nav>
+      <% if !user_signed_in? %>
+        <ul>
+        <li><%= link_to "Flex", root_path%></li>
+        <li><%= link_to "Login", new_user_session_path%>
+        </li>
+        <li><%= link_to "Register", new_user_registration_path%>
+        </li>
+
+        </ul>
+      <% end %>
+
+
+    <div>
+
+        <% if user_signed_in? %>
+        <ul>
+          <li class="home"><%= link_to "Flex", root_path%></li>
+            <li>Logged in as: <%= link_to current_user.first_name, current_user %></li>
+          <li><%= link_to 'Logout', destroy_user_session, data: { confirm: 'Are you sure you want to log out?'}  %></li>
+          </ul>
+
+        <% end %>
+
+      </nav>
     <%= yield %>
   </body>
 </html>
