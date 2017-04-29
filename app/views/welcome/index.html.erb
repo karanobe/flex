@@ -3,7 +3,7 @@
 <% if user_signed_in? %>
     <p>link to gyms</p>
   <% if current_user.preference == nil %>
-    <%= link_to "Preferences", new_preferences_path %>
+    <%= link_to "Preferences", new_preference_path %>
   <% else %>
     <%= link_to "Update Preferences", edit_preferences_path %>
     <p>link to search results</p>
