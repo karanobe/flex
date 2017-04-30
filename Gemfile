@@ -40,6 +40,8 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk', '~> 2.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# Add twilio gem
+gem 'twilio-ruby', '~>4.11.1'
 
 group :development, :test do
   gem 'dotenv-rails'

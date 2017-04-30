@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Preference do
   let(:preference) {Preference.create!(min_age: 29, max_age: 87, gender: "Male", user_id: user.id)}
-  let(:user) {User.create!(first_name: "Kobe", last_name: "Bryant", age: 22, gender_pronoun: "He", profile_bio: "Get big.", email: "ko@example.com", password: "password", password_confirmation: "password") }
+  let(:user) {User.create!(first_name: "Kobe", last_name: "Bryant", age: 22, phone: '7736101700',gender_pronoun: "He", profile_bio: "Get big.", email: "ko@example.com", password: "password", password_confirmation: "password") }
 
   it "belongs to user" do
     expect(preference.user).to eq(user)
