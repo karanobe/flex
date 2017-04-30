@@ -1,19 +1,4 @@
 $(document).ready(function() {
-  $("#pref").on('click', '#matched-users',function(event) {
-    event.preventDefault();
-    hideLinks();
-    loadUsers();
-  });
-
-
-
-  $("#gyms-link").on('click', function(event) {
-    event.preventDefault();
-    hideLinks();
-    $.ajax({url:"/gyms", method: "GET"}).done(renderGyms);
-    /* Act on the event */
-    /*call function that appends all the gyms like users does*/
-  });
   $("#new-pref").on("click", function(e) {
     e.preventDefault();
     hideLinks();
@@ -29,8 +14,29 @@ $(document).ready(function() {
     $.ajax({url:action, method: "GET"}).done(function(response) {
       $("#pref").html(response.editPrefForm);
     })
+  });
+
+  $("#gyms-link").on('click', function(event) {
+    event.preventDefault();
+    hideLinks();
+    $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
+      renderGyms(response);
+      $("div#pref").html("<a id='new-gym' href='/gyms/new'>Add a new gym!</a>");
+    });
+  });
+
+  $("#pref").on("click", "#new-gym", function(event) {
+    // event.preventDefault();
+    $.ajax({url: "/gyms/new", method: "GET"}).done(function(response) {
+      console.log(response);
+    })
   })
 
+  $("#pref").on('click', '#matched-users',function(event) {
+    event.preventDefault();
+    hideLinks();
+    loadUsers();
+  });
 
 });
 function renderGyms(response){
@@ -38,7 +44,7 @@ function renderGyms(response){
   response.forEach(function(gym) {
     all_gyms += generateOneGym(gym);
   });
-  $("#gyms-pylon").append(all_gyms);
+  $("#gyms-pylon").html(all_gyms);
 }
 
 function generateOneGym(gym){
@@ -78,7 +84,7 @@ function renderUsers(response) {
   response.forEach(function(user) {
     all_users += generateOneUser(user);
   });
-  $("#users-pylon").append(all_users);
+  $("#users-pylon").html(all_users);
 }
 
 function generateOneUser(user){
