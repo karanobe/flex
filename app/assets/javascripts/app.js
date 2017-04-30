@@ -38,6 +38,14 @@ $(document).ready(function() {
     loadUsers();
   });
 
+  $("#pref").on('click', ".user-page", function(event) {
+    event.preventDefault();
+    var action = $(this).attr("href");
+    $.ajax({url: action, method: "GET"}).done(function(response) {
+      $("div#pref").html(response.userInfo);
+    })
+  })
+
 });
 function renderGyms(response){
   var all_gyms = "";
@@ -92,7 +100,7 @@ function generateOneUser(user){
           <div class="user-content">
             <p>
               <span class = "name">
-              <a href="place url for specific user profile page" >${user.first_name} ${user.last_name}</a>  </span>
+              <a class="user-page" href="/users/${user.id}" >${user.first_name} ${user.last_name}</a>  </span>
               <span class= "age"> ${user.age}</span>
               <span class= "gender"> ${user.gender_pronoun}</span>
             </p>
