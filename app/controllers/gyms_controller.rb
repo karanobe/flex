@@ -6,7 +6,7 @@ class GymsController < ApplicationController
 
   def new
     google = ENV['GOOGLE']
-    render :index, locals: {google_key: google}
+    render :new, locals: {google_key: google}
   end
 end
 
