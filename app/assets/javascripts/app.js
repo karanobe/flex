@@ -7,10 +7,33 @@ $(document).ready(function() {
 
   $("#gyms-link").on('click', function(event) {
     event.preventDefault();
+    hideLinks();
+    $.ajax({url:"/gyms", method: "GET"}).done(renderGyms);
     /* Act on the event */
     /*call function that appends all the gyms like users does*/
   });
 });
+function renderGyms(response){
+  var all_gyms = "";
+  response.forEach(function(gym) {
+    all_gyms += generateOneGym(gym);
+  });
+  $("#gyms-pylon").append(all_gyms);
+}
+
+function generateOneGym(gym){
+  return `<li class="gym">
+          <div class="gym-content">
+            <p>
+              <span class = "name">
+              <a href="place url for specific gym profile page" >${gym.name} </a>  </span><br>
+              <span class= "address"> ${gym.street_address}</span><br>
+              <span class= "city"> ${gym.city}</span><br>
+              <span class= "zip"> ${gym.zip}</span><br>
+            </p>
+          </div>
+        </li>`;
+}
 
 function hideLinks(){
   $('#gyms-link').hide();
