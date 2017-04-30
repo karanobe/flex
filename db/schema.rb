@@ -34,8 +34,9 @@ ActiveRecord::Schema.define(version: 20170429190206) do
   end
 
   create_table "memberships", force: :cascade do |t|
-    t.integer "gym_id",  null: false
-    t.integer "user_id", null: false
+    t.integer "gym_id",                      null: false
+    t.integer "user_id",                     null: false
+    t.boolean "primary_gym", default: false
   end
 
   create_table "overall_averages", force: :cascade do |t|
@@ -47,9 +48,10 @@ ActiveRecord::Schema.define(version: 20170429190206) do
   end
 
   create_table "preferences", force: :cascade do |t|
-    t.string  "age_range", null: false
-    t.string  "gender",    null: false
-    t.integer "user_id",   null: false
+    t.integer "min_age", null: false
+    t.integer "max_age", null: false
+    t.string  "gender",  null: false
+    t.integer "user_id", null: false
   end
 
   create_table "rates", force: :cascade do |t|

@@ -5,6 +5,8 @@ $(document).ready(function() {
     loadUsers();
   });
 
+
+
   $("#gyms-link").on('click', function(event) {
     event.preventDefault();
     hideLinks();
@@ -12,6 +14,24 @@ $(document).ready(function() {
     /* Act on the event */
     /*call function that appends all the gyms like users does*/
   });
+  $("#new-pref").on("click", function(e) {
+    e.preventDefault();
+    hideLinks();
+    $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
+      $("#pref").html(response.newPrefForm);
+    })
+  });
+
+  $("#update-pref").on("click", function(e) {
+    e.preventDefault();
+    var action = $(this).attr("href");
+    hideLinks();
+    $.ajax({url:action, method: "GET"}).done(function(response) {
+      $("#pref").html(response.editPrefForm);
+    })
+  })
+
+
 });
 function renderGyms(response){
   var all_gyms = "";
