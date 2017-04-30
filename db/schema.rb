@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(version: 20170429190206) do
   end
 
   create_table "gyms", force: :cascade do |t|
-    t.string  "name",           null: false
-    t.string  "street_address", null: false
-    t.string  "city",           null: false
-    t.string  "state",          null: false
-    t.integer "zip",            null: false
+    t.string  "name",                           null: false
+    t.string  "street_address",                 null: false
+    t.string  "city",                           null: false
+    t.string  "state",                          null: false
+    t.integer "zip",                            null: false
+    t.boolean "primary_gym",    default: false
   end
 
   create_table "memberships", force: :cascade do |t|

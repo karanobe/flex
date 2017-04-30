@@ -2,23 +2,25 @@
 
 
 <% if user_signed_in? %>
-  <div id="gyms">
-    <p>link to your gyms</p>
-    <ul id="gyms-pylon">
-    </ul>
-  </div>
-  <% if current_user.preference == nil %>
-    <div id="pref">
-      <%= link_to "Preferences",  new_preference_path, id: "new-pref" %>
-    </div>
-  <% else %>
-    <div id="pref">
-      <%= link_to "Update Preferences", edit_preference_path(current_user.preference.id) %>
-    </div>
-    <div id="show-users">
-      <p>link to search results</p>
-      <ul id="users-pylon">
+  <div class='container'>
+    <div id="gyms">
+      <p><%= link_to "View Gyms", root_path, id: "gyms-link"  %></p>
+      <ul id="gyms-pylon">
       </ul>
+    </div>
+    <div id="pref">
+    <% if current_user.preference == nil %>
+        <%= link_to "Preferences",  new_preference_path, id: "new-pref" %>
+      </div>
+    <% else %>
+      <div id="pref">
+        <%= link_to "Update Preferences", edit_preference_path(current_user.preference.id), id:"update-pref" %>
+      </div>
+      <!-- <div id="show-users"> -->
+        <p><%= link_to "View Flex-Mates", users_path, id: "matched-users"  %></p>
+        <ul id="users-pylon">
+        </ul>
+     <!--  </div> -->
     </div>
   <% end %>
 <% end %>
