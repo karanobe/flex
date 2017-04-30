@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many  :gyms, through: :memberships, source: :gym
   has_one   :preference
 
+  has_friendship
+
   has_attached_file :avatar, styles: {
     thumb: '100x100>',
     square: '200x200#',
