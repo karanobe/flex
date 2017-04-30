@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>Flex</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
       </script>
-
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -15,7 +16,7 @@
 
   <body>
 
-     <nav class="light-blue lighten-1" role="navigation">
+     <nav>
 
       <% if !user_signed_in? %>
         <div class="nav-wrapper container">
@@ -34,7 +35,7 @@
       <% if user_signed_in? %>
         <ul>
           <li class="home"><%= link_to "Flex", root_path%></li>
-          <li>Logged in as: <%= link_to current_user.first_name, users_path %></li>
+          <li>Logged in as: <%= link_to current_user.first_name, user_path(current_user), class: "user-page" %></li>
           <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, data: { confirm: 'Are you sure you want to log out?'}  %></li>
 
         </ul>
@@ -45,5 +46,6 @@
     <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
   <%- end -%>
     <%= yield %>
+    <footer></footer>
   </body>
 </html>

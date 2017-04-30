@@ -7,7 +7,7 @@ $(document).ready(function() {
     })
   });
 
-  $("#update-pref").on("click", function(e) {
+  $("#pref").on("click", "#update-pref", function(e) {
     e.preventDefault();
     var action = $(this).attr("href");
     hideLinks();
@@ -38,7 +38,7 @@ $(document).ready(function() {
     loadUsers();
   });
 
-  $("#pref").on('click', ".user-page", function(event) {
+  $("body").on('click', ".user-page", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
     $.ajax({url: action, method: "GET"}).done(function(response) {
