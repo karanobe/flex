@@ -29,22 +29,22 @@ Gym.create!(name: "Gold's Gym", street_address: "666 Street Ave.", city: "Corona
 
 
 # Memberships
-ko.memberships.create(gym_id: 1)
+ko.memberships.create(gym_id: 1,primary_gym: true)
 ko.memberships.create(gym_id: 2)
 tn.memberships.create(gym_id: 2)
-tn.memberships.create(gym_id: 3)
-sg.memberships.create(gym_id: 3)
+tn.memberships.create(gym_id: 3, primary_gym: true)
+sg.memberships.create(gym_id: 3, primary_gym: true)
 sg.memberships.create(gym_id: 4)
 ek.memberships.create(gym_id: 4)
-ek.memberships.create(gym_id: 5)
-dg.memberships.create(gym_id: 5)
+ek.memberships.create(gym_id: 5, primary_gym: true)
+dg.memberships.create(gym_id: 5, primary_gym: true)
 dg.memberships.create(gym_id: 6)
-cf.memberships.create(gym_id: 6)
+cf.memberships.create(gym_id: 6, primary_gym: true)
 cf.memberships.create(gym_id: 1)
 bw.memberships.create(gym_id: 1)
-bw.memberships.create(gym_id: 2)
+bw.memberships.create(gym_id: 2, primary_gym: true)
 ao.memberships.create(gym_id: 2)
-ao.memberships.create(gym_id: 3)
+ao.memberships.create(gym_id: 3, primary_gym: true)
 
 
 
