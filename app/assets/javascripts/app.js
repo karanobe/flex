@@ -38,6 +38,25 @@ $(document).ready(function() {
     loadUsers();
   });
 
+  $("#pref").on('click', '#upload-pic', function(event) {
+    event.preventDefault();
+
+  });
+
+  function generatePicForm(){
+    return `<%= form_for(@user, multipart: true) do |f| %>
+  <div class="field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Make a user' %>
+    <%= link_to 'Nevermind', friends_path, class: 'button' %>
+  </div>
+<% end %>`;
+  }
+
+
   $("body").on('click', ".user-page", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
