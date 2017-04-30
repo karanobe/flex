@@ -13,7 +13,7 @@ class PreferencesController < ApplicationController
   end
 
   def edit
-    @preference = Preference.find_by(user_id: current_user.id)
+    @preference = Preference.find(params[:id])
   end
 
   def update
