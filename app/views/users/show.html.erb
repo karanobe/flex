@@ -1,13 +1,24 @@
+<% if user == current_user %>
+  <p><%= user.first_name %> <%= user.last_name %></p>
+  <p>Your Age: <%= user.age %></p>
+  <p>Your current bio: <%= user.profile_bio %></p>
+  <p>Home Gym: <%= user.gyms.name %></p>
+<% end %>
 
-<p><%= @user.first_name %> <%= @user.last_name %></p>
-<p>Your Age: <%= @user.age %></p>
-<p>Your current bio: <%= @user.profile_bio %></p>
-<p>Home Gym: <%= @user.gyms.name %></p>
 
-
-<% if @user.preference && ( @user.preference.user_id == current_user.id ) %>
+<% if user.preference && ( user.preference.user_id == current_user.id ) %>
   <p>Your prefered Flexmate's age range: "add ages from preferences list"</p>
   <p>Your prefered Flexmate's gender: "add once created" </p>
 <% end %>
 
 
+<% if user == current_user %>
+<!-- photo upload form -->
+
+<% end %>
+
+<!-- if !(user == current_user) && current_user.friends.exclude?(user)  -->
+  <!-- add friend -->
+<!-- elsif !(user == current_user) && current_user.friends.include?(user) -->
+  <!-- remove friend  -->
+ <!-- end  -->
