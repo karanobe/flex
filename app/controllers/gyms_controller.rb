@@ -8,5 +8,10 @@ class GymsController < ApplicationController
     google = ENV['GOOGLE']
     render :new, locals: {google_key: google}
   end
+
+  def show
+    gym = Gym.find(params[:id])
+    render json:gym
+  end
 end
 

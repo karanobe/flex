@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     #for user profile pages
+    # p params
     @user = User.find(params[:id])
     render json: @user
   end
