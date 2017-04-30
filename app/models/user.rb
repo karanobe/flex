@@ -12,6 +12,7 @@ class User < ApplicationRecord
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   validates :first_name, :last_name, :age, :gender_pronoun, :profile_bio, presence: true
+  validates :email, uniqueness: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

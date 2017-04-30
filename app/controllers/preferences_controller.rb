@@ -13,11 +13,16 @@ class PreferencesController < ApplicationController
   end
 
   def edit
-    @preference = Preference.find_by(user_id: current_user.id)
+    @preference = Preference.find(params[:id])
   end
 
   def update
-    @preference = Preference
+    @preference = Preference.find_by(user_id: current_user.id)
+    if @preference.update(pref_params)
+      redirect_to users_path
+    else
+      redirect_to preferences_path(@preference)
+    end
   end
 
   def pref_params
