@@ -1,6 +1,10 @@
 $(document).ready(function() {
 
   // loadUsers();
+  $("#new-pref").on("click", function(e) {
+    e.preventDefault();
+    console.log("poopies")
+  })
 });
 
 function loadUsers() {

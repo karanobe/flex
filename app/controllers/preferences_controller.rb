@@ -1,6 +1,7 @@
 class PreferencesController < ApplicationController
   def new
     @preference = Preference.new
+    format.json render :partial => "preferences/new"
   end
 
   def create
