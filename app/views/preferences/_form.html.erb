@@ -1,7 +1,7 @@
 <%= form_for @preference do |f| %>
   <div class="field">
     <%= f.label :min_age %><br />
-    <%= f.number_field :min_age, ihtml: { min: 18 }%>
+    <%= f.number_field :min_age, html: { min: 18 }%>
   </div>
 
   <div class="field">
