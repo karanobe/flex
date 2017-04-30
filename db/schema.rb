@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170429190206) do
     t.string   "last_name",                           null: false
     t.integer  "age",                                 null: false
     t.string   "gender_pronoun",                      null: false
+    t.string   "phone",                               null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

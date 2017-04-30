@@ -19,6 +19,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.string :phone, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :gender_pronoun %><br />
     <%= f.select :gender_pronoun, ['Select', 'He/Him', 'She/Her', 'They/Them'] %>
   </div>
