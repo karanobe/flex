@@ -40,20 +40,20 @@ $(document).ready(function() {
 
   $("#pref").on('click', '#upload-pic', function(event) {
     event.preventDefault();
+    $(this).html(generatePicForm);
+
 
   });
 
   function generatePicForm(){
-    return `<%= form_for(@user, multipart: true) do |f| %>
-  <div class="field">
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Make a user' %>
-    <%= link_to 'Nevermind', friends_path, class: 'button' %>
-  </div>
-<% end %>`;
+    return `<form id="pic-upload-form" action="/users/create" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="Content-Type" value="image/jpeg">
+
+      File:
+      <input name="avatar" type="file">
+      <br>
+      <input type="submit" value="Upload Picture">
+    </form>`;
   }
 
 
