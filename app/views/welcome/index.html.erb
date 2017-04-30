@@ -1,11 +1,12 @@
 <h1>Flex</h1>
 
 <% if user_signed_in? %>
+    <p>link to gyms</p>
   <% if current_user.preference == nil %>
-    <%= link_to "Find your flexmate", new_preferences_path %>
+    <%= link_to "Preferences", new_preference_path %>
   <% else %>
+    <%= link_to "Update Preferences", edit_preference_path(current_user.preference.id) %>
     <p>link to search results</p>
-    <p>link to update preferences</p>
   <% end %>
 
 

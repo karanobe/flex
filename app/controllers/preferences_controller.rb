@@ -1,20 +1,31 @@
 class PreferencesController < ApplicationController
   def new
-    @pref = Preference.new
+    @preference = Preference.new
   end
 
   def create
-    p params
-    @pref = Preference.new(age_range: pref_params[:age_range], gender: pref_params[:gender], user_id: current_user.id)
-    p @pref
-    if @pref.save
+    @preference = Preference.new(age_range: pref_params[:age_range], gender: pref_params[:gender], user_id: current_user.id)
+    if @preference.save
       redirect_to users_path
     else
-      redirect_to new_preferences_path(@pref)
+      redirect_to preferences_path(@preference)
+    end
+  end
+
+  def edit
+    @preference = Preference.find(params[:id])
+  end
+
+  def update
+    @preference = Preference.find_by(user_id: current_user.id)
+    if @preference.update(pref_params)
+      redirect_to users_path
+    else
+      redirect_to preferences_path(@preference)
     end
   end
 
   def pref_params
-    params.require("Save Preferences").permit(:age_range, :gender)
+    params.require(:preference).permit(:age_range, :gender)
   end
 end
