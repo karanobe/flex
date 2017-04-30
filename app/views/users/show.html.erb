@@ -1,25 +1,32 @@
-<% if user == current_user %>
-  <p><%= user.first_name %> <%= user.last_name %></p>
-  <p>Your Age: <%= user.age %></p>
-  <p>Your current bio: <%= user.profile_bio %></p>
-  <p>Home Gym: <%= user.gyms.name %></p>
+<% if @user == current_user %>
+  <h2> Welcome <%= @user.first_name %> <%= @user.last_name %></h2>
+  <p>Your Age: <%= @user.age %></p>
+  <p>Home Gym: <%= @user.gyms.name %></p>
+  <p>Gender Pronoun: <%= @user.gender_pronoun  %> </p>
+  <p>Your current bio: <%= @user.profile_bio %></p>
+
+  <button>Edit Personal Information</button>
+  <button>Upload Profile Picture</button>
+
+  <h3>Your flexmate preferences: </h3>
+  <p>Your prefered Flexmate's age range: <%= @user.preference.min_age %> - <%= @user.preference.max_age %></p>
+  <p>Your prefered Flexmate's gender: <%= @user.preference.gender %> </p>
+  <button id='update-pref'>Edit Preferences</button>
 <% end %>
 
 
-<% if user.preference && ( user.preference.user_id == current_user.id ) %>
-  <p>Your prefered Flexmate's age range: "add ages from preferences list"</p>
-  <p>Your prefered Flexmate's gender: "add once created" </p>
+<% if @user != current_user %>
+  <p><%= @user.first_name %> <%= @user.last_name %></p>
+  <p>Age: <%= @user.age %></p>
+  <p>Home Gym: <%= @user.gyms.name %></p>
+  <p>Gender Pronoun: <%= @user.gender_pronoun  %> </p>
+  <p>Bio: <%= @user.profile_bio %></p>
 
+  <button>Send Friend Request</button>
 <% end %>
 
-
-<% if user == current_user %>
-<!-- photo upload form -->
-
-<% end %>
-
-<!-- if !(user == current_user) && current_user.friends.exclude?(user)  -->
-  <!-- add friend -->
-<!-- elsif !(user == current_user) && current_user.friends.include?(user) -->
-  <!-- remove friend  -->
- <!-- end  -->
+<!-- if !(@user == current_user) && current_user.friends.exclude?(@user)  -->
+<!-- add friend -->
+<!-- elsif !(@user == current_user) && current_user.friends.include?(user) -->
+<!-- remove friend  -->
+<!-- end  -->
