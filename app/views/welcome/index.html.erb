@@ -1,7 +1,7 @@
 <h1>Flex</h1>
 
 <% if user_signed_in? %>
-    <p>link to gyms</p>
+    <p>link to your gyms</p>
   <% if current_user.preference == nil %>
     <%= link_to "Preferences", new_preference_path %>
   <% else %>

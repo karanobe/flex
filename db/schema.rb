@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170429190206) do
   create_table "gyms", force: :cascade do |t|
     t.string  "name",           null: false
     t.string  "street_address", null: false
+    t.string  "city",           null: false
     t.string  "state",          null: false
     t.integer "zip",            null: false
   end
