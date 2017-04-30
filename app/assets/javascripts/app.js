@@ -14,8 +14,21 @@ $(document).ready(function() {
   });
   $("#new-pref").on("click", function(e) {
     e.preventDefault();
-    console.log("poopies")
+    hideLinks();
+    $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
+      $("#pref").html(response.newPrefForm);
+    })
+  });
+
+  $("#update-pref").on("click", function(e) {
+    e.preventDefault();
+    var action = $(this).attr("href");
+    hideLinks();
+    $.ajax({url:action, method: "GET"}).done(function(response) {
+      $("#pref").html(response.editPrefForm);
+    })
   })
+
 
 });
 
