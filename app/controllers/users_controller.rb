@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     #for user profile pages
     # p params
     @user = User.find(params[:id])
-    # render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: @user})}
+    render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: @user})}
   end
 
 end
