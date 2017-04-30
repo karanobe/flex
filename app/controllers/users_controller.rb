@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def index
     # displays list of users
-    users = User.ordered_json
-    render json: users
+    gym_goers = current_user.ordered_json
+    render json: gym_goers
   end
 
   def show

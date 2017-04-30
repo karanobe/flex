@@ -19,10 +19,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   # in progress, needs logic to filter by gym (zip)????
-  def self.ordered_json
-    # User.where("orders_count = ? AND locked = ?", params[:orders], false)
-
-
-    select("*").limit(10).to_json
+  def ordered_json
+    primary_gym = self.memberships.find_by(primary_gym: true).gym
+    gym_users = primary_gym.members
+    gym_users.to_json
   end
 end
+
+
+# age range - not string, but min and max integers
+# pull user if age falls within range
+# preference.min < user.age < preference.max
+
