@@ -1,19 +1,4 @@
 $(document).ready(function() {
-  $("#pref").on('click', '#matched-users',function(event) {
-    event.preventDefault();
-    hideLinks();
-    loadUsers();
-  });
-
-
-
-  $("#gyms-link").on('click', function(event) {
-    event.preventDefault();
-    hideLinks();
-    $.ajax({url:"/gyms", method: "GET"}).done(renderGyms);
-    /* Act on the event */
-    /*call function that appends all the gyms like users does*/
-  });
   $("#new-pref").on("click", function(e) {
     e.preventDefault();
     hideLinks();
@@ -29,8 +14,37 @@ $(document).ready(function() {
     $.ajax({url:action, method: "GET"}).done(function(response) {
       $("#pref").html(response.editPrefForm);
     })
+  });
+
+  $("#gyms-link").on('click', function(event) {
+    event.preventDefault();
+    hideLinks();
+    $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
+      renderGyms(response);
+      $("div#pref").html("<a id='new-gym' href='/gyms/new'>Add a new gym!</a>");
+    });
+  });
+
+  $("#pref").on("click", "#new-gym", function(event) {
+    event.preventDefault();
+    $.ajax({url: "/gyms/new", method: "GET"}).done(function(response) {
+      $("div#pref").html(response.newGymForm);
+    })
   })
 
+  $("#pref").on('click', '#matched-users',function(event) {
+    event.preventDefault();
+    hideLinks();
+    loadUsers();
+  });
+
+  $("#pref").on('click', ".user-page", function(event) {
+    event.preventDefault();
+    var action = $(this).attr("href");
+    $.ajax({url: action, method: "GET"}).done(function(response) {
+      $("div#pref").html(response.userInfo);
+    })
+  })
 
 });
 function renderGyms(response){
@@ -38,7 +52,7 @@ function renderGyms(response){
   response.forEach(function(gym) {
     all_gyms += generateOneGym(gym);
   });
-  $("#gyms-pylon").append(all_gyms);
+  $("#gyms-pylon").html(all_gyms);
 }
 
 function generateOneGym(gym){
@@ -78,7 +92,7 @@ function renderUsers(response) {
   response.forEach(function(user) {
     all_users += generateOneUser(user);
   });
-  $("#users-pylon").append(all_users);
+  $("#users-pylon").html(all_users);
 }
 
 function generateOneUser(user){
@@ -86,7 +100,7 @@ function generateOneUser(user){
           <div class="user-content">
             <p>
               <span class = "name">
-              <a href="place url for specific user profile page" >${user.first_name} ${user.last_name}</a>  </span>
+              <a class="user-page" href="/users/${user.id}" >${user.first_name} ${user.last_name}</a>  </span>
               <span class= "age"> ${user.age}</span>
               <span class= "gender"> ${user.gender_pronoun}</span>
             </p>
