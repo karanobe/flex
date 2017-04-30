@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>Flex</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript" src="javascripts/materialize.min.js">
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+  </script>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-     <nav>
-      <% if !user_signed_in? %>
-        <ul>
-        <li><%= link_to "Flex", root_path%>
-        </li>
-        <li><%= link_to "Login", new_user_session_path%>
-        </li>
-        <li><%= link_to "Register", new_user_registration_path%>
-        </li>
+     <nav class="light-blue lighten-1" role="navigation">
 
-        </ul>
+      <% if !user_signed_in? %>
+        <div class="nav-wrapper container">
+          <ul>
+          <li><%= link_to "Flex", root_path%>
+          </li>
+          <li><%= link_to "Login", new_user_session_path%>
+          </li>
+          <li><%= link_to "Register", new_user_registration_path%>
+          </li>
+
+          </ul>
+        </div>
       <% end %>
 
 
