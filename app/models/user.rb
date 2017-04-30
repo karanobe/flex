@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   # in progress, needs logic to filter by gym (zip)????
   def self.ordered_json
-    User.where("orders_count = ? AND locked = ?", params[:orders], false)
+    # User.where("orders_count = ? AND locked = ?", params[:orders], false)
 
 
     select("*").limit(10).to_json

@@ -1,14 +1,25 @@
 <h1>Flex</h1>
 
+
 <% if user_signed_in? %>
+  <div id="gyms">
     <p>link to your gyms</p>
-  <% if current_user.preference == nil %>
-    <%= link_to "Preferences", new_preference_path %>
-  <% else %>
-    <%= link_to "Update Preferences", edit_preference_path(current_user.preference.id) %>
-    <p>link to search results</p>
-  <% end %>
-    <ul id="users-pylon">
+    <ul id="gyms-pylon">
     </ul>
+  </div>
+  <% if current_user.preference == nil %>
+    <div id="pref">
+      <%= link_to "Preferences",  new_preference_path, id: "new-pref" %>
+    </div>
+  <% else %>
+    <div id="pref">
+      <%= link_to "Update Preferences", edit_preference_path(current_user.preference.id) %>
+    </div>
+    <div id="show-users">
+      <p>link to search results</p>
+      <ul id="users-pylon">
+      </ul>
+    </div>
+  <% end %>
 <% end %>
 
