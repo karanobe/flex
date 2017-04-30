@@ -6,6 +6,7 @@ class CreateGyms < ActiveRecord::Migration[5.0]
       t.string  :city, null: false
       t.string  :state, null: false
       t.integer :zip, null: false
+      t.boolean :primary_gym, default: false
 
       t.timestamp
     end
