@@ -3,9 +3,9 @@ class UsersController < ApplicationController
 
   def index
     # displays list of users
-    User.ordered_json
-    users = User.ordered_json
-    render json: users
+    # users = User.ordered_json
+    # render json: users
+    @user = User.all
   end
 
   def show
