@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe User do
   let(:user) { User.create!(first_name: "Kobe", last_name: "Bryant", age: 25, gender_pronoun: "He", profile_bio: "Get big.", email: "ko@example.com", password: "password", password_confirmation: "password") }
-  let(:gym) { Gym.create!(name: 'XSport', street_address: '666 S. Hell Blvd', state: 'Drillinois', zip: 60669)}
-  let(:gym_2) { Gym.create!(name: 'LA Fitness', street_address: '111 Street Ave', state: 'California', zip: 92879)}
+  let(:gym) { Gym.create!(name: 'XSport', street_address: '666 S. Hell Blvd', city: "Chicago", state: 'Drillinois', zip: 60669)}
+  let(:gym_2) { Gym.create!(name: 'LA Fitness', street_address: '111 Street Ave', city: "Corona", state: 'California', zip: 92879)}
 
 
   it "has a first and last name" do
