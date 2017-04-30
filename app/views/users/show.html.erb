@@ -6,12 +6,16 @@
   <p>Your current bio: <%= user.profile_bio %></p>
 
   <button>Edit Personal Information</button>
-  <button>Upload Profile Picture</button>
+  <a href=<% profile_load_path %>>Upload Profile Picture</a>
 
   <h3>Your flexmate preferences: </h3>
+  <% if user.preference == nil %>
+    <button href="/preferences/new" id='new-pref'>Add Preferences</button>
+  <% else %>
   <p>Your prefered Flexmate's age range: <%= user.preference.min_age %> - <%= user.preference.max_age %></p>
   <p>Your prefered Flexmate's gender: <%= user.preference.gender %> </p>
-  <button href="/preferences/<%= user.preference.id %>/edit" id='update-pref'>Edit Preferences</button>
+    <button href="/preferences/<%= user.preference.id %>/edit" id='update-pref'>Edit Preferences</button>
+  <% end %>
 <% end %>
 
 

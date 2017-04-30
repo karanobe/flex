@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("#new-pref").on("click", function(e) {
+  $("#pref").on("click", "#new-pref", function(e) {
     e.preventDefault();
     hideLinks();
     $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
