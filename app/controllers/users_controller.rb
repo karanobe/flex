@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     render json: gym_goers
   end
 
+  def profile_load
+    @user = current_user
+    p "hello"
+  end
+
   def show
     #for user profile pages
     # p params
@@ -14,15 +19,19 @@ class UsersController < ApplicationController
     render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: @user})}
   end
 
-  def create
-    @user = User.find(params[:id])
-    @user.update_attribute(image: picture_params[:avatar])
-  end
+
+  # def create
+  #   @user = User.find(params[:id])
+  #   @user.update_attribute(image: picture_params[:avatar])
+  # end
 
   private
 
   def picture_params
     params.require(:user).permit(:avatar)
+  end
+
+  def profile_save
   end
 
 end
