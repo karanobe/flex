@@ -5,8 +5,9 @@ class GymsController < ApplicationController
   end
 
   def new
-    google = ENV['GOOGLE']
-    render :new, locals: {google_key: google}
+    google_key = ENV['GOOGLE']
+    # render :new, locals: {google_key: google}
+    render json: {newGymForm: render_to_string("gyms/new", :layout => false, locals: {google_key: google_key})}
   end
 
   def show

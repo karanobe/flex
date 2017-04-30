@@ -26,9 +26,9 @@ $(document).ready(function() {
   });
 
   $("#pref").on("click", "#new-gym", function(event) {
-    // event.preventDefault();
+    event.preventDefault();
     $.ajax({url: "/gyms/new", method: "GET"}).done(function(response) {
-      console.log(response);
+      $("div#pref").html(response.newGymForm);
     })
   })
 
