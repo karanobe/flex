@@ -3,12 +3,15 @@ class UsersController < ApplicationController
 
   def index
     # displays list of users
+    User.ordered_json
     users = User.ordered_json
     render json: users
   end
 
   def show
     #for user profile pages
+    @user = User.find(params[:id])
+    render json: @user
   end
 
 end

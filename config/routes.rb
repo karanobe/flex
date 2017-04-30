@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
   resources  :preferences
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resource  :users
+  resources  :users
   resources :gyms
 
   root 'welcome#index'
