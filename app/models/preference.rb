@@ -1,5 +1,5 @@
 class Preference < ApplicationRecord
   belongs_to  :user
 
-  validates :age_range, :gender, :user_id, presence: true
+  validates :min_age, :max_age, :gender, :user_id, presence: true
 end

@@ -5,7 +5,7 @@ class PreferencesController < ApplicationController
   end
 
   def create
-    @preference = Preference.new(age_range: pref_params[:age_range], gender: pref_params[:gender], user_id: current_user.id)
+    @preference = Preference.new(min_age: pref_params[:min_age], max_age: pref_params[:max_age], gender: pref_params[:gender], user_id: current_user.id)
     if @preference.save
       redirect_to root_path
     else
@@ -28,6 +28,6 @@ class PreferencesController < ApplicationController
   end
 
   def pref_params
-    params.require(:preference).permit(:age_range, :gender)
+    params.require(:preference).permit(:min_age, :max_age, :gender)
   end
 end

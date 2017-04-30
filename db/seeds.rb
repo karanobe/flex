@@ -9,14 +9,14 @@
 
 
 # Users
-ko = User.create!(first_name: "Karan", last_name: "Oberoi", age: 25, gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "k@gmail.com", password: "password", password_confirmation: "password")
-tn = User.create!(first_name: "Ted", last_name: "N", age: 23, gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "t@gmail.com", password: "password", password_confirmation: "password")
+ko = User.create!(first_name: "Karan", last_name: "Oberoi", age: 25,  gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "k@gmail.com", password: "password", password_confirmation: "password")
+tn = User.create!(first_name: "Ted", last_name: "N", age: 99, gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "t@gmail.com", password: "password", password_confirmation: "password")
 sg = User.create!(first_name: "Sara", last_name: "Gerou", age: 25, gender_pronoun: "She/Her", profile_bio: "Profile Biography", email: "s@gmail.com", password: "password", password_confirmation: "password")
-ek = User.create!(first_name: "Elsie", last_name: "Koglin", age: 25, gender_pronoun: "She/Her", profile_bio: "Profile Biography", email: "e@gmail.com", password: "password", password_confirmation: "password")
-dg = User.create!(first_name: "Derek", last_name: "Gregorivich", age: 25, gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "d@gmail.com", password: "password", password_confirmation: "password")
+ek = User.create!(first_name: "Elsie", last_name: "Koglin", age: 54, gender_pronoun: "She/Her", profile_bio: "Profile Biography", email: "e@gmail.com", password: "password", password_confirmation: "password")
+dg = User.create!(first_name: "Derek", last_name: "Gregorivich", age: 88, gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "d@gmail.com", password: "password", password_confirmation: "password")
 cf = User.create!(first_name: "Chris", last_name: "Frazz", age: 25, gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "c@gmail.com", password: "password", password_confirmation: "password")
 bw = User.create!(first_name: "Brendan", last_name: "White", age: 25, gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "b@gmail.com", password: "password", password_confirmation: "password")
-ao = User.create!(first_name: "Alex", last_name: "Origitano", age: 25, gender_pronoun: "She/Her", profile_bio: "Profile Biography", email: "a@gmail.com", password: "password", password_confirmation: "password")
+ao = User.create!(first_name: "Alex", last_name: "Origitano", age: 21, gender_pronoun: "She/Her", profile_bio: "Profile Biography", email: "a@gmail.com", password: "password", password_confirmation: "password")
 
 
 # Gyms
@@ -29,22 +29,21 @@ Gym.create!(name: "Gold's Gym", street_address: "666 Street Ave.", city: "Corona
 
 
 # Memberships
-ko.memberships.create(gym_id: 1)
+ko.memberships.create(gym_id: 1,primary_gym: true)
 ko.memberships.create(gym_id: 2)
 tn.memberships.create(gym_id: 2)
-tn.memberships.create(gym_id: 3)
-sg.memberships.create(gym_id: 3)
+tn.memberships.create(gym_id: 3, primary_gym: true)
+sg.memberships.create(gym_id: 3, primary_gym: true)
 sg.memberships.create(gym_id: 4)
 ek.memberships.create(gym_id: 4)
-ek.memberships.create(gym_id: 5)
-dg.memberships.create(gym_id: 5)
+ek.memberships.create(gym_id: 5, primary_gym: true)
+dg.memberships.create(gym_id: 5, primary_gym: true)
 dg.memberships.create(gym_id: 6)
-cf.memberships.create(gym_id: 6)
+cf.memberships.create(gym_id: 6, primary_gym: true)
 cf.memberships.create(gym_id: 1)
 bw.memberships.create(gym_id: 1)
-bw.memberships.create(gym_id: 2)
+bw.memberships.create(gym_id: 2, primary_gym: true)
 ao.memberships.create(gym_id: 2)
-ao.memberships.create(gym_id: 3)
-
+ao.memberships.create(gym_id: 3, primary_gym: true)
 
 
