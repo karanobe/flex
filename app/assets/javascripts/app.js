@@ -14,6 +14,10 @@ $(document).ready(function() {
     })
   });
 
+  $("div.container").on("submit", "form.edit_preference", function(event) {
+    event.preventDefault();
+  })
+
 
 
   $("#gyms-link").on('click', function(event) {
