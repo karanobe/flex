@@ -6,12 +6,12 @@ $(document).ready(function() {
     })
   });
 
-  $("body").on("click", "#edit-info", function(e) {
-    e.preventDefault();
-      $.ajax({url:action, method: "GET"}).done(function(response) {
-      $(".container").html(response.editPrefForm);
-    })
-  });
+  // $("body").on("click", "#edit-info", function(e) {
+  //   e.preventDefault();
+  //     $.ajax({url:action, method: "GET"}).done(function(response) {
+  //     $(".container").html(response.editPrefForm);
+  //   })
+  // });
 
   $("body").on("click", "#update-pref", function(e) {
     e.preventDefault();
