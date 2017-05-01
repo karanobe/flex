@@ -38,12 +38,14 @@ class User < ApplicationRecord
   end
   # in progress, needs logic to filter by gym (zip)????
   def ordered_json
-    primary_gym_users = self.memberships.find_by(primary_gym: true).gym.members
+    gym_mates = self.memberships.find_by(primary_gym: true).gym.members
 
-    flex_mates = primary_gym_users.where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age)
+    age_mates = gym_mates.where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age)
+    gender_mates = age_mates.where("gender_pronoun = ?", self. preference.gender)
+    # gender_mates
     # select all from Users where age is greater than (>) min age, and less than (<) max age
     # (self.memberships.find_by(primary_gym: true).members).where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age)
-    flex_mates.to_json
+    gender_mates.to_json
   end
 end
 
