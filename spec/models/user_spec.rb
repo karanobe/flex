@@ -12,6 +12,10 @@ describe User do
     expect(user.last_name).to eq("Bryant")
   end
 
+  it "has a phone number" do
+    expect(user.phone).to eq '7736101700'
+  end
+
   it "has an age and gender pronoun" do
     expect(user.age).to eq 25
     expect(user.gender_pronoun).to eq("He")
