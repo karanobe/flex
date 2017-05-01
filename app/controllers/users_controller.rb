@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def profile_load
     @user = current_user
     p "hello"
+    render :profile
   end
 
   def show
@@ -19,6 +20,9 @@ class UsersController < ApplicationController
     render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: @user})}
   end
 
+  def profile_save
+
+  end
 
   # def create
   #   @user = User.find(params[:id])
@@ -31,7 +35,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:avatar)
   end
 
-  def profile_save
-  end
 
 end

@@ -6,7 +6,7 @@
   <p>Your current bio: <%= user.profile_bio %></p>
 
   <button>Edit Personal Information</button>
-  <a href=<% profile_load_path %>>Upload Profile Picture</a>
+  <a href="<%= profile_load_path %>">Upload Profile Picture</a>
 
   <h3>Your flexmate preferences: </h3>
   <% if user.preference == nil %>
