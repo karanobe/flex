@@ -1,4 +1,8 @@
 <% if user == current_user %>
+  <% if user.avatar %>
+    <%= image_tag user.avatar.url(:square) %>
+  <% end %>
+
   <h2> Welcome <%= user.first_name %> <%= user.last_name %></h2>
   <p>Your Age: <%= user.age %></p>
   <p>Home Gym: <%= user.gyms.name %></p>
@@ -20,6 +24,9 @@
 
 
 <% if user != current_user %>
+  <% if user.avatar %>
+    <%= image_tag user.avatar.url(:square) %>
+  <% end %>
   <p><%= user.first_name %> <%= user.last_name %></p>
   <p>Age: <%= user.age %></p>
   <p>Home Gym: <%= user.gyms.name %></p>
