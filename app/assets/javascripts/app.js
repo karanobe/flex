@@ -43,7 +43,23 @@ $(document).ready(function() {
     $.ajax({url: action, method: "GET"}).done(function(response) {
       $(".container").html(response.userInfo);
     })
-  })
+  });
+
+  $('body').on('click', 'a#add', function(event) {
+    console.log("add friend");
+    event.preventDefault();
+  });
+
+  $('#pref').on('click', '.cancel', function(event) {
+    event.preventDefault();
+    console.log("cancel request");
+  });
+
+  $('#pref').on('click', '.unfriend', function(event) {
+    event.preventDefault();
+    console.log("unfriend");
+  });
+
 });
 
 function renderGyms(response){
