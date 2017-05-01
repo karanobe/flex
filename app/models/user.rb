@@ -38,13 +38,15 @@ class User < ApplicationRecord
   end
 
   def ordered_json
+
     gym_mates = self.memberships.find_by(primary_gym: true).gym.members
 
     age_mates = gym_mates.where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age)
 
     gender_mates = age_mates.where("gender_pronoun = ?", self. preference.gender)
 
-    gender_mates.to_json
+    flex_mates = gender_mates.where("user_id != ?", self.id)
+    flex_mates.to_json
   end
 end
 
