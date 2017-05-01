@@ -40,6 +40,7 @@ class User < ApplicationRecord
   def ordered_json
     primary_gym = self.memberships.find_by(primary_gym: true).gym
     gym_users = primary_gym.members
+    p gym_users
     gym_users.to_json
   end
 end
