@@ -1,11 +1,13 @@
-<h1>Upload a profile pic</h1>
+<div class="container">
+  <h1>Upload a profile pic</h1>
 
-<%= form_for(@user, multipart: true) do |f| %>
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :avatar %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Add photo' %>
-  </div>
-<% end %>
+  <%= form_for(@user, multipart: true) do |f| %>
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :avatar %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Add photo' %>
+    </div>
+  <% end %>
+</div>
