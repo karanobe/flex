@@ -13,11 +13,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     if request.xhr?
-      @user = User.find(params[:id])
       render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: @user})}
     else
-      redirect_to user_path(@user)
+      render :show, locals: {user: @user}
     end
   end
 
