@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users, :controllers => { registrations: 'registrations' }, skip: [:edit, :update]
   resources  :users
   get "/users/:id/profile_load" => 'users#profile_load', :as => 'profile_load'
