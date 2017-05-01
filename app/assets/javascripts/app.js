@@ -1,10 +1,5 @@
 $(document).ready(function() {
-  $("div.container").on("click", "#new-pref", function(event) {
-    event.preventDefault();
-    $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
-      $(".container").html(response.newPrefForm);
-    })
-  });
+
 
   $("div.container").on("click", "#update-pref", function(e) {
     e.preventDefault();
