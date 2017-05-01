@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def profile_load
     @user = current_user
-    render :profile
+    render :profile, layout: false
   end
 
   def show
