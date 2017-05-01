@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     render json: gym_goers
   end
 
+
+
   def profile_load
     @user = current_user
     render :profile
