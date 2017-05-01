@@ -1,20 +1,20 @@
 $(document).ready(function() {
-  $("#new-pref").on("click", function(e) {
-    e.preventDefault();
-    hideLinks();
+  $("div.container").on("click", "#new-pref", function(event) {
+    event.preventDefault();
     $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
-      $("#pref").html(response.newPrefForm);
+      $(".container").html(response.newPrefForm);
     })
   });
 
-  $("#pref").on("click", "#update-pref", function(e) {
+  $("div.container").on("click", "#update-pref", function(e) {
     e.preventDefault();
     var action = $(this).attr("href");
-    hideLinks();
     $.ajax({url:action, method: "GET"}).done(function(response) {
-      $("#pref").html(response.editPrefForm);
+      $(".container").html(response.editPrefForm);
     })
   });
+
+
 
   $("#gyms-link").on('click', function(event) {
     event.preventDefault();
@@ -45,20 +45,20 @@ $(document).ready(function() {
     })
   });
 
-  $('body').on('click', 'a#add', function(event) {
-    console.log("add friend");
-    event.preventDefault();
-  });
+  // $('body').on('click', 'a#add', function(event) {
+  //   console.log("add friend");
+  //   event.preventDefault();
+  // });
 
-  $('#pref').on('click', '.cancel', function(event) {
-    event.preventDefault();
-    console.log("cancel request");
-  });
+  // $('#pref').on('click', '.cancel', function(event) {
+  //   event.preventDefault();
+  //   console.log("cancel request");
+  // });
 
-  $('#pref').on('click', '.unfriend', function(event) {
-    event.preventDefault();
-    console.log("unfriend");
-  });
+  // $('#pref').on('click', '.unfriend', function(event) {
+  //   event.preventDefault();
+  //   console.log("unfriend");
+  // });
 
 });
 

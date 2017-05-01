@@ -14,11 +14,11 @@
 
   <h3>Your flexmate preferences: </h3>
   <% if user.preference == nil %>
-    <button href="/preferences/new" id='new-pref'>Add Preferences</button>
+      <%= link_to "Add Preferences",  new_preference_path, id: "new-pref" %>
   <% else %>
   <p>Your prefered Flexmate's age range: <%= user.preference.min_age %> - <%= user.preference.max_age %></p>
   <p>Your prefered Flexmate's gender: <%= user.preference.gender %> </p>
-    <button href="/preferences/<%= user.preference.id %>/edit" id='update-pref'>Edit Preferences</button>
+    <%= link_to "Update Preferences", edit_preference_path(current_user.preference.id), id:"update-pref" %>
   <% end %>
 <% end %>
 
