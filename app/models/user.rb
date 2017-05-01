@@ -40,13 +40,14 @@ class User < ApplicationRecord
   def ordered_json
     primary_gym = self.memberships.find_by(primary_gym: true).gym
     gym_users = primary_gym.members
-    p gym_users
     gym_users.to_json
+
+    # preference = self.preference
+    # grabs the preferneces set for a particular user.
+    self.preference.min_age && elsie.preference.max_age
+    User.where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age  )
+
+# select all from Users where age is greater than (>) min age, and less than (<) max age
   end
 end
-
-
-# age range - not string, but min and max integers
-# pull user if age falls within range
-# preference.min < user.age < preference.max
 
