@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("#pref").on("click", "#new-pref", function(e) {
+  $("#new-pref").on("click", function(e) {
     e.preventDefault();
     hideLinks();
     $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
@@ -37,16 +37,15 @@ $(document).ready(function() {
     hideLinks();
     loadUsers();
   });
-
   $("body").on('click', ".user-page", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
     $.ajax({url: action, method: "GET"}).done(function(response) {
-      $("div#pref").html(response.userInfo);
+      $(".container").html(response.userInfo);
     })
   })
-
 });
+
 function renderGyms(response){
   var all_gyms = "";
   response.forEach(function(gym) {

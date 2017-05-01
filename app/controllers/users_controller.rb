@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def profile_load
     @user = current_user
-    p "hello"
+    render :profile
   end
 
   def show
@@ -19,8 +19,15 @@ class UsersController < ApplicationController
     render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: @user})}
   end
 
-
-  def profile_save
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(avatar: picture_params[:avatar])
+    render :show, locals: {user: @user}
   end
 
+  private
+
+  def picture_params
+    params.require(:user).permit(:avatar)
+  end
 end

@@ -1,1 +1,11 @@
-<h1>hi ted</h1>
+<h1>Upload a profile pic</h1>
+
+<%= form_for(@user, multipart: true) do |f| %>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Add photo' %>
+  </div>
+<% end %>
