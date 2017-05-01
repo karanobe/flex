@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  validates :first_name, :last_name, :age, :gender_pronoun, :profile_bio, presence: true
+  validates :first_name, :last_name, :age, :gender_pronoun, :profile_bio, :phone, presence: true
   validates :email, uniqueness: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -38,14 +38,12 @@ class User < ApplicationRecord
   end
   # in progress, needs logic to filter by gym (zip)????
   def ordered_json
-    primary_gym = self.memberships.find_by(primary_gym: true).gym
-    gym_users = primary_gym.members
-    gym_users.to_json
+    primary_gym_users = self.memberships.find_by(primary_gym: true).gym.members
+
+    flex_mates = primary_gym_users.where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age)
+    # select all from Users where age is greater than (>) min age, and less than (<) max age
+    # (self.memberships.find_by(primary_gym: true).members).where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age)
+    flex_mates.to_json
   end
 end
-
-
-# age range - not string, but min and max integers
-# pull user if age falls within range
-# preference.min < user.age < preference.max
 

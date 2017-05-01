@@ -2,8 +2,9 @@
   <h2> Welcome <%= user.first_name %> <%= user.last_name %></h2>
 
   <% if user.avatar %>
-    <%= image_tag user.avatar.url(:square) %>
+    <%= link_to image_tag user.avatar.url(:square) %>
   <% end %>
+
   <p>Your Age: <%= user.age %></p>
   <p>Home Gym: <%= user.gyms.name %></p>
   <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
