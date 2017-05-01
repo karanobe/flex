@@ -1,12 +1,16 @@
 <% if user == current_user %>
   <h2> Welcome <%= user.first_name %> <%= user.last_name %></h2>
+
+  <% if user.avatar %>
+    <%= image_tag user.avatar.url(:square) %>
+  <% end %>
   <p>Your Age: <%= user.age %></p>
   <p>Home Gym: <%= user.gyms.name %></p>
   <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
   <p>Your current bio: <%= user.profile_bio %></p>
 
   <button>Edit Personal Information</button>
-  <a href=<% profile_load_path %>>Upload Profile Picture</a>
+  <a href="<%= profile_load_path %>">Upload Profile Picture</a>
 
   <h3>Your flexmate preferences: </h3>
   <% if user.preference == nil %>
@@ -21,6 +25,9 @@
 
 <% if user != current_user %>
   <p><%= user.first_name %> <%= user.last_name %></p>
+  <% if user.avatar %>
+    <%= image_tag user.avatar.url(:square) %>
+  <% end %>
   <p>Age: <%= user.age %></p>
   <p>Home Gym: <%= user.gyms.name %></p>
   <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
