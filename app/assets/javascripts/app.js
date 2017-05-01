@@ -12,6 +12,7 @@ $(document).ready(function() {
     $.ajax({url:action, method: "GET"}).done(function(response) {
       $(".container").html(response.editPrefForm);
     })
+  });
 
 
 
