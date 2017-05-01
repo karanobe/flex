@@ -22,9 +22,9 @@ $(document).ready(function() {
     })
   });
 
-  $("div.container").on("submit", "form.edit_preference", function(event) {
-    event.preventDefault();
-  })
+  // $("div.container").on("submit", "form.edit_preference", function(event) {
+  //   event.preventDefault();
+  // })
 
 
 
