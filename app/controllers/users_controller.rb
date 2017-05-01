@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if request.xhr?
       render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: @user})}
     else
-      render :show, locals: {user: @user}
+      redirect_to root_path
     end
   end
 

@@ -6,9 +6,17 @@ $(document).ready(function() {
     })
   });
 
-  $("div.container").on("click", "#update-pref", function(e) {
+  // $("body").on("click", "#edit-info", function(e) {
+  //   e.preventDefault();
+  //     $.ajax({url:action, method: "GET"}).done(function(response) {
+  //     $(".container").html(response.editPrefForm);
+  //   })
+  // });
+
+  $("body").on("click", "#update-pref", function(e) {
     e.preventDefault();
     var action = $(this).attr("href");
+    // debugger
     $.ajax({url:action, method: "GET"}).done(function(response) {
       $(".container").html(response.editPrefForm);
     })
