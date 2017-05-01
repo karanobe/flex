@@ -21,8 +21,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update_attribute(image: picture_params[:avatar])
-    render :show
+    @user.update_attributes(avatar: picture_params[:avatar])
+    render :show, locals: {user: @user}
   end
 
   private
