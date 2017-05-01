@@ -34,13 +34,14 @@ $(document).ready(function() {
     $.ajax({url: "/gyms/new", method: "GET"}).done(function(response) {
       $("div#pref").html(response.newGymForm);
     })
-  })
+  });
 
   $("#pref").on('click', '#matched-users',function(event) {
     event.preventDefault();
     hideLinks();
     loadUsers();
   });
+
   $("body").on('click', ".user-page", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
