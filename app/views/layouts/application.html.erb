@@ -10,6 +10,14 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+        <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+
+    </script>
   </head>
 
   <body>
