@@ -1,38 +1,20 @@
-// To pull new preference form
 $(document).ready(function() {
-  $("div.container").on("click", "#new-pref",function(e) {
-    e.preventDefault();
+  $("div.container").on("click", "#new-pref", function(event) {
+    event.preventDefault();
     $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
       $(".container").html(response.newPrefForm);
     })
   });
 
-// To pull edit preference form
-  $("#pref").on("click", "#update-pref", function(e) {
+  $("div.container").on("click", "#update-pref", function(e) {
     e.preventDefault();
-    $(".container").html()
     var action = $(this).attr("href");
     $.ajax({url:action, method: "GET"}).done(function(response) {
       $(".container").html(response.editPrefForm);
     })
   });
 
-// to submit updated preferences
-  $("div.container").on("submit", "#edit_preference", function(e) {
-    e.preventDefault();
-    var action = $(this).attr("action");
-    $.ajax({url: action, method: "POST", data: $(this).serialize()}).done(function(response) {
-      $("div.container").html(generateRootPath());
-    })
-  })
 
-  $("div.container").on("submit", "#new_preference", function(e) {
-    e.preventDefault();
-    var action = $(this).attr("action");
-    $.ajax({url: action, method: "POST", data: $(this).serialize()}).done(function(response) {
-      $("div.container").html(generateRootPath());
-    })
-  })
 
   $("#gyms-link").on('click', function(event) {
     event.preventDefault();
@@ -80,14 +62,65 @@ $(document).ready(function() {
 
 });
 
-function generateRootPath() {
-  return `<h1>Flex</h1>
-            <div class='container'>
-              <div id="gyms">
-              <a href="/gyms" >View Gyms</a>
-              <ul id="gyms-pylon">
-              </ul>
-            </div>`;
+function renderGyms(response){
+  var all_gyms = "";
+  response.forEach(function(gym) {
+    all_gyms += generateOneGym(gym);
+  });
+  $("#gyms-pylon").html(all_gyms);
+}
+
+function generateOneGym(gym){
+  return `<li class="gym">
+          <div class="gym-content">
+            <p>
+              <span class = "name">
+              <a href="place url for specific gym profile page" >${gym.name} </a>  </span><br>
+              <span class= "address"> ${gym.street_address}</span><br>
+              <span class= "city"> ${gym.city}</span><br>
+              <span class= "zip"> ${gym.zip}</span><br>
+            </p>
+          </div>
+        </li>`;
+}
+
+function hideLinks(){
+  $('#gyms-link').hide();
+  $('#new-pref').hide();
+  $('#update-pref').hide();
+  $('#matched-users').hide();
+}
+
+function loadUsers() {
+  var promise = getUsers();
+  promise.done(renderUsers);
+}
+
+function getUsers() {
+   var requestPromise = $.ajax({url:"/users", method: "GET"});
+  return requestPromise;
+}
+
+
+function renderUsers(response) {
+  var all_users = "";
+  response.forEach(function(user) {
+    all_users += generateOneUser(user);
+  });
+  $("#users-pylon").html(all_users);
+}
+
+function generateOneUser(user){
+  return `<li class="user">
+          <div class="user-content">
+            <p>
+              <span class = "name">
+              <a class="user-page" href="/users/${user.id}" >${user.first_name} ${user.last_name}</a>  </span>
+              <span class= "age"> ${user.age}</span>
+              <span class= "gender"> ${user.gender_pronoun}</span>
+            </p>
+          </div>
+        </li>`;
 }
 
 
