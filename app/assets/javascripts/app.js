@@ -42,7 +42,7 @@ $(document).ready(function() {
     loadUsers();
   });
 
-  $("body").on('click', ".user-page", function(event) {
+  $("body").on('click', "#user-page", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
     $.ajax({url: action, method: "GET"}).done(function(response) {
