@@ -1,43 +1,31 @@
 class FriendshipsController < ApplicationController
 
-  before_filter :authenticate_user!
-
-  def index
-    @friends = current_user.friends
-    @pending_invited_by = current_user.pending_invited_by
-    @pending_invited = current_user.pending_invited
-  end
-
   def create
-    @friend = User.find(params[:user_id])
-    @friendship_created = current_user.invite(@friend)
-    if @friendship_created
-      redirect_to users_path, :notice => "Your friend request is pending"
-    end
+    @user = User.find(params[:format])
+    Friendship.create(user_id: current_user.id,
+     friend_id: @user.id, status: "Request Sent")
   end
 
-  def update
-    @friend = User.find(params[:user_id])
-    @friends = current_user.friends
-    @pending_invited_by = current_user.pending_invited_by
-    redirect_to users_path, :notice => "You are now friends!"
+  def accept
+    @user = User.find(params[:id])
+    confirm = Friendship.find_by(user_id: @user.id, friend_id: helpers.current_user.id)
+    confirm.update_attributes(status: "Accepted")
+    Friendship.create(user_id: helpers.current_user.id, friend_id: @user.id, status: "Accepted")
+
+    redirect_to @user
+  end
+
+  def deny
+    @user = User.find(params[:id])
+    Friendship.find_by(user_id: params[:id], friend_id: helpers.current_user.id).destroy
+
+    redirect_to @user
   end
 
   def destroy
-    @friend = User.find(params[:user_id])
-    @friendship = current_user.send(:find_any_friendship_with, @friend)
-    if @friendship
-      @friendship.destroy
-      @removed = true
-      redirect_to users_path, :notice => "You are no longer friends!"
-    end
+    @user = User.find(params[:id])
+    Friendship.find_by(user_id: helpers.current_user.id, friend_id: params[:id]).destroy
+
+    redirect_to @user
   end
-
-  def createblock
-    @friend = User.find(params[:user_id])
-    current_user.block @friend
-
-    redirect_to users_path, :notice => "You have blocked #{@friend.first_name}"
-  end
-
 end
