@@ -9,14 +9,16 @@ class UsersController < ApplicationController
 
   def profile_load
     @user = current_user
-    render :profile, layout: false
+    render :profile
   end
 
   def show
-    #for user profile pages
-    # p params
-    @user = User.find(params[:id])
-    render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: @user})}
+    if request.xhr?
+      @user = User.find(params[:id])
+      render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: @user})}
+    else
+      redirect_to user_path(@user)
+    end
   end
 
   def update
