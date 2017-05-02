@@ -74,6 +74,11 @@ nav li {
     font-size: 1.2em;
 }
 
+#home{
+  font-family: 'Exo 2', sans-serif;
+    font-size: 1.2em;
+}
+
 .spacer
 {
     width: 100%;
@@ -100,8 +105,15 @@ footer {
   padding-left: 8%;
 }
 
+.center {
+  text-align: center;
+  margin: auto;
+}
 
-
+img {
+  display: block;
+  margin: 0 auto;
+}
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
