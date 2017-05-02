@@ -1,11 +1,5 @@
 $(document).ready(function() {
-  $(".home").on('click',function(event) {
-    event.preventDefault();
-      $.ajax({url: '/home',type: 'GET'}).done(function(response){
-        $(".container").html(response.indexPage);
-      });
-    })
-
+  // AJAX call to new preference call; works on home page and user profile page
   $("div.container").on("click", "#new-pref", function(event) {
     event.preventDefault();
     $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
@@ -13,6 +7,7 @@ $(document).ready(function() {
     })
   });
 
+// AJAX call to edit preference call; works on home page and user profile page
   $("body").on("click", "#update-pref", function(e) {
     e.preventDefault();
     var action = $(this).attr("href");
@@ -21,6 +16,7 @@ $(document).ready(function() {
     })
   });
 
+// AJAX call to append pic upload form on user profile page
   $("body").on("click", "#pic-upload", function(event) {
     event.preventDefault();
     var $picUploadLink = $(this);
@@ -30,30 +26,15 @@ $(document).ready(function() {
     });
   })
 
+// AJAX call to submit photo on user profile page. Makes the call to update attributes for user, waits for a second, and then makes an AJAX call to bring in updated user profile page
   $("body").on("submit", "form.edit_user", function(event) {
     var $picForm = $(this);
     action = $picForm.closest("body").find("a.user-page").attr("href");
-    setTimeout(userProfile, 500);
+    setTimeout(userProfile, 800);
   });
 
-  // $("body").on("click", "#edit-info", function(e) {
-  //   e.preventDefault();
-  //     $.ajax({url:action, method: "GET"}).done(function(response) {
-  //     $(".container").html(response.editPrefForm);
-  //   })
-  // });
-
-
-  // $("div.container").on("submit", "form.edit_preference", function(event) {
-  //   event.preventDefault();
-  // })
-
-  function userProfile() {
-    $.ajax({url: action, method: "GET"}).done(function(response) {
-        $("div.container").html(response.userInfo)});
-  }
-
-  $("#gyms-link").on('click', function(event) {
+// AJAX call to show list of gyms specific to the user, and adds "Add New Gym" link at the end of the list
+  $(".container").on('click', "#gyms-link", function(event) {
     event.preventDefault();
     hideLinks();
     $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
@@ -62,19 +43,24 @@ $(document).ready(function() {
     });
   });
 
+// Displays form to add new gym, appends it to the bottom of the page
   $("#pref").on("click", "#new-gym", function(event) {
     event.preventDefault();
-    $.ajax({url: "/gyms/new", method: "GET"}).done(function(response) {
-      $("div#pref").html(response.newGymForm);
+    var action = $(this).attr("href");
+    $.ajax({url: action, method: "GET"}).done(function(response) {
+      console.log(response)
+      // $("div#pref").html(response.newGymForm);
     })
   });
 
+// AJAX call to hide all links on home page and display list of matched users
   $("#pref").on('click', '#matched-users',function(event) {
     event.preventDefault();
     hideLinks();
     loadUsers();
   });
 
+// AJAX call to display user profile
   $("body").on('click', ".user-page", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
@@ -99,66 +85,5 @@ $(document).ready(function() {
   // });
 
 });
-
-function renderGyms(response){
-  var all_gyms = "";
-  response.forEach(function(gym) {
-    all_gyms += generateOneGym(gym);
-  });
-  $("#gyms-pylon").html(all_gyms);
-}
-
-function generateOneGym(gym){
-  return `<li class="gym">
-          <div class="gym-content">
-            <p>
-              <span class = "name">
-              <a href="place url for specific gym profile page" >${gym.name} </a>  </span><br>
-              <span class= "address"> ${gym.street_address}</span><br>
-              <span class= "city"> ${gym.city}</span><br>
-              <span class= "zip"> ${gym.zip}</span><br>
-            </p>
-          </div>
-        </li>`;
-}
-
-function hideLinks(){
-  $('#gyms-link').hide();
-  $('#new-pref').hide();
-  $('#update-pref').hide();
-  $('#matched-users').hide();
-}
-
-function loadUsers() {
-  var promise = getUsers();
-  promise.done(renderUsers);
-}
-
-function getUsers() {
-   var requestPromise = $.ajax({url:"/users", method: "GET"});
-  return requestPromise;
-}
-
-
-function renderUsers(response) {
-  var all_users = "";
-  response.forEach(function(user) {
-    all_users += generateOneUser(user);
-  });
-  $("#users-pylon").html(all_users);
-}
-
-function generateOneUser(user){
-  return `<li class="user">
-          <div class="user-content">
-            <p>
-              <span class = "name">
-              <a class="user-page" href="/users/${user.id}" >${user.first_name} ${user.last_name}</a>  </span>
-              <span class= "age"> ${user.age}</span>
-              <span class= "gender"> ${user.gender_pronoun}</span>
-            </p>
-          </div>
-        </li>`;
-}
 
 
