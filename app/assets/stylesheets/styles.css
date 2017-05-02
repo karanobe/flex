@@ -33,7 +33,7 @@ nav a {
 
 nav {
   background-color: #08917c;
-  height: 6%;
+  height: 30px;
   width: 100%;
   position: fixed;
   margin: 0 0 0 0;
@@ -44,7 +44,7 @@ nav {
 
 nav li {
   float: left;
-  display: block;
+  display: inline-block;
   color: #f2f2f2;
   text-align: center;
   padding: 13px 14px 0px 16px;
@@ -54,7 +54,7 @@ nav li {
 
 footer {
   height: 30px;
-  background-color: #08917c;
+  background-color: #7bff00;
   width: 100%;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: white;
@@ -209,6 +209,7 @@ a {
 
 a:hover {
   color: orange;
+  text-decoration: none;
 }
 
 /* Buttons
