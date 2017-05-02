@@ -21,9 +21,11 @@
   <% else %>
   <p>Your prefered Flexmate's age range: <%= user.preference.min_age %> - <%= user.preference.max_age %></p>
   <p>Your prefered Flexmate's gender: <%= user.preference.gender %> </p>
-    <%= link_to "Update Preferences", edit_preference_path(current_user.preference.id), id:"update-pref" %>
+    <%= link_to "Update FlexMate Preferences", edit_preference_path(current_user.preference.id), id:"update-pref" %>
+    <%= link_to "View FlexMates", users_path, id: "matched-users"  %>
   <% end %>
 <% end %>
+<div class="spacer"></div>
 
 
 <% if user != current_user %>
@@ -53,4 +55,5 @@
   </div>
 <% end %>
 <div calss="spacer"></div>
+
 <footer></footer>

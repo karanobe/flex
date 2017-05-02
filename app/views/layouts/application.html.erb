@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+   <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>Flex</title>
@@ -11,7 +11,6 @@
     <%= csrf_meta_tags %>
         <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
   </head>
   <body>
 
@@ -19,11 +18,11 @@
 
       <% if !user_signed_in? %>
           <ul>
-          <li id="home"><%= link_to "Flex", root_path%>
+          <li id="home"><%= link_to "FLEX", root_path, class: 'home'%>
           </li>
-          <li id="login"><%= link_to "Login", new_user_session_path%>
+          <li id="login"><%= link_to "LOGIN", new_user_session_path%>
           </li>
-          <li id="register"><%= link_to "Register", new_user_registration_path%>
+          <li id="register"><%= link_to "REGISTER", new_user_registration_path%>
           </li>
 
           </ul>
@@ -31,9 +30,9 @@
 
       <% if user_signed_in? %>
         <ul>
-          <li class="home"><%= link_to "Flex", root_path%></li>
-          <li><%= link_to current_user.first_name, user_path(current_user), class: "user-page" %></li>
-          <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, data: { confirm: 'Are you sure you want to log out?'}  %></li>
+          <li id="home"><%= link_to "FLEX", root_path, class: 'home'%></li>
+          <li><%= link_to current_user.first_name.upcase, user_path(current_user) %></li>
+          <li><%= link_to 'LOGOUT', destroy_user_session_path, :method => :delete, data: { confirm: 'Are you sure you want to log out?'}  %></li>
 
         </ul>
       <% end %>
@@ -45,7 +44,8 @@
       <%- end -%>
         <%= yield %>
 
-    <footer></footer>
+    <div class="spacer">
+    </div>
     <div class="spacer">
     </div>
     <footer></footer>

@@ -57,7 +57,7 @@ $(document).ready(function() {
   });
 
 // AJAX call to hide all links on home page and display list of matched users
-  $("#pref").on('click', '#matched-users',function(event) {
+  $("body").on('click', '#matched-users',function(event) {
     event.preventDefault();
     hideLinks();
     loadUsers();
