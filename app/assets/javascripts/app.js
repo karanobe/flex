@@ -1,3 +1,12 @@
+(function($){
+  $(function(){
+    $(document).ready(function() {
+        $('select').material_select();
+      });
+  });
+})(jQuery);
+
+
 $(document).ready(function() {
   $("div.container").on("click", "#new-pref", function(event) {
     event.preventDefault();
