@@ -13,7 +13,6 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
   </head>
-
   <body>
 
      <nav>
@@ -39,13 +38,15 @@
         </ul>
       <% end %>
     </nav>
-    <div class="container-below-nav">
+    <div class="spacer">
+    </div>
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
       <%- end -%>
         <%= yield %>
-    </div>
-    <footer></footer>
 
+    <footer></footer>
+    <div class="spacer">
+    </div>
   </body>
 </html>
