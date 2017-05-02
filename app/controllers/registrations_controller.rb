@@ -44,7 +44,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name, :age, :phone, :gender_pronoun, :profile_bio, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :age, :phone, :gender_pronoun, :profile_bio, :email, :password, :password_confirmation, :current_password)
   end
 
   # The path used after sign up.

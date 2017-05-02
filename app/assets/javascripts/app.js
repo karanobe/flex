@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  $('body').click(function(){
+  $("div#flash_notice").hide();
+  });
   // AJAX call to new preference call; works on home page and user profile page
   $("div.container").on("click", "#new-pref", function(event) {
     event.preventDefault();
@@ -68,6 +71,27 @@ $(document).ready(function() {
       $(".container").html(response.userInfo);
     })
   });
+
+// AJAX call to update user preferences; works on home and user profile page; redirects back to user profile
+  $("body").on("submit", ".edit_preference", function(event) {
+    event.preventDefault();
+    var action = $(this).attr("action");
+    var data = $(this).serialize();
+    $.ajax({url: action, method: "PATCH", data: data}).done(function(response) {
+      $(".container").html(response.userInfo);
+    })
+  })
+
+// AJAX call to create new user preferences; works on home and user profile page; redirects back to user profile
+  $("body").on("submit", ".new_preference", function(event) {
+    event.preventDefault();
+    var action = $(this).attr("action");
+    var data = $(this).serialize();
+    $.ajax({url: action, method: "POST", data: data}).done(function(response) {
+      $(".container").html(response.userInfo);
+    })
+  })
+
 
   // $('body').on('click', 'a#add', function(event) {
   //   console.log("add friend");
