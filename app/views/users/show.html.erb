@@ -12,20 +12,11 @@
   <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
   <p>Your current bio: <%= user.profile_bio %></p>
 
-  <a id ="edit-info" href=<%= edit_user_registration_path %>>Edit Personal Information</a><br>
+  <a id ="edit-info" class="buttonizing" href=<%= edit_user_registration_path %>>Edit Personal Information</a><br>
   <div id="bringFormHere">
-    <a id="pic-upload" href="<%= profile_load_path(current_user) %>">Upload Profile Picture</a>
+    <a id="pic-upload" class="buttonizing" href="<%= profile_load_path(current_user) %>">Upload Profile Picture</a>
   </div>
 
-  <h3>Your flexmate preferences: </h3>
-  <% if user.preference == nil %>
-      <%= link_to "Add Preferences",  new_preference_path, id: "new-pref" %>
-  <% else %>
-  <p>Your prefered Flexmate's age range: <%= user.preference.min_age %> - <%= user.preference.max_age %></p>
-  <p>Your prefered Flexmate's gender: <%= user.preference.gender %> </p>
-    <%= link_to "Update FlexMate Preferences", edit_preference_path(current_user.preference.id), id:"update-pref" %>
-    <%= link_to "View FlexMates", users_path, id: "matched-users"  %>
-  <% end %>
 <% end %>
 <div class="spacer"></div>
 
