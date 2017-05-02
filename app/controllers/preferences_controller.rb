@@ -7,7 +7,7 @@ class PreferencesController < ApplicationController
   def create
     @preference = Preference.new(min_age: pref_params[:min_age], max_age: pref_params[:max_age], gender: pref_params[:gender], user_id: current_user.id)
     if @preference.save
-      redirect_to root_path
+      render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: current_user})}
     else
       redirect_to preferences_path(@preference)
     end
@@ -21,7 +21,7 @@ class PreferencesController < ApplicationController
   def update
     @preference = Preference.find_by(user_id: current_user.id)
     if @preference.update(pref_params)
-      redirect_to root_path
+      render json: {userInfo: render_to_string("users/show", :layout => false, locals: {user: current_user})}
     else
       redirect_to preferences_path(@preference)
     end

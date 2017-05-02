@@ -69,6 +69,27 @@ $(document).ready(function() {
     })
   });
 
+// AJAX call to update user preferences; works on home and user profile page; redirects back to user profile
+  $("body").on("submit", ".edit_preference", function(event) {
+    event.preventDefault();
+    var action = $(this).attr("action");
+    var data = $(this).serialize();
+    $.ajax({url: action, method: "PATCH", data: data}).done(function(response) {
+      $(".container").html(response.userInfo);
+    })
+  })
+
+// AJAX call to create new user preferences; works on home and user profile page; redirects back to user profile
+  $("body").on("submit", ".new_preference", function(event) {
+    event.preventDefault();
+    var action = $(this).attr("action");
+    var data = $(this).serialize();
+    $.ajax({url: action, method: "POST", data: data}).done(function(response) {
+      $(".container").html(response.userInfo);
+    })
+  })
+
+
   // $('body').on('click', 'a#add', function(event) {
   //   console.log("add friend");
   //   event.preventDefault();
