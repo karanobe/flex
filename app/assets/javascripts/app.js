@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  $('body').click(function(){
+  $("div#flash_notice").hide();
+  });
   // AJAX call to new preference call; works on home page and user profile page
   $("div.container").on("click", "#new-pref", function(event) {
     event.preventDefault();
