@@ -1,23 +1,2 @@
 <h3>Add New Gym</h3>
-<!DOCTYPE html>
-    <html>
-      <head>
-        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=<%= google_key  %>"></script>
-        <script>
-            var autocomplete;
-            function initialize() {
-              autocomplete = new google.maps.places.Autocomplete(
-                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
-                  { types: ['geocode'] });
-              google.maps.event.addListener(autocomplete, 'place_changed', function() {
-              });
-            }
-        </script>
-      </head>
-      <body onload="initialize()">
-        <div id="locationField">
-          <input id="autocomplete" placeholder="Enter your address" type="text" size="40"></input>
-        </div>
-      </body>
-    </html>
+<%= render "form" %>
