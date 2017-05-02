@@ -22,6 +22,13 @@ $(document).ready(function() {
       $("#bringFormHere").html(response.picUpload);
     });
   })
+
+  $("body").on("submit", "form.edit_user", function(event) {
+    var $picForm = $(this);
+    action = $picForm.closest("body").find("a.user-page").attr("href");
+    setTimeout(userProfile, 400);
+  });
+
   // $("body").on("click", "#edit-info", function(e) {
   //   e.preventDefault();
   //     $.ajax({url:action, method: "GET"}).done(function(response) {
@@ -34,7 +41,10 @@ $(document).ready(function() {
   //   event.preventDefault();
   // })
 
-
+  function userProfile() {
+    $.ajax({url: action, method: "GET"}).done(function(response) {
+        $("div.container").html(response.userInfo)});
+  }
 
   $("#gyms-link").on('click', function(event) {
     event.preventDefault();
