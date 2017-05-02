@@ -50,5 +50,11 @@ class User < ApplicationRecord
     flex_mates = gender_mates.where("user_id != ?", self.id)
     flex_mates.to_json
   end
+
+  def set_primary_on_add_new
+    primary = self.memberships.find_by(primary_gym: true)
+    primary.primary_gym = false
+    primary.save
+  end
 end
 
