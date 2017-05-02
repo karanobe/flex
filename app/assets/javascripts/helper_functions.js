@@ -59,6 +59,11 @@ function generateOneUser(user){
         </li>`;
 }
 
+function userProfile() {
+  $.ajax({url: action, method: "GET"}).done(function(response) {
+      $("div.container").html(response.userInfo)});
+}
+
   // $(".home").on('click',function(event) {
   //   event.preventDefault();
   //     $.ajax({url: '/home',type: 'GET'}).done(function(response){
