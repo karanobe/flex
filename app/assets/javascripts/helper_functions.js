@@ -39,11 +39,12 @@ function getUsers() {
 
 
 function renderUsers(response) {
-  var all_users = "";
+  var all_users = "<ul>";
   response.forEach(function(user) {
     all_users += generateOneUser(user);
+    all_users + "</ul>";
   });
-  $("#users-pylon").html(all_users);
+  $(".container").html(all_users);
 }
 
 function generateOneUser(user){

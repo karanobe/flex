@@ -9,13 +9,10 @@
     <% if current_user.preference == nil %>
         <%= link_to "Preferences",  new_preference_path, id: "new-pref" %>
     <% else %>
-        <%= link_to "Update Preferences", edit_preference_path(current_user.preference.id), id:"update-pref" %>
+        <%= link_to "Update FlexMate Preferences", edit_preference_path(current_user.preference.id), id:"update-pref" %>
       <!-- <div id="show-users"> -->
-        <p><%= link_to "View Flex-Mates", users_path, id: "matched-users"  %></p>
-        <ul id="users-pylon">
-        </ul>
+        <p><%= link_to "View FlexMates", users_path, id: "matched-users"  %></p>
     <% end %>
-    </div>
+  </div>
 <% end %>
 
-<footer></footer>
