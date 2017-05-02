@@ -58,3 +58,10 @@ function generateOneUser(user){
           </div>
         </li>`;
 }
+
+  // $(".home").on('click',function(event) {
+  //   event.preventDefault();
+  //     $.ajax({url: '/home',type: 'GET'}).done(function(response){
+  //       $(".container").html(response.indexPage);
+  //     });
+  //   })

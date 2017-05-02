@@ -1,11 +1,4 @@
 $(document).ready(function() {
-  $(".home").on('click',function(event) {
-    event.preventDefault();
-      $.ajax({url: '/home',type: 'GET'}).done(function(response){
-        $(".container").html(response.indexPage);
-      });
-    })
-
   $("div.container").on("click", "#new-pref", function(event) {
     event.preventDefault();
     $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
@@ -33,7 +26,7 @@ $(document).ready(function() {
   $("body").on("submit", "form.edit_user", function(event) {
     var $picForm = $(this);
     action = $picForm.closest("body").find("a.user-page").attr("href");
-    setTimeout(userProfile, 500);
+    setTimeout(userProfile, 800);
   });
 
   // $("body").on("click", "#edit-info", function(e) {
