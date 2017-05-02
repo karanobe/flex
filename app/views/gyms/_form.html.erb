@@ -3,6 +3,7 @@
 </div>
 
 <table id="address">
+  <form id="address" action="/gyms" method="post">
   <tr>
     <td class="label">Name of Gym</td>
     <td class="wideField" colspan="3"><input name="gym_name"></input></td>
@@ -19,6 +20,7 @@
   <tr>
     <td class="label">State</td>
     <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true"></input></td>
+
     <td class="label">Zip code</td>
     <td class="wideField"><input class="field" id="postal_code" disabled="true"></input></td>
   </tr>
@@ -26,6 +28,8 @@
     <td class="label">Country</td>
     <td class="wideField" colspan="3"><input class="field" id="country" disabled="true"></input></td>
   </tr>
+  <input name="commit" type="submit" value="Add Your Gym"></input>
+  </form>
 </table>
 
 <script>
@@ -40,14 +44,10 @@
   };
 
   function initAutocomplete() {
-    // Create the autocomplete object, restricting the search to geographical
-    // location types.
     autocomplete = new google.maps.places.Autocomplete(
-        /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-        {types: ['geocode']});
+    (document.getElementById('autocomplete')),
+      {types: ['geocode']});
 
-    // When the user selects an address from the dropdown, populate the address
-    // fields in the form.
     autocomplete.addListener('place_changed', fillInAddress);
   }
 

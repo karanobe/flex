@@ -27,6 +27,7 @@ class PreferencesController < ApplicationController
     end
   end
 
+  private
   def pref_params
     params.require(:preference).permit(:min_age, :max_age, :gender)
   end
