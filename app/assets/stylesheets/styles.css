@@ -293,6 +293,10 @@ a:hover {
   text-decoration: none;
 }
 
+a:hover.buttonizing{
+  color: #08917c;
+}
+
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button,
