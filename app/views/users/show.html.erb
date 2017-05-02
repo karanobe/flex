@@ -12,9 +12,9 @@
   <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
   <p>Your current bio: <%= user.profile_bio %></p>
 
-  <a id ="edit-info" href=<%= edit_user_registration_path %>>Edit Personal Information</a><br>
+  <a id ="edit-info" class="buttonizing" href=<%= edit_user_registration_path %>>Edit Personal Information</a><br>
   <div id="bringFormHere">
-    <a id="pic-upload" href="<%= profile_load_path(current_user) %>">Upload Profile Picture</a>
+    <a id="pic-upload" class="buttonizing" href="<%= profile_load_path(current_user) %>">Upload Profile Picture</a>
   </div>
 
   <h3>Your flexmate preferences: </h3>
