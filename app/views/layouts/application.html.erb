@@ -11,12 +11,7 @@
     <%= csrf_meta_tags %>
         <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $('select').material_select();
-    });
 
-    </script>
   </head>
 
   <body>
@@ -24,9 +19,8 @@
      <nav>
 
       <% if !user_signed_in? %>
-        <div class="nav-wrapper container">
           <ul>
-          <li><%= link_to "Flex", root_path%>
+          <li id="home"><%= link_to "Flex", root_path%>
           </li>
           <li id="login"><%= link_to "Login", new_user_session_path%>
           </li>
@@ -34,7 +28,6 @@
           </li>
 
           </ul>
-        </div>
       <% end %>
 
       <% if user_signed_in? %>
@@ -46,11 +39,13 @@
         </ul>
       <% end %>
     </nav>
-
-  <%- flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-  <%- end -%>
-    <%= yield %>
+    <div class="container-below-nav">
+      <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      <%- end -%>
+        <%= yield %>
+    </div>
     <footer></footer>
+
   </body>
 </html>
