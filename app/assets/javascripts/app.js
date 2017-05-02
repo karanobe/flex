@@ -1,3 +1,12 @@
+(function($){
+  $(function(){
+    $(document).ready(function() {
+        $('select').material_select();
+      });
+  });
+})(jQuery);
+
+
 $(document).ready(function() {
   $("div.container").on("click", "#new-pref", function(event) {
     event.preventDefault();
@@ -6,6 +15,22 @@ $(document).ready(function() {
     })
   });
 
+  $("body").on("click", "#update-pref", function(e) {
+    e.preventDefault();
+    var action = $(this).attr("href");
+    $.ajax({url:action, method: "GET"}).done(function(response) {
+      $(".container").html(response.editPrefForm);
+    })
+  });
+
+  $("body").on("click", "#pic-upload", function(event) {
+    event.preventDefault();
+    var $picUploadLink = $(this);
+    var action = $picUploadLink.attr("href");
+    $.ajax({url: action, method: "GET"}).done(function(response) {
+      $("#bringFormHere").html(response.picUpload);
+    });
+  })
   // $("body").on("click", "#edit-info", function(e) {
   //   e.preventDefault();
   //     $.ajax({url:action, method: "GET"}).done(function(response) {
@@ -13,18 +38,10 @@ $(document).ready(function() {
   //   })
   // });
 
-  $("body").on("click", "#update-pref", function(e) {
-    e.preventDefault();
-    var action = $(this).attr("href");
-    // debugger
-    $.ajax({url:action, method: "GET"}).done(function(response) {
-      $(".container").html(response.editPrefForm);
-    })
-  });
 
-  $("div.container").on("submit", "form.edit_preference", function(event) {
-    event.preventDefault();
-  })
+  // $("div.container").on("submit", "form.edit_preference", function(event) {
+  //   event.preventDefault();
+  // })
 
 
 

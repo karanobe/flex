@@ -11,7 +11,9 @@
   <p>Your current bio: <%= user.profile_bio %></p>
 
   <a id ="edit-info" href="">Edit Personal Information</a><br>
-  <a href="<%= profile_load_path %>">Upload Profile Picture</a>
+  <div id="bringFormHere">
+    <a id="pic-upload" href="<%= profile_load_path %>">Upload Profile Picture</a>
+  </div>
 
   <h3>Your flexmate preferences: </h3>
   <% if user.preference == nil %>

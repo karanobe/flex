@@ -5,11 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>Flex</title>
-
-      </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+        <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
   </head>
 
   <body>
@@ -17,9 +19,8 @@
      <nav>
 
       <% if !user_signed_in? %>
-        <div class="nav-wrapper container">
           <ul>
-          <li><%= link_to "Flex", root_path%>
+          <li id="home"><%= link_to "Flex", root_path%>
           </li>
           <li id="login"><%= link_to "Login", new_user_session_path%>
           </li>
@@ -27,7 +28,6 @@
           </li>
 
           </ul>
-        </div>
       <% end %>
 
       <% if user_signed_in? %>
@@ -39,11 +39,13 @@
         </ul>
       <% end %>
     </nav>
-
-  <%- flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-  <%- end -%>
-    <%= yield %>
+    <div class="container-below-nav">
+      <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      <%- end -%>
+        <%= yield %>
+    </div>
     <footer></footer>
+
   </body>
 </html>
