@@ -6,7 +6,9 @@
   <% end %>
 
   <p>Your Age: <%= user.age %></p>
-  <p>Home Gym: <%= user.gyms.first.name %></p>
+  <% if user.gyms != nil %>
+    <p>Home Gym: <%= user.gyms.first.name %></p>
+  <% end %>
   <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
   <p>Your current bio: <%= user.profile_bio %></p>
 
