@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('body').click(function(){
-  $("div#flash_notice").hide();
+    $("div#flash_notice").hide();
   });
   // AJAX call to new preference call; works on home page and user profile page
   $("div.container").on("click", "#new-pref", function(event) {
@@ -42,17 +42,16 @@ $(document).ready(function() {
     hideLinks();
     $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
       renderGyms(response);
-      $("div#pref").html("<a id='new-gym' href='/gyms/new'>Add a new gym!</a>");
+      $(".container").append("<a id='new-gym' href='/gyms/new'>Add a new gym!</a>");
     });
   });
 
 // Displays form to add new gym, appends it to the bottom of the page
-  $("#pref").on("click", "#new-gym", function(event) {
+  $(".container").on("click", "#new-gym", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
     $.ajax({url: action, method: "GET"}).done(function(response) {
-      console.log(response)
-      // $("div#pref").html(response.newGymForm);
+      $(".container").html(response)
     })
   });
 
