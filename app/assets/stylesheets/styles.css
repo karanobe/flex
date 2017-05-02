@@ -57,6 +57,7 @@ nav {
     text-decoration: none;
     font-size: 1em;
 }
+}
 
 nav li {
   float: left;
@@ -68,16 +69,11 @@ nav li {
   font-size: 1em;
 }
 
-
 .home{
   font-family: 'Exo 2', sans-serif;
     font-size: 1.2em;
 }
 
-#home{
-  font-family: 'Exo 2', sans-serif;
-    font-size: 1.2em;
-}
 
 .spacer
 {
@@ -115,6 +111,30 @@ img {
   margin: 0 auto;
 }
 
+.align {
+  margin-left: -15px;
+}
+
+.buttonizing {
+  width: 100%;
+  display: block;
+  height: 45px;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: orange;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
@@ -135,14 +155,14 @@ img {
 /* For devices larger than 350px */
 @media (min-width: 350px) {
   .container {
-    width: 85%;
+    /*width: 85%;*/
     padding: 0; }
 }
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {
   .container {
-    width: 80%; }
+    /*width: 80%; }*/
   .column,
   .columns {
     margin-left: 4%; }
@@ -340,7 +360,7 @@ input[type="button"].button-primary:focus {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 
-@media screen and (max-width: 450px) {
+ 
 .button,
 button,
 input[type="submit"],
