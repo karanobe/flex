@@ -1,5 +1,11 @@
-
 $(document).ready(function() {
+  $(".home").on('click',function(event) {
+    event.preventDefault();
+      $.ajax({url: '/home',type: 'GET'}).done(function(response){
+        $(".container").html(response.indexPage);
+      });
+    })
+
   $("div.container").on("click", "#new-pref", function(event) {
     event.preventDefault();
     $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
