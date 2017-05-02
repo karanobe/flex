@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   resources :gyms
   resources :friendships, only: [:create, :destroy]
 
+  resource :messages do
+    collection do
+      post 'reply'
+    end
+  end
+
   post 'friendships/:id/accept' => 'friendships#accept', as: 'accept_friend'
   delete 'friendships/:id/deny' => 'friendships#deny', as: 'deny_friend'
   root 'welcome#index'
