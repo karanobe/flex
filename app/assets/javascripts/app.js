@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  // AJAX call to get rid of Devise flash message
   $('body').click(function(){
     $("div#flash_notice").hide();
   });
@@ -46,7 +47,7 @@ $(document).ready(function() {
     });
   });
 
-// Displays form to add new gym, appends it to the bottom of the page
+// Displays form to add new gym, on new page
   $(".container").on("click", "#new-gym", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
@@ -54,6 +55,24 @@ $(document).ready(function() {
       $(".container").html(response)
     })
   });
+
+  $(".container").on("submit", "#gym-submit", function(event) {
+    event.preventDefault();
+    var $gymSubmitButton = $(this);
+    var table = $gymSubmitButton.closest("div#gym-form").find("table");
+    var name = table.find("#name").val();
+    var streetAddress = table.find("#street_number").val() + " " + table.find("#route").val();
+    var city = table.find("#locality").val();
+    var state = table.find("#administrative_area_level_1").val();
+    var zip = table.find("#postal_code").val();
+    var data = {gym: {name: name, street_address: streetAddress, city: city, state: state, zip: zip}};
+    $.ajax({url: "/gyms",
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      method: "POST",
+      data: data}).done(function(){
+        location.reload();
+      })
+  })
 
 // AJAX call to hide all links on home page and display list of matched users
   $("body").on('click', '#matched-users',function(event) {
