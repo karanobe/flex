@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def profile_load
     @user = current_user
-    render :profile
+    render json: {picUpload: render_to_string("users/profile", layout: false, locals: {user: @user})}
   end
 
   def show
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(avatar: picture_params[:avatar])
-    render :show, locals: {user: @user}
+    redirect_to user_path(current_user)
   end
 
   private
