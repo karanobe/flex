@@ -26,7 +26,7 @@ $(document).ready(function() {
   $("body").on("submit", "form.edit_user", function(event) {
     var $picForm = $(this);
     action = $picForm.closest("body").find("a.user-page").attr("href");
-    setTimeout(userProfile, 400);
+    setTimeout(userProfile, 500);
   });
 
   // $("body").on("click", "#edit-info", function(e) {
