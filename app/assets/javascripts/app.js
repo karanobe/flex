@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
   $("div.container").on("click", "#new-pref", function(event) {
     event.preventDefault();
