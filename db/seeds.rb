@@ -45,5 +45,3 @@ bw.memberships.create(gym_id: 1)
 bw.memberships.create(gym_id: 2, primary_gym: true)
 ao.memberships.create(gym_id: 2)
 ao.memberships.create(gym_id: 3, primary_gym: true)
-
-

@@ -6,11 +6,13 @@ class User < ApplicationRecord
   has_and_belongs_to_many :all_friends,
     class_name: "User", join_table: :friendships, foreign_key: :user_id, association_foreign_key: :friend_id
 
-  has_attached_file :avatar, styles: {
-    thumb: '100x100>',
-    square: '200x200#',
-    medium: '300x300>'
-  }
+  has_attached_file :avatar,
+    styles: {
+      thumb: '100x100>',
+      square: '200x200#',
+      medium: '300x300>'
+    },
+    default_url: ':style/default.png'
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
