@@ -72,9 +72,10 @@ footer {
   text-decoration: none;
   text-align: center;
   font-size: 0.75em;
-  margin: 0 0 0 0;
+  margin-left: -200px;
   bottom: 0;
   position: fixed;
+  width: 200%;
 }
 
 .container-below-nav {
@@ -188,6 +189,9 @@ body {
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222; }
 
+#flash_notice {
+  margin-left: 15px;
+}
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -248,8 +252,8 @@ input[type="button"] {
   margin-left: 15px;
   display: inline-block;
   height: 38px;
-  padding: 0 30px;
-  color: #555;
+  padding: 0 50px;
+  color: white;
   text-align: center;
   font-size: 11px;
   font-weight: 600;
@@ -258,7 +262,7 @@ input[type="button"] {
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
+  background-color: orange;
   border-radius: 4px;
   border: 1px solid #bbb;
   cursor: pointer;
@@ -316,6 +320,7 @@ select {
   margin-left: 15px;
   height: 38px;
   padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  width: 300px;
   background-color: #fff;
   border: 1px solid #D1D1D1;
   border-radius: 4px;
