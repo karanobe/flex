@@ -30,7 +30,7 @@
 
       <% if user_signed_in? %>
         <ul>
-          <li id="home"><%= link_to "FLEX", root_path, class: 'home'%></li>
+          <li id="home" class="home"><%= link_to "FLEX", root_path, class: 'home'%></li>
           <li><%= link_to current_user.first_name.upcase, user_path(current_user), class: "user-page" %></li>
           <li><%= link_to 'LOGOUT', destroy_user_session_path, :method => :delete, data: { confirm: 'Are you sure you want to log out?'}  %></li>
 
