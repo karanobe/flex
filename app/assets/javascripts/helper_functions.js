@@ -1,9 +1,10 @@
 function renderGyms(response){
-  var all_gyms = "";
+  var all_gyms = "<ul>";
   response.forEach(function(gym) {
     all_gyms += generateOneGym(gym);
   });
-  $("#gyms-pylon").html(all_gyms);
+  all_gyms + "</ul>"
+  $(".container").html(all_gyms);
 }
 
 function generateOneGym(gym){

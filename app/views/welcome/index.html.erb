@@ -3,10 +3,10 @@
     <% if current_user.gyms.empty? && current_user.preference == nil %>
       <p><a id='new-gym' href='/gyms/new'>Add a new gym!</a></p>
     <% elsif current_user.gyms != nil && current_user.preference == nil %>
-      <p><%= link_to "View Gyms", gyms_path, id: "gyms-link"  %></p>
-      <p><%= link_to "Preferences",  new_preference_path, id: "new-pref" %></p>
+      <p><%= link_to "Set Preferences",  new_preference_path, id: "new-pref" %></p>
     <% elsif current_user != nil && current_user.preference != nil %>
-      <p><%= link_to "Update FlexMate Preferences", edit_preference_path(current_user.preference.id), id:"update-pref" %></p>
+        <p><%= link_to "View Gyms", gyms_path, id: "gyms-link"  %></p>
+        <p><%= link_to "Update FlexMate Preferences", edit_preference_path(current_user.preference.id), id:"update-pref" %></p>
         <p><%= link_to "View FlexMates", users_path, id: "matched-users"  %></p>
     <% end %>
   </div>

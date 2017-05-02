@@ -25,7 +25,7 @@ $(document).ready(function() {
     var $picUploadLink = $(this);
     var action = $picUploadLink.attr("href");
     $.ajax({url: action, method: "GET"}).done(function(response) {
-      $("#bringFormHere").html(response.picUpload);
+      $(".container").html(response.picUpload);
     });
   })
 
@@ -33,7 +33,7 @@ $(document).ready(function() {
   $("body").on("submit", "form.edit_user", function(event) {
     var $picForm = $(this);
     action = $picForm.closest("body").find("a.user-page").attr("href");
-    setTimeout(userProfile, 800);
+    setTimeout(userProfile, 1000);
   });
 
 // AJAX call to show list of gyms specific to the user, and adds "Add New Gym" link at the end of the list
