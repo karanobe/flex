@@ -18,6 +18,8 @@ class GymsController < ApplicationController
     p params
     gym = Gym.new(gym_params)
     if gym.save
+      primaries = Membership.where(user_id: current_user.id)
+      primaries.each {|primary| primary.primary_gym = false}
       membership = Membership.create(user_id: current_user.id, gym_id: gym.id, primary_gym: true)
       p "hell yes"
     else
