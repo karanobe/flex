@@ -4,25 +4,6 @@ $(document).ready(function() {
     $("div#flash_notice").hide();
   });
 
-  //AJAX call to send a message with twilio
-  $("body").on('click', "#send-message", function(event) {
-    event.preventDefault();
-    $("#message-div").html(generateTextArea());
-  });
-
-  $("body").on('submit', "#message-form", function(event) {
-    event.preventDefault();
-    var action = $(this).attr("action");
-    var receiver = "To: " + $(this).closest("div.container").find('div.profile-info h2')[0].textContent.match(/(.*)'/)[1]
-    var body = "Body: " + $(this).find("input").val();
-    var data = {receiver: receiver, body: body}
-
-    $.ajax({url: action, type: 'POST',
-      data: data,
-    }).done(function() {
-      $("#message-form").hide();
-    })
- });
 
   // AJAX call to new preference call; works on home page and user profile page
   $("div.container").on("click", "#new-pref", function(event) {
