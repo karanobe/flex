@@ -40,19 +40,17 @@ class User < ApplicationRecord
   end
 
   def ordered_json
-
-    gym_mates =
-
-    gym_zip = self.memberships.find_by(primary_gym: true).gym.zip
-
-    gym_area = Gym.where(zip: gym_zip)
-
-    age_mates = gym_mates.where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age)
-
-    gender_mates = age_mates.where("gender_pronoun = ?", self. preference.gender)
-
-    flex_mates = gender_mates.where("user_id != ?", self.id)
-    flex_mates.to_json
+    user_primary_gym = self.memberships.find_by(primary_gym: true).gym
+    sort_by_name = Gym.where(name: user_primary_gym.name)
+    matched_gyms = sort_by_name.where(zip: user_primary_gym.zip)
+    flex_mates_array = []
+    matched_gyms.each do |gym|
+      flex_mates_array.push(
+        gym.members.where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age).where("gender_pronoun = ?", self. preference.gender).where("user_id != ?", self.id)
+      )
+    end
+    flex_mates_array = flex_mates_array.flatten
+    flex_mates_array.to_json
   end
 
   def set_primary_on_add_new

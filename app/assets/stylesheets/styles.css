@@ -114,6 +114,13 @@ footer {
   margin: auto;
 }
 
+.center-big {
+  font-size: 8em;
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
+}
+
 img.logo {
   display: block;
   margin: 0 auto;
@@ -163,11 +170,16 @@ img {
 }
 
 .align {
-  margin-left: -15px;
+  margin-left: -16px;
+
 }
 
 .search-for-gym {
-  color: black;
+  margin-left: 15px;
+}
+
+.search-for-gym {
+  color: #08917c;
 }
 
 #choose {
@@ -185,8 +197,14 @@ a:hover#choose {
   margin-left: -15px;
 }
 
+.label {
+  font-size: 1.2em;
+  color: #333;
+  margin-left: 20px;
+}
+
 .buttonize, .buttonize-add, .buttonize_cancel, #new-gym{
-  width: 100%;
+  width: 106%;
   display: block;
   height: 45px;
   color: white;
@@ -224,6 +242,7 @@ a:hover#choose {
   cursor: pointer;
   box-sizing: border-box;
 }
+
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -332,6 +351,22 @@ body {
   margin-left: 15px;
 }
 
+td {
+  margin-left: 15px;
+}
+
+.label-fill {
+  font-weight: bold;
+  color: #333;
+  margin-left: 15px;
+}
+
+.autofill {
+  border: 1px solid #E1E1E1;
+  padding: 10 5 10 5;
+  width: 200px;
+}
+
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 h1, h2, h3, h4, h5, h6 {
@@ -394,7 +429,7 @@ button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  margin-left: 15px;
+  margin-left: -15px;
   display: inline-block;
   height: 38px;
   padding: 0 50px;
@@ -519,7 +554,9 @@ input[type="button"].button-primary:focus {
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 input[type="email"],
+input[type="name"],
 input[type="number"],
 input[type="search"],
 input[type="text"],
@@ -539,6 +576,7 @@ select {
   box-sizing: border-box; }
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
+input[type="name"],
 input[type="number"],
 input[type="search"],
 input[type="text"],
@@ -555,6 +593,7 @@ textarea {
   padding-top: 6px;
   padding-bottom: 6px; }
 input[type="email"]:focus,
+input[type="name"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
 input[type="text"]:focus,
@@ -695,10 +734,9 @@ pre > code {
 /* Tables
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 th,
-td {
-  padding: 12px 15px;
+/*td {
   text-align: left;
-  border-bottom: 1px solid #E1E1E1; }
+  border: 1px solid #E1E1E1; }*/
 th:first-child,
 td:first-child {
   padding-left: 0; }
