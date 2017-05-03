@@ -31,11 +31,13 @@ $(document).ready(function() {
   });
 
 // AJAX call to submit photo on user profile page. Makes the call to update attributes for user, waits for a second, and then makes an AJAX call to bring in updated user profile page
-  $("body").on("submit", "form.edit_user", function(event) {
-    var $picForm = $(this);
-    action = $picForm.closest("body").find("a.user-page").attr("href");
-    setTimeout(userProfile, 1000);
-  });
+  // $("body").on("submit", "form.edit_user", function(event) {
+  //   var $picForm = $(this);
+  //   debugger
+  //   action = $picForm.closest("body").find("a.user-page").attr("href");
+  //   setTimeout(userProfile, 1000);
+  // });
+
 
 // AJAX call to show list of gyms specific to the user, and adds "Add New Gym" link at the end of the list
   $(".container").on('click', "#gyms-link", function(event) {
