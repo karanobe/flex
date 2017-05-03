@@ -125,10 +125,18 @@ $(document).ready(function() {
   });
 
 
-  // $('body').on('click', 'a#add', function(event) {
-  //   console.log("add friend");
-  //   event.preventDefault();
-  // });
+  $("body").on("click", "a#add", function(event) {
+    event.preventDefault();
+    var $addFriend = $(this);
+    var action = $addFriend.attr("href");
+    $.ajax({url: action,
+            method: "POST",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
 
   // $('#pref').on('click', '.cancel', function(event) {
   //   event.preventDefault();

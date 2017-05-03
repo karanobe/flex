@@ -4,6 +4,7 @@ class FriendshipsController < ApplicationController
     @user = User.find(params[:format])
     Friendship.create(user_id: current_user.id,
      friend_id: @user.id, status: "Request Sent")
+    render json: {friendInfo: render_to_string("users/_friends", :layout => false, locals: {user: @user})}
   end
 
   def accept
