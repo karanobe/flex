@@ -6782,6 +6782,10 @@ button.close {
 */
 
 
+body {
+  margin: 0;
+}
+
 ul {
  list-style: none;
 }
@@ -6808,6 +6812,7 @@ nav {
 
 @media (min-width: 250px) {
   nav li {
+    margin-left: -5px;
     padding: 10px 10px 0px 5px;
     float: left;
     display: inline-block;
@@ -6828,9 +6833,17 @@ nav li {
   font-size: 1.2em;
 }
 
-.home{
+.home, #stuff{
   font-family: 'Exo 2', sans-serif;
     font-size: 1.2em;
+}
+
+.profile-info{
+  font-size: 1.4em;
+}
+
+.user-content, .gym-content{
+  display: inline;
 }
 
 
@@ -6849,11 +6862,12 @@ footer {
   text-decoration: none;
   text-align: center;
   font-size: 0.75em;
-  margin-left: -200px;
+  left: 0;
   bottom: 0;
   position: fixed;
-  width: 200%;
+  width: 100%;
 }
+
 
 .container-below-nav {
   padding-top: 60px;
@@ -6861,6 +6875,15 @@ footer {
 }
 
 .center {
+  text-align: center;
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.center-big {
+  font-size: 6em;
+  font-weight: bold;
   text-align: center;
   margin: auto;
 }
@@ -6877,8 +6900,53 @@ img {
   border-radius: 50%;
 }
 
+.column-left {
+  display: block;
+  width: 30%;
+  float: left;
+}
+
+.column-middle {
+  display: block;
+  width: 20%;
+  vertical-align: middle;
+  float:left;
+  padding-top: 8px;
+}
+
+.column-right {
+  vertical-align: middle;
+  margin-top: 5px;
+  display: block;
+  width: 50%;
+  float: right;
+  padding-left: 5px;
+  font-size: 1.3em;
+}
+
+.indent {
+  margin-left: 35px;
+}
+
+.gym {
+  margin-left: 35px;
+}
+
+.address, .city, .zip {
+  margin-left: 20px;
+}
+
 .align {
-  margin-left: -15px;
+  margin-left: -16px;
+
+}
+
+.search-for-gym {
+  margin-left: 15px;
+}
+
+.search-for-gym {
+  color: #08917c;
 }
 
 #choose {
@@ -6892,7 +6960,41 @@ a:hover#choose {
   color: orange;
 }
 
+.primary_gym {
+  background-color: #afafaf;
+}
 
+.friend {
+  margin-left: -15px;
+}
+
+.label {
+  font-size: 1.3em;
+  color: #333;
+  margin-left: 20px;
+}
+
+.buttonize, .buttonize-add, .buttonize_cancel, #new-gym{
+  width: 100%;
+  left: 0;
+  position: fixed;
+  display: block;
+  height: 45px;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: orange;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
 
 .buttonizing {
   width: 100%;
@@ -6914,6 +7016,16 @@ a:hover#choose {
   box-sizing: border-box;
 }
 
+input#user_email, #user_password, #user_first_name, #user_last_name, #user_age, #user_phone, #user_gender_pronoun, #user_profile_bio, #user_password_confirmation, #preference_min_age, #preference_max_age, #preference_gender, #user_current_password {
+  max-width: 280px;
+  color: #08917c;
+  font-size: 1.2em;
+}
+
+#gym-title {
+  margin-left: 3px;
+}
+
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
@@ -6925,6 +7037,7 @@ a:hover#choose {
   box-sizing: border-box;
   margin-top: 20px;
    }
+
 .column,
 .columns {
   width: 100%;
@@ -7021,6 +7134,40 @@ body {
   margin-left: 15px;
 }
 
+td {
+  margin-left: 15px;
+}
+
+.label-fill {
+  font-weight: bold;
+  color: #333;
+  margin-left: 15px;
+}
+
+.autofill {
+  border: 1px solid #E1E1E1;
+  padding: 10 5 10 5;
+  width: 180px;
+  margin-left: 5px;
+  font-size: 1.2em;
+  border-radius: 5px;
+}
+
+#autocomplete {
+  margin-left: 0px;
+  width: 292px;
+  border-radius: 5px;
+  font-size: 1.3em;
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 5px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 h1, h2, h3, h4, h5, h6 {
@@ -7048,14 +7195,15 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
 }
 
 p {
+  line-height: 1em;
   margin-left: 15px;
   margin-top: 0; }
 
-em {
+em, i {
   margin-left: 15px;
 }
 
-#flash-notice {
+#flash-notice, #flash_alert {
   margin-left: 15px;
 }
 
@@ -7078,12 +7226,12 @@ a:hover.buttonizing{
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.button,
+/*.button,
 button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  margin-left: 15px;
+  margin-left: -15px;
   display: inline-block;
   height: 38px;
   padding: 0 50px;
@@ -7097,7 +7245,7 @@ input[type="button"] {
   text-decoration: none;
   white-space: nowrap;
   background-color: orange;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid #bbb;
   cursor: pointer;
   box-sizing: border-box; }
@@ -7137,7 +7285,7 @@ input[type="button"].button-primary:focus {
   margin-left: 15px;
   color: #FFF;
   background-color: #FFF;
-  border-color: #1EAEDB; }
+  border-color: #1EAEDB; }*/
 
 /* Mobile Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -7150,7 +7298,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
   margin-left: -15px;
-  width: 110%;
+  width: 104%;
   display: block;
   height: 45px;
   padding: 0 50px;
@@ -7177,19 +7325,21 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-  margin-left: 15px;
+  margin-left: -15px;
   color: #333;
   border-color: #888;
-  outline: 0; }
+  outline: 0;
+  color: #08917c; }
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
-  margin-left: 15px;
+  margin-left: -15px;
   color: #FFF;
   background-color: #33C3F0;
-  border-color: #33C3F0; }
+  border-color: #33C3F0;
+  color: #08917c;}
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -7200,7 +7350,7 @@ button.button-primary:focus,
 input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
-  margin-left: 15px;
+  margin-left: -15px;
   color: #FFF;
   background-color: #FFF;
   border-color: #1EAEDB; }
@@ -7208,7 +7358,9 @@ input[type="button"].button-primary:focus {
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 input[type="email"],
+input[type="name"],
 input[type="number"],
 input[type="search"],
 input[type="text"],
@@ -7223,11 +7375,12 @@ select {
   width: 300px;
   background-color: #fff;
   border: 1px solid #D1D1D1;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: none;
   box-sizing: border-box; }
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
+input[type="name"],
 input[type="number"],
 input[type="search"],
 input[type="text"],
@@ -7244,6 +7397,7 @@ textarea {
   padding-top: 6px;
   padding-bottom: 6px; }
 input[type="email"]:focus,
+input[type="name"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
 input[type="text"]:focus,
@@ -7260,7 +7414,8 @@ legend {
   margin-left: 15px;
   display: block;
   margin-bottom: .5rem;
-  font-weight: 600; }
+  font-size: 1.3em;
+  }
 fieldset {
   margin-left: 15px;
   padding: 0;
@@ -7293,7 +7448,7 @@ select {
 
   background-color: #fff;
   border: 1px solid #D1D1D1;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: none;
   box-sizing: border-box; }
 /* Removes awkward default styles on some inputs for iOS */
@@ -7374,7 +7529,7 @@ code {
   white-space: nowrap;
   background: #F1F1F1;
   border: 1px solid #E1E1E1;
-  border-radius: 4px; }
+  border-radius: 5px; }
 pre > code {
   display: block;
   padding: 1rem 1.5rem;
@@ -7384,10 +7539,9 @@ pre > code {
 /* Tables
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 th,
-td {
-  padding: 12px 15px;
+/*td {
   text-align: left;
-  border-bottom: 1px solid #E1E1E1; }
+  border: 1px solid #E1E1E1; }*/
 th:first-child,
 td:first-child {
   padding-left: 0; }

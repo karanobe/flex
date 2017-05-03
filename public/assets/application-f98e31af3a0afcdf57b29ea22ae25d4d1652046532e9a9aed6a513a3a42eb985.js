@@ -11563,8 +11563,9 @@ return jQuery;
 
 })( jQuery );
 $(document).ready(function() {
+  // AJAX call to get rid of Devise flash message
   $('body').click(function(){
-  $("div#flash_notice").hide();
+    $("div#flash_notice").hide();
   });
   // AJAX call to new preference call; works on home page and user profile page
   $("div.container").on("click", "#new-pref", function(event) {
@@ -11589,15 +11590,15 @@ $(document).ready(function() {
     var $picUploadLink = $(this);
     var action = $picUploadLink.attr("href");
     $.ajax({url: action, method: "GET"}).done(function(response) {
-      $("#bringFormHere").html(response.picUpload);
+      $(".container").html(response.picUpload);
     });
-  })
+  });
 
 // AJAX call to submit photo on user profile page. Makes the call to update attributes for user, waits for a second, and then makes an AJAX call to bring in updated user profile page
   $("body").on("submit", "form.edit_user", function(event) {
     var $picForm = $(this);
     action = $picForm.closest("body").find("a.user-page").attr("href");
-    setTimeout(userProfile, 800);
+    setTimeout(userProfile, 1000);
   });
 
 // AJAX call to show list of gyms specific to the user, and adds "Add New Gym" link at the end of the list
@@ -11606,19 +11607,46 @@ $(document).ready(function() {
     hideLinks();
     $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
       renderGyms(response);
-      $("div#pref").html("<a id='new-gym' href='/gyms/new'>Add a new gym</a>");
+      $(".container").append("<a id='new-gym' href='/gyms/new'>Add a new gym</a>");
     });
   });
 
-// Displays form to add new gym, appends it to the bottom of the page
-  $("#pref").on("click", "#new-gym", function(event) {
+// Displays form to add new gym, on new page
+  $(".container").on("click", "#new-gym", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
     $.ajax({url: action, method: "GET"}).done(function(response) {
-      console.log(response)
-      // $("div#pref").html(response.newGymForm);
+      $(".container").html(response)
     })
   });
+
+// AJAX call to submit new gym
+  $(".container").on("submit", "#gym-submit", function(event) {
+    event.preventDefault();
+    var $gymSubmitButton = $(this);
+    var table = $gymSubmitButton.closest("div#gym-form").find("table");
+    var name = table.find("#name").val();
+    var streetAddress = table.find("#street_number").val() + " " + table.find("#route").val();
+    var city = table.find("#locality").val();
+    var state = table.find("#administrative_area_level_1").val();
+    var zip = table.find("#postal_code").val();
+    var data = {gym: {name: name, street_address: streetAddress, city: city, state: state, zip: zip}};
+    $.ajax({url: "/gyms",
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      method: "POST",
+      data: data}).done(function(){
+        location.reload();
+      })
+  });
+
+// AJAX
+  $("body").on('click', '.set-primary', function(event) {
+    var id = $(this)[0].id;
+    var data = {membership: {id: id}};
+    // $.ajax({url: "/memberships"})
+    console.log(id);
+  })
+
 
 // AJAX call to hide all links on home page and display list of matched users
   $("body").on('click', '#matched-users',function(event) {
@@ -11644,7 +11672,7 @@ $(document).ready(function() {
     $.ajax({url: action, method: "PATCH", data: data}).done(function(response) {
       $(".container").html(response.userInfo);
     })
-  })
+  });
 
 // AJAX call to create new user preferences; works on home and user profile page; redirects back to user profile
   $("body").on("submit", ".new_preference", function(event) {
@@ -11654,7 +11682,7 @@ $(document).ready(function() {
     $.ajax({url: action, method: "POST", data: data}).done(function(response) {
       $(".container").html(response.userInfo);
     })
-  })
+  });
 
 
   // $('body').on('click', 'a#add', function(event) {
@@ -11676,19 +11704,21 @@ $(document).ready(function() {
 
 
 function renderGyms(response){
-  var all_gyms = "";
+  var all_gyms = "<ul>";
   response.forEach(function(gym) {
     all_gyms += generateOneGym(gym);
   });
-  $("#gyms-pylon").html(all_gyms);
+  all_gyms + "</ul>"
+  $(".container").html(all_gyms);
 }
 
 function generateOneGym(gym){
-  return `<li class="gym">
+  return `<h2>Your Gyms</h2>
+          <li class="gym">
           <div class="gym-content">
             <p>
               <span class = "name">
-              <a href="place url for specific gym profile page" >${gym.name} </a>  </span><br>
+              <h4 id="gym-title"><a id=${gym.id} class="set-primary">${gym.name}</a></h4>  </span>
               <span class= "address"> ${gym.street_address}</span><br>
               <span class= "city"> ${gym.city}</span><br>
               <span class= "zip"> ${gym.zip}</span><br>
@@ -11696,6 +11726,8 @@ function generateOneGym(gym){
           </div>
         </li>`;
 }
+
+//<h4><a href="place url for specific gym profile page" >${gym.name} </a></h4>  </span><br>
 
 function hideLinks(){
   $('#gyms-link').hide();
@@ -11727,12 +11759,16 @@ function renderUsers(response) {
 function generateOneUser(user){
   return `<li class="user">
           <div class="user-content">
-            <p>
+            <div class="column-left">
               <span class = "name">
-              <a class="user-page" href="/users/${user.id}" >${user.first_name} ${user.last_name}</a>  </span>
-              <span class= "age"> ${user.age}</span>
-              <span class= "gender"> ${user.gender_pronoun}</span>
-            </p>
+              <h2><a class="user-page" id="user-link" href="/users/${user.id}" >${user.first_name} ${user.last_name}</a></h2>  </span>
+              </div>
+              <div class="column-middle">
+              <h4><span class= "age"> ${user.age}</span></h4>
+              </div>
+              <div class="column-middle">
+              <h4><span class= "gender"> ${user.gender_pronoun}</span></h4>
+              </div>
           </div>
         </li>`;
 }
@@ -11765,6 +11801,7 @@ function userProfile() {
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 
 
 

@@ -201,6 +201,10 @@ a:hover#choose {
   color: orange;
 }
 
+.primary_gym {
+  background-color: #afafaf;
+}
+
 .friend {
   margin-left: -15px;
 }
