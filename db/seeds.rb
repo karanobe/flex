@@ -17,6 +17,7 @@ dg = User.create!(first_name: "Derek", last_name: "Gregorivich", age: 88, phone:
 cf = User.create!(first_name: "Chris", last_name: "Frazz", age: 25, phone: '3125667272', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "c@gmail.com", password: "password", password_confirmation: "password")
 bw = User.create!(first_name: "Brendan", last_name: "White", age: 25, phone: '3125667272', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "b@gmail.com", password: "password", password_confirmation: "password")
 ao = User.create!(first_name: "Alex", last_name: "Origitano", age: 21, phone: '3125667272', gender_pronoun: "She/Her", profile_bio: "Profile Biography", email: "a@gmail.com", password: "password", password_confirmation: "password")
+ken = User.create!(first_name: "Ken", last_name: "Sag", age: 35,  phone: '3232212344', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "ken@gmail.com", password: "password", password_confirmation: "password")
 
 
 # Gyms

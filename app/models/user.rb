@@ -41,7 +41,11 @@ class User < ApplicationRecord
 
   def ordered_json
 
-    gym_mates = self.memberships.find_by(primary_gym: true).gym.members
+    gym_mates =
+
+    gym_zip = self.memberships.find_by(primary_gym: true).gym.zip
+
+    gym_area = Gym.where(zip: gym_zip)
 
     age_mates = gym_mates.where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age)
 
@@ -53,8 +57,10 @@ class User < ApplicationRecord
 
   def set_primary_on_add_new
     primary = self.memberships.find_by(primary_gym: true)
-    primary.primary_gym = false
-    primary.save
+    if primary != nil
+      primary.primary_gym = false
+      primary.save
+    end
   end
 end
 
