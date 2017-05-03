@@ -25,17 +25,6 @@ class TwilioController < ApplicationController
     )
   end
 
-  def send_sms
-      boot_twilio
-      receiver = params[:receiver].match(/:(.*)/)[1].strip
-      receiver_number = User.find_by(first_name: receiver_first_name).phone
-      message_body = params[:body]
-      sms = @client.messages.create(
-        from: Rails.application.secrets.twilio_number,
-        to: "+1#{receiver_number}",
-        body: message_body + "\n-From #{sender.first_name}"
-      )
-  end
 
 
 # user.find_by params['from'], locate the recipient by the 'TO': info included in body of the text, update the 'reply' method and send along the body of the text.
