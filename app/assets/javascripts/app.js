@@ -31,19 +31,20 @@ $(document).ready(function() {
   });
 
 // AJAX call to submit photo on user profile page. Makes the call to update attributes for user, waits for a second, and then makes an AJAX call to bring in updated user profile page
-  $("body").on("submit", "form.edit_user", function(event) {
-    var $picForm = $(this);
-    action = $picForm.closest("body").find("a.user-page").attr("href");
-    setTimeout(userProfile, 1000);
-  });
+  // $("body").on("submit", "form.edit_user", function(event) {
+  //   var $picForm = $(this);
+  //   debugger
+  //   action = $picForm.closest("body").find("a.user-page").attr("href");
+  //   setTimeout(userProfile, 1000);
+  // });
+
 
 // AJAX call to show list of gyms specific to the user, and adds "Add New Gym" link at the end of the list
   $(".container").on('click', "#gyms-link", function(event) {
     event.preventDefault();
     hideLinks();
     $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
-      renderGyms(response);
-      $(".container").append("<a id='new-gym' href='/gyms/new'>Add a new gym</a>");
+      $(".container").html(response.gymsInfo);
     });
   });
 
@@ -77,10 +78,13 @@ $(document).ready(function() {
 
 // AJAX
   $("body").on('click', '.set-primary', function(event) {
+    event.preventDefault();
     var id = $(this)[0].id;
-    var data = {membership: {id: id}};
-    // $.ajax({url: "/memberships"})
-    console.log(id);
+    $.ajax({url: "/gyms/"+id+ "/set_primary",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            method: "PATCH"}).done(function(response) {
+      $(".container").html(response.gymsInfo);
+    })
   })
 
 

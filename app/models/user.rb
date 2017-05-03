@@ -53,12 +53,21 @@ class User < ApplicationRecord
     flex_mates_array.to_json
   end
 
-  def set_primary_on_add_new
+  def set_primary_false
     primary = self.memberships.find_by(primary_gym: true)
     if primary != nil
       primary.primary_gym = false
       primary.save
     end
+  end
+
+  def set_primary_on_click(gym)
+    self.set_primary_false
+    set_to_primary = self.memberships.find_by(gym_id: gym.id).update_attributes(primary_gym: true)
+  end
+
+  def check_primary
+    self.memberships.find_by(primary_gym: true).gym
   end
 end
 
