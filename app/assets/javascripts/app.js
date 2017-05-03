@@ -71,8 +71,8 @@ $(document).ready(function() {
     $.ajax({url: "/gyms",
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       method: "POST",
-      data: data}).done(function(){
-        location.reload();
+      data: data}).done(function(response){
+        $(".container").html(response.gymsInfo);
       })
   });
 
