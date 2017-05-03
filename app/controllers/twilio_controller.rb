@@ -33,7 +33,7 @@ class TwilioController < ApplicationController
     boot_twilio
     sms = @client.messages.create(
       from: Rails.application.secrets.twilio_number,
-      to: "+1#{receiver_number}",
+      to: "+17735766373",
       body: message_body + "\n-From #{sender.first_name}"
     )
   end
