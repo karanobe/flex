@@ -11607,7 +11607,7 @@ $(document).ready(function() {
     hideLinks();
     $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
       renderGyms(response);
-      $(".container").append("<a id='new-gym' href='/gyms/new'>Add a new gym!</a>");
+      $(".container").append("<a id='new-gym' href='/gyms/new'>Add a new gym</a>");
     });
   });
 

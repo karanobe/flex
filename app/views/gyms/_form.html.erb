@@ -1,42 +1,43 @@
 <div class="search-for-gym">
-  <div id="locationField">
-    <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
-  </div>
-  <div id="gym-form">
-     <form action="/gyms" method="POST" id="gym-submit">
-     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-      <table id="address">
-        <tr>
-          <td class="label-fill">Name:</td>
-          <td class="slimField"><input class="field autofill" id="name" placeholder="Type gym name here" ></input></td>
+
+<div id="locationField">
+  <input id="autocomplete" placeholder="Enter gym address" onFocus="geolocate()" type="text"></input>
+</div>
+<div id="gym-form">
+   <form action="/gyms" method="POST" id="gym-submit">
+   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <table id="address">
+      <tr>
+        <td class="label-fill">Gym Name:</td>
+        <td class="slimField"><input class="field autofill" id="name" placeholder=" Type gym name here" ></input></td>
+      </tr>
+      <tr>
+        <td class="label-fill">Street number:</td>
+        <td class="slimField"><input class="field autofill" id="street_number" disabled="true" placeholder=" autocomplete" style= "font-style:italic;"></input></td>
         </tr>
-        <tr>
-          <td class="label-fill">Street number:</td>
-          <td class="slimField"><input class="field autofill" id="street_number" disabled="true"></input></td>
-          </tr>
-        <tr>
-        <td class="label-fill">Street name:</td>
-          <td class="wideField" colspan="2"><input class="field autofill" id="route" disabled="true"></input></td>
-        </tr>
-        <tr>
-          <td class="label-fill">City:</td>
-          <td class="slimField" colspan="1"><input class="field autofill" id="locality" disabled="true"></input></td>
-        </tr>
-        <tr>
-          <td class="label-fill">State:</td>
-          <td class="slimField"><input class="field autofill" id="administrative_area_level_1" disabled="true"></input></td>
-        </tr>
-        <tr>
-          <td class="label-fill">Zip code:</td>
-          <td class="slimField"><input class="field autofill" id="postal_code" disabled="true"></input></td>
-        </tr>
-        <tr>
-          <td class="label-fill">Country:</td>
-          <td class="slimField" colspan="1"><input class="field autofill" id="country" disabled="true"></input></td>
-        </tr>
-      </table>
-     <input type="Submit" value="Submit Gym">
-   </form>
-  </div>
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= @google_key %>&libraries=places&callback=initAutocomplete" async defer></script>
+      <tr>
+      <td class="label-fill">Street name:</td>
+        <td class="wideField" colspan="2"><input class="field autofill" id="route" disabled="true" placeholder=" autocomplete" style= "font-style:italic;"></input></td>
+      </tr>
+      <tr>
+        <td class="label-fill">City:</td>
+        <td class="slimField" colspan="1"><input class="field autofill" id="locality" disabled="true" placeholder=" autocomplete" style= "font-style:italic;"></input></td>
+      </tr>
+      <tr>
+        <td class="label-fill">State:</td>
+        <td class="slimField"><input class="field autofill" id="administrative_area_level_1" disabled="true" placeholder=" autocomplete" style= "font-style:italic;"></input></td>
+      </tr>
+      <tr>
+        <td class="label-fill">Zip code:</td>
+        <td class="slimField"><input class="field autofill" id="postal_code" disabled="true" placeholder=" autocomplete" style= "font-style:italic;"></input></td>
+      </tr>
+      <tr>
+        <td class="label-fill">Country:</td>
+        <td class="slimField" colspan="1"><input class="field autofill" id="country" disabled="true" placeholder=" autocomplete" style= "font-style:italic;"></input></td>
+      </tr>
+    </table>
+   <input type="Submit" value="Submit Gym">
+ </form>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= @google_key %>&libraries=places&callback=initAutocomplete" async defer></script>
 </div>

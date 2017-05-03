@@ -21,6 +21,7 @@
 //         </li>`;
 // }
 
+
 //<h4><a href="place url for specific gym profile page" >${gym.name} </a></h4>  </span><br>
 
 function hideLinks(){
