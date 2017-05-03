@@ -14,7 +14,21 @@ class TwilioController < ApplicationController
     render :xml => response.to_xml
   end
 
+  def reply
+    message_body = params["Body"]
+    from_number = '+12245215864'
+    boot_twilio
+    sms = @client.messages.create(
+      from: Rails.application.secrets.twilio_number,
+      to: '+17735766373',
+      body: "Hello."
+    )
+  end
 
-
-
+private
+  def boot_twilio
+    account_sid = Rails.application.secrets.twilio_account_sid
+    account_token = Rails.application.secrets.twilio_token
+    @client = Twilio::REST::Client.new account_sid, account_token
+  end
 end
