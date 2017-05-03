@@ -47,7 +47,8 @@
       <p class="indent">Friend Request Sent</p>
       <p><%= link_to "Cancel Friend Request", friendship_path(user), class: "buttonize cancel", method: :delete %></p>
       <% elsif user != current_user && current_user.request_received.include?(user) %>
-      <p><%= link_to "Accept", accept_friend_path(user), class: "buttonize", method: :post %> / <%= link_to "Deny", deny_friend_path(user), class: "buttonize", method: :delete %> Friendship</p>
+      <p><%= link_to "Accept Flexer", accept_friend_path(user), class: "buttonize", method: :post %></p> 
+        <p><%= link_to "Deny Flexer", deny_friend_path(user), class: "buttonize", method: :delete %></p>
 
       <% elsif user != current_user && current_user.all_friends.exclude?(user) %>
       <p><%= link_to "Add Friend", friendships_path(user), class: "buttonize-add", id: "add", method: :post %></p>
