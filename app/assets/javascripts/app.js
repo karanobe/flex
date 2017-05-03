@@ -165,11 +165,32 @@ $(document).ready(function() {
   })
 
 
-  // $('#pref').on('click', '.unfriend', function(event) {
-  //   event.preventDefault();
-  //   console.log("unfriend");
-  // });
+  $('body').on('click', 'a#unfriend', function(event) {
+    event.preventDefault();
+    var $unfriend = $(this);
+    var action = $unfriend.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
 
-});
+  $('body').on('click', 'a#deny', function(event) {
+    event.preventDefault();
+    var $denyRequest = $(this);
+    var action = $denyRequest.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
+
+})
 
 

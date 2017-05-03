@@ -1,7 +1,8 @@
 class FriendshipsController < ApplicationController
 
   def create
-    @user = User.find(params[:format])
+    p params
+    @user = User.find(params[:id])
     Friendship.create(user_id: current_user.id,
      friend_id: @user.id, status: "Request Sent")
     render json: {friendInfo: render_to_string("users/_friends", :layout => false, locals: {user: @user})}
@@ -18,8 +19,7 @@ class FriendshipsController < ApplicationController
   def deny
     @user = User.find(params[:id])
     Friendship.find_by(user_id: params[:id], friend_id: helpers.current_user.id).destroy
-
-    redirect_to @user
+    render json: {friendInfo: render_to_string("users/_friends", :layout => false, locals: {user: @user})}
   end
 
   def destroy
