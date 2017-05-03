@@ -37,7 +37,7 @@ nav a {
 
 nav {
   background-color: #08917c;
-  height: 30px;
+  height: 25px;
   width: 100%;
   position: fixed;
   margin: 0 0 0 0;
@@ -49,13 +49,14 @@ nav {
 
 @media (min-width: 250px) {
   nav li {
-    padding: 13px 10px 0px 10px;
+    padding: 10px 10px 0px 5px;
     float: left;
     display: inline-block;
     color: #f2f2f2;
     text-align: center;
     text-decoration: none;
-    font-size: 1em;
+    font-size: 1.2em;
+}
 }
 
 nav li {
@@ -65,14 +66,14 @@ nav li {
   text-align: center;
   width: 32%;
   text-decoration: none;
-  font-size: 1em;
+  font-size: 1.2em;
 }
-
 
 .home{
   font-family: 'Exo 2', sans-serif;
     font-size: 1.2em;
 }
+
 
 .spacer
 {
@@ -81,8 +82,8 @@ nav li {
 }
 
 footer {
-  height: 30px;
-  background-color: #7bff00;
+  height: 35px;
+  background-color: #08917c;
   width: 100%;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: white;
@@ -100,8 +101,59 @@ footer {
   padding-left: 8%;
 }
 
+.center {
+  text-align: center;
+  margin: auto;
+}
+
+img.logo {
+  display: block;
+  margin: 0 auto;
+  border-radius: 0%;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.align {
+  margin-left: -15px;
+}
+
+#choose {
+  background-color: #08917c;
+  width: 100%;
+  color: white;
+  font-size: 1.3em;
+}
+
+a:hover#choose {
+  color: orange;
+}
 
 
+
+.buttonizing {
+  width: 100%;
+  display: block;
+  height: 45px;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: orange;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -123,14 +175,14 @@ footer {
 /* For devices larger than 350px */
 @media (min-width: 350px) {
   .container {
-    width: 85%;
+    /*width: 85%;*/
     padding: 0; }
 }
 
 /* For devices larger than 550px */
-@media (min-width: 550px) {
+@media (min-width: 250px) {
   .container {
-    width: 80%; }
+    /*width: 80%; }*/
   .column,
   .columns {
     margin-left: 4%; }
@@ -261,6 +313,10 @@ a:hover {
   text-decoration: none;
 }
 
+a:hover.buttonizing{
+  color: #08917c;
+}
+
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button,
@@ -274,7 +330,7 @@ input[type="button"] {
   padding: 0 50px;
   color: white;
   text-align: center;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 38px;
   letter-spacing: .1rem;
@@ -324,6 +380,72 @@ input[type="button"].button-primary:focus {
   background-color: #FFF;
   border-color: #1EAEDB; }
 
+/* Mobile Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+ 
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  margin-left: -15px;
+  width: 110%;
+  display: block;
+  height: 45px;
+  padding: 0 50px;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: orange;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box; }
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  margin-left: 15px;
+  color: #333;
+  border-color: #888;
+  outline: 0; }
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  margin-left: 15px;
+  color: #FFF;
+  background-color: #33C3F0;
+  border-color: #33C3F0; }
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  margin-left: 15px;
+  color: #FFF;
+  background-color: #FFF;
+  border-color: #1EAEDB; }
+}
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -394,6 +516,76 @@ label > .label-body {
   margin-left: .5rem;
   font-weight: normal; }
 
+/* Mobile Forms
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@media screen and (max-width: 450px) {
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  width: 93%;
+
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+textarea {
+  margin-left: 15px;
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  margin-left: 15px;
+  border: 1px solid #33C3F0;
+  outline: 0; }
+label,
+legend {
+  margin-left: 15px;
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  margin-left: 15px;
+  display: inline; }
+label > .label-body {
+  margin-left: 15px;
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+}
 
 /* Lists
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
