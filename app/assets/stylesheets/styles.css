@@ -216,6 +216,15 @@ a:hover#choose {
   margin-left: 20px;
 }
 
+a:hover.buttonize, .buttonize-add, .buttonize_cancel {
+  color: #08917c;
+}
+
+a:hover#new-gym {
+  color: #08917c;
+}
+
+
 .buttonize, .buttonize-add, .buttonize_cancel, #new-gym{
   width: 100%;
   /*left: 0;*/
@@ -468,6 +477,11 @@ a {
   }
 
 a:hover {
+  color: #08917c;
+  text-decoration: none;
+}
+
+li a:hover {
   color: orange;
   text-decoration: none;
 }
@@ -475,6 +489,7 @@ a:hover {
 a:hover.buttonizing{
   color: #08917c;
 }
+
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
