@@ -9,10 +9,10 @@
 
 
 # Users
-ko = User.create!(first_name: "Karan", last_name: "Oberoi", age: 25,  phone: '7736101700', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "k@gmail.com", password: "password", password_confirmation: "password")
-tn = User.create!(first_name: "Ted", last_name: "N", age: 99, phone: '7736101700', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "t@gmail.com", password: "password", password_confirmation: "password")
+ko = User.create!(first_name: "Karan", last_name: "Oberoi", age: 25,  phone: '9518807001', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "k@gmail.com", password: "password", password_confirmation: "password")
+tn = User.create!(first_name: "Ted", last_name: "N", age: 99, phone: '2246169035', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "t@gmail.com", password: "password", password_confirmation: "password")
 sg = User.create!(first_name: "Sara", last_name: "Gerou", age: 25, phone: '7736101700', gender_pronoun: "She/Her", profile_bio: "Profile Biography", email: "s@gmail.com", password: "password", password_confirmation: "password")
-ek = User.create!(first_name: "Elsie", last_name: "Koglin", age: 54, phone: '7736101700', gender_pronoun: "She/Her", profile_bio: "Profile Biography", email: "e@gmail.com", password: "password", password_confirmation: "password")
+ek = User.create!(first_name: "Elsie", last_name: "Koglin", age: 54, phone: '7735766373', gender_pronoun: "She/Her", profile_bio: "Profile Biography", email: "e@gmail.com", password: "password", password_confirmation: "password")
 dg = User.create!(first_name: "Derek", last_name: "Gregorivich", age: 88, phone: '3125667272', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "d@gmail.com", password: "password", password_confirmation: "password")
 cf = User.create!(first_name: "Chris", last_name: "Frazz", age: 25, phone: '3125667272', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "c@gmail.com", password: "password", password_confirmation: "password")
 bw = User.create!(first_name: "Brendan", last_name: "White", age: 25, phone: '3125667272', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "b@gmail.com", password: "password", password_confirmation: "password")
