@@ -7,10 +7,10 @@
   <% end %>
 <br>
   <div class="profile-info">
-    <p>Your Age: <%= user.age %></p>
     <% if user.gyms != nil %>
-      <p>Home Gym: <%= user.gyms.first.name %></p>
+      <p>Preferred Gym: <%= user.gyms.first.name %></p>
     <% end %>
+    <p>Your Age: <%= user.age %></p>
     <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
     <p>Your current bio: <%= user.profile_bio %></p>
   </div>
