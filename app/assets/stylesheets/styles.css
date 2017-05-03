@@ -103,10 +103,12 @@ footer {
   text-decoration: none;
   text-align: center;
   font-size: 0.75em;
+  left: 0;
   bottom: 0;
   position: fixed;
-  width: 200%;
+  width: 100%;
 }
+
 
 .container-below-nav {
   padding-top: 60px;
@@ -199,6 +201,11 @@ a:hover#choose {
   color: orange;
 }
 
+.primary_gym {
+  background-color: #afafaf;
+  margin-right: 30px;
+}
+
 .friend {
   margin-left: -15px;
 }
@@ -210,7 +217,9 @@ a:hover#choose {
 }
 
 .buttonize, .buttonize-add, .buttonize_cancel, #new-gym{
-  width: 106%;
+  width: 100%;
+  left: 0;
+  position: fixed;
   display: block;
   height: 45px;
   color: white;
@@ -255,7 +264,7 @@ input#user_email, #user_password, #user_first_name, #user_last_name, #user_age, 
   font-size: 1.2em;
 }
 
-#gym-title {
+.set-primary {
   margin-left: 3px;
 }
 
