@@ -12,20 +12,29 @@ class TwilioController < ApplicationController
 
   def reply
     p sender = User.find_by(phone: params["From"][2..-1])
-    #receiver_name = params["Body"].match(/: (\S+)/)[0]
+    p receiver_name = params["Body"].match(/:(.*)/)[0]
+    p first_name =  params["Body"].match(/:(.*)/)[1][1..-1]
+    p receiver_number = User.find_by(first_name: first_name).phone
 
-    #receiver = User.find_by(name: receiver_name)
-    #text_body = params["Body"] (regex to get the "BODY:" part)
 
-    # p receiver_name = params["Body"]
+    p text_body = params["Body"]
 
-    message_body = params["Body"]
-    from_number = '+12245215864'
+
+    # message_body = params["Body"]
+    # boot_twilio
+    # sms = @client.messages.create(
+    #   from: Rails.application.secrets.twilio_number,
+    #   to: '+17735766373',
+    #   body: message_body + "\n-From #{sender.first_name}"
+    # )
+
+   # OUR METHOD
+    message_body = text_body
     boot_twilio
     sms = @client.messages.create(
       from: Rails.application.secrets.twilio_number,
-      to: '+17735766373',
-      body: message_body
+      to: "+1#{receiver_number}",
+      body: message_body + "\n-From #{sender.first_name}"
     )
   end
 
