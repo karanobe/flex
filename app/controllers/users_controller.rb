@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(avatar: picture_params[:avatar])
+    redirect_to root_path
   end
 
   private
