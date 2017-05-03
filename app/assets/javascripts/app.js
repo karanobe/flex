@@ -138,10 +138,32 @@ $(document).ready(function() {
     });
   });
 
-  // $('#pref').on('click', '.cancel', function(event) {
-  //   event.preventDefault();
-  //   console.log("cancel request");
-  // });
+  $('body').on('click', 'a#cancel', function(event) {
+    event.preventDefault();
+    var $deleteFriendRequest = $(this);
+    var action = $deleteFriendRequest.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
+
+  $('body').on('click', 'a#accept', function(event) {
+    event.preventDefault();
+    var $acceptRequest = $(this);
+    var action = $acceptRequest.attr("href");
+    $.ajax({url: action,
+            method: "POST",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  })
+
 
   // $('#pref').on('click', '.unfriend', function(event) {
   //   event.preventDefault();

@@ -12,8 +12,7 @@ class FriendshipsController < ApplicationController
     confirm = Friendship.find_by(user_id: @user.id, friend_id: helpers.current_user.id)
     confirm.update_attributes(status: "Accepted")
     Friendship.create(user_id: helpers.current_user.id, friend_id: @user.id, status: "Accepted")
-
-    redirect_to @user
+    render json: {friendInfo: render_to_string("users/_friends", :layout => false, locals: {user: @user})}
   end
 
   def deny
@@ -26,7 +25,6 @@ class FriendshipsController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     Friendship.find_by(user_id: helpers.current_user.id, friend_id: params[:id]).destroy
-
-    redirect_to @user
+    render json: {friendInfo: render_to_string("users/_friends", :layout => false, locals: {user: @user})}
   end
 end
