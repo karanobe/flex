@@ -67,6 +67,13 @@ function generateOneUser(user){
         </li>`;
 }
 
+function generateTextArea(){
+  return `<form action="/twilio/send_sms" method="POST" id="message-form">
+  Message: <input id="txt" type="text" >
+  <input id='message-submit-button' type="submit">
+</form>`;
+}
+
 // function userProfile() {
 //   $.ajax({url: action, method: "GET"}).done(function(response) {
 //       $("div.container").html(response.userInfo)});
