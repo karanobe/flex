@@ -8,7 +8,8 @@ function renderGyms(response){
 }
 
 function generateOneGym(gym){
-  return `<li class="gym">
+  return `<h2>Your Gyms</h2>
+          <li class="gym">
           <div class="gym-content">
             <p>
               <span class = "name">
