@@ -224,8 +224,11 @@ a:hover#new-gym {
   color: #08917c;
 }
 
+a:hover#new-pref {
+  color: #08917c;
+}
 
-.buttonize, .buttonize-add, .buttonize_cancel, #new-gym{
+.buttonize, .buttonize-add, .buttonize_cancel, #new-gym, #new-pref{
   width: 100%;
   /*left: 0;*/
   right: 0;
@@ -275,7 +278,11 @@ input#user_email, #user_password, #user_first_name, #user_last_name, #user_age, 
 }
 
 .set-primary {
-  margin-left: 3px;
+  margin-left: 30px;
+}
+
+.set-primary h4 {
+  margin-left: 0px;
 }
 
 /* Grid
