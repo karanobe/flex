@@ -7,7 +7,8 @@
       <p class="indent">Friend Request Sent</p>
       <p><%= link_to "Cancel Friend Request", unfriend_path(user), class: "buttonize", id: "cancel" %></p>
       <% elsif user != current_user && current_user.request_received.include?(user) %>
-      <p><%= link_to "Accept", accept_friend_path(user), class: "buttonize", id:"accept" %> / <%= link_to "Deny", deny_friend_path(user), class: "buttonize", id: "deny" %> Friendship</p>
+      <p><%= link_to "Accept", accept_friend_path(user), class: "buttonize", id:"accept" %> </p>
+      <p> <%= link_to "Deny", deny_friend_path(user), class: "buttonize", id: "deny" %></p>
 
       <% elsif user != current_user && current_user.all_friends.exclude?(user) %>
       <p><%= link_to "Add Friend", add_friend_path(user), class: "buttonize-add", id: "add" %></p>
