@@ -203,6 +203,7 @@ a:hover#choose {
 
 .primary_gym {
   background-color: #afafaf;
+  margin-right: 30px;
 }
 
 .friend {
@@ -263,7 +264,7 @@ input#user_email, #user_password, #user_first_name, #user_last_name, #user_age, 
   font-size: 1.2em;
 }
 
-#gym-title {
+.set-primary {
   margin-left: 3px;
 }
 
