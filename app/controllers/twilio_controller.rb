@@ -6,14 +6,19 @@ class TwilioController < ApplicationController
   skip_before_action :verify_authenticity_token
 
 	def receive_sms
-    p Rails.application.secrets.twilio_account_sid
-    p Rails.application.secrets.twilio_token
-    p params
     reply
     render nothing: true
   end
 
   def reply
+    p sender = User.find_by(phone: params["From"][2..-1])
+    #receiver_name = params["Body"].match(/: (\S+)/)[0]
+
+    #receiver = User.find_by(name: receiver_name)
+    #text_body = params["Body"] (regex to get the "BODY:" part)
+
+    # p receiver_name = params["Body"]
+
     message_body = params["Body"]
     from_number = '+12245215864'
     boot_twilio
@@ -25,7 +30,7 @@ class TwilioController < ApplicationController
   end
 
 
-# find user by params 'from',
+# user.find_by params['from'], locate the recipient by the 'TO': info included in body of the text, update the 'reply' method and send along the body of the text.
 private
   def boot_twilio
     account_sid = Rails.application.secrets.twilio_account_sid
