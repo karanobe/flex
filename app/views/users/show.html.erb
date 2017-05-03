@@ -20,8 +20,8 @@
   <% if user.preference == nil %>
       <%= link_to "Set Preferences",  new_preference_path, id: "new-pref" %>
   <% else %>
-    <a class="buttonizing" href="<%= edit_preference_path(current_user.preference.id) %>">Update FlexMate Preferences</a><br>
-    <a class="buttonizing" href="<% users_path %>">View FlexMates</a><br>
+    <a class="buttonizing" id="update-pref" href="<%= edit_preference_path(current_user.preference.id) %>">Update FlexMate Preferences</a><br>
+    <a class="buttonizing" id="matched-users" href="<% users_path %>">View FlexMates</a><br>
   <% end %>
 
   <div class="spacer"></div>
@@ -53,8 +53,6 @@
       <% elsif user != current_user && current_user.all_friends.exclude?(user) %>
       <p><%= link_to "Add Friend", friendships_path(user), class: "buttonize-add", id: "add", method: :post %></p>
       <% end %>
-      <br>
   </div>
 <% end %>
-<div calss="spacer"></div>
 <footer></footer>
