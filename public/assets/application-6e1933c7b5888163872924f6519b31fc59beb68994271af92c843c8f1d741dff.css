@@ -6862,10 +6862,12 @@ footer {
   text-decoration: none;
   text-align: center;
   font-size: 0.75em;
+  left: 0;
   bottom: 0;
   position: fixed;
-  width: 200%;
+  width: 100%;
 }
+
 
 .container-below-nav {
   padding-top: 60px;
@@ -6900,7 +6902,7 @@ img {
 
 .column-left {
   display: block;
-  width: 30%;
+  width: 40%;
   float: left;
 }
 
@@ -6916,7 +6918,7 @@ img {
   vertical-align: middle;
   margin-top: 5px;
   display: block;
-  width: 50%;
+  width: 40%;
   float: right;
   padding-left: 5px;
   font-size: 1.3em;
@@ -6958,6 +6960,11 @@ a:hover#choose {
   color: orange;
 }
 
+.primary_gym {
+  background-color: #afafaf;
+  margin-right: 30px;
+}
+
 .friend {
   margin-left: -15px;
 }
@@ -6968,8 +6975,23 @@ a:hover#choose {
   margin-left: 20px;
 }
 
-.buttonize, .buttonize-add, .buttonize_cancel, #new-gym{
-  width: 106%;
+a:hover.buttonize, .buttonize-add, .buttonize_cancel {
+  color: #08917c;
+}
+
+a:hover#new-gym {
+  color: #08917c;
+}
+
+a:hover#new-pref {
+  color: #08917c;
+}
+
+.buttonize, .buttonize-add, .buttonize_cancel, #new-gym, #new-pref{
+  width: 100%;
+  /*left: 0;*/
+  right: 0;
+  /*position: fixed;*/
   display: block;
   height: 45px;
   color: white;
@@ -7014,8 +7036,12 @@ input#user_email, #user_password, #user_first_name, #user_last_name, #user_age, 
   font-size: 1.2em;
 }
 
-#gym-title {
-  margin-left: 3px;
+.set-primary {
+  margin-left: 30px;
+}
+
+.set-primary h4 {
+  margin-left: 0px;
 }
 
 /* Grid
@@ -7137,6 +7163,15 @@ td {
 }
 
 .autofill {
+  border: none;
+  padding: 10 5 10 5;
+  width: 180px;
+  margin-left: 5px;
+  font-size: 1.2em;
+  border-radius: 5px;
+}
+
+.autofillz {
   border: 1px solid #E1E1E1;
   padding: 10 5 10 5;
   width: 180px;
@@ -7208,6 +7243,11 @@ a {
   }
 
 a:hover {
+  color: #08917c;
+  text-decoration: none;
+}
+
+li a:hover {
   color: orange;
   text-decoration: none;
 }
@@ -7215,6 +7255,7 @@ a:hover {
 a:hover.buttonizing{
   color: #08917c;
 }
+
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

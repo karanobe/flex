@@ -11595,19 +11595,20 @@ $(document).ready(function() {
   });
 
 // AJAX call to submit photo on user profile page. Makes the call to update attributes for user, waits for a second, and then makes an AJAX call to bring in updated user profile page
-  $("body").on("submit", "form.edit_user", function(event) {
-    var $picForm = $(this);
-    action = $picForm.closest("body").find("a.user-page").attr("href");
-    setTimeout(userProfile, 1000);
-  });
+  // $("body").on("submit", "form.edit_user", function(event) {
+  //   var $picForm = $(this);
+  //   debugger
+  //   action = $picForm.closest("body").find("a.user-page").attr("href");
+  //   setTimeout(userProfile, 1000);
+  // });
+
 
 // AJAX call to show list of gyms specific to the user, and adds "Add New Gym" link at the end of the list
   $(".container").on('click', "#gyms-link", function(event) {
     event.preventDefault();
     hideLinks();
     $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
-      renderGyms(response);
-      $(".container").append("<a id='new-gym' href='/gyms/new'>Add a new gym</a>");
+      $(".container").html(response.gymsInfo);
     });
   });
 
@@ -11634,17 +11635,20 @@ $(document).ready(function() {
     $.ajax({url: "/gyms",
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       method: "POST",
-      data: data}).done(function(){
-        location.reload();
+      data: data}).done(function(response){
+        $(".container").html(response.gymsInfo);
       })
   });
 
-// AJAX
+// AJAX set primary gym
   $("body").on('click', '.set-primary', function(event) {
-    var id = $(this)[0].id;
-    var data = {membership: {id: id}};
-    // $.ajax({url: "/memberships"})
-    console.log(id);
+    event.preventDefault();
+    var id = $(this).find("a")[0].id;
+    $.ajax({url: "/gyms/"+id+ "/set_primary",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            method: "PATCH"}).done(function(response) {
+      $(".container").html(response.gymsInfo);
+    })
   })
 
 
@@ -11685,46 +11689,98 @@ $(document).ready(function() {
   });
 
 
-  // $('body').on('click', 'a#add', function(event) {
-  //   console.log("add friend");
-  //   event.preventDefault();
-  // });
-
-  // $('#pref').on('click', '.cancel', function(event) {
-  //   event.preventDefault();
-  //   console.log("cancel request");
-  // });
-
-  // $('#pref').on('click', '.unfriend', function(event) {
-  //   event.preventDefault();
-  //   console.log("unfriend");
-  // });
-
-});
-
-
-function renderGyms(response){
-  var all_gyms = "<ul>";
-  response.forEach(function(gym) {
-    all_gyms += generateOneGym(gym);
+  $("body").on("click", "a#add", function(event) {
+    event.preventDefault();
+    var $addFriend = $(this);
+    var action = $addFriend.attr("href");
+    $.ajax({url: action,
+            method: "POST",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
   });
-  all_gyms + "</ul>"
-  $(".container").html(all_gyms);
-}
 
-function generateOneGym(gym){
-  return `<li class="gym">
-          <div class="gym-content">
-            <p>
-              <span class = "name">
-              <h4 id="gym-title"><a id=${gym.id} class="set-primary">${gym.name}</a></h4>  </span>
-              <span class= "address"> ${gym.street_address}</span><br>
-              <span class= "city"> ${gym.city}</span><br>
-              <span class= "zip"> ${gym.zip}</span><br>
-            </p>
-          </div>
-        </li>`;
-}
+  $('body').on('click', 'a#cancel', function(event) {
+    event.preventDefault();
+    var $deleteFriendRequest = $(this);
+    var action = $deleteFriendRequest.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
+
+  $('body').on('click', 'a#accept', function(event) {
+    event.preventDefault();
+    var $acceptRequest = $(this);
+    var action = $acceptRequest.attr("href");
+    $.ajax({url: action,
+            method: "POST",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  })
+
+
+  $('body').on('click', 'a#unfriend', function(event) {
+    event.preventDefault();
+    var $unfriend = $(this);
+    var action = $unfriend.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
+
+  $('body').on('click', 'a#deny', function(event) {
+    event.preventDefault();
+    var $denyRequest = $(this);
+    var action = $denyRequest.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
+
+})
+
+
+;
+// function renderGyms(response){
+//   var all_gyms = "<ul>";
+//   response.forEach(function(gym) {
+//     all_gyms += generateOneGym(gym);
+//   });
+//   all_gyms + "</ul>"
+//   $(".container").html(all_gyms);
+// }
+
+// function generateOneGym(gym){
+//   return `<li class="gym">
+//           <div class="gym-content">
+//             <p>
+//               <span class = "name">
+//               <h4><a href="/gyms/${gym.id}" id=${gym.id} class="set-primary">${gym.name}</a></h4>  </span>
+//               <span class= "address"> ${gym.street_address}</span><br>
+//               <span class= "city"> ${gym.city}</span><br>
+//               <span class= "zip"> ${gym.zip}</span><br>
+//             </p>
+//           </div>
+//         </li>`;
+// }
 
 //<h4><a href="place url for specific gym profile page" >${gym.name} </a></h4>  </span><br>
 
@@ -11760,7 +11816,7 @@ function generateOneUser(user){
           <div class="user-content">
             <div class="column-left">
               <span class = "name">
-              <h2><a class="user-page" id="user-link" href="/users/${user.id}" >${user.first_name} ${user.last_name}</a></h2>  </span>
+              <h3><a class="user-page" id="user-link" href="/users/${user.id}" >${user.first_name}</a></h3>  </span>
               </div>
               <div class="column-middle">
               <h4><span class= "age"> ${user.age}</span></h4>
@@ -11772,10 +11828,69 @@ function generateOneUser(user){
         </li>`;
 }
 
-function userProfile() {
-  $.ajax({url: action, method: "GET"}).done(function(response) {
-      $("div.container").html(response.userInfo)});
-}
+// function userProfile() {
+//   $.ajax({url: action, method: "GET"}).done(function(response) {
+//       $("div.container").html(response.userInfo)});
+// }
+
+
+  var placeSearch, autocomplete;
+  var componentForm = {
+    street_number: 'short_name',
+    route: 'long_name',
+    locality: 'long_name',
+    administrative_area_level_1: 'short_name',
+    country: 'long_name',
+    postal_code: 'short_name'
+  };
+
+  function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+        {types: ['geocode']});
+
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    autocomplete.addListener('place_changed', fillInAddress);
+  }
+
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+
+    for (var component in componentForm) {
+      document.getElementById(component).value = '';
+      document.getElementById(component).disabled = false;
+    }
+
+    // Get each component of the address from the place details
+    // and fill the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        document.getElementById(addressType).value = val;
+      }
+    }
+  }
+
+  function geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+        autocomplete.setBounds(circle.getBounds());
+      });
+    }
+  }
 
   // $(".home").on('click',function(event) {
   //   event.preventDefault();
@@ -11800,6 +11915,7 @@ function userProfile() {
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 
 
 
