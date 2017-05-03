@@ -11,11 +11,10 @@ class TwilioController < ApplicationController
   end
 
   def reply
-    p sender = User.find_by(phone: params["From"][2..-1])
-
-    p receiver_first_name =  params["Body"].match(/:(.*)/)[1][1..-1]
-    p receiver_number = User.find_by(first_name: receiver_first_name).phone
-    p text_body = params["Body"]
+    sender = User.find_by(phone: params["From"][2..-1])
+    receiver_first_name =  params["Body"].match(/:(.*)/)[1][1..-1]
+    receiver_number = User.find_by(first_name: receiver_first_name).phone
+    text_body = params["Body"]
    # OUR METHOD
     message_body = text_body
     boot_twilio
