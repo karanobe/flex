@@ -7,21 +7,12 @@ Rails.application.routes.draw do
   resources :gyms
   resources :friendships, only: [:create, :destroy]
 
-  # resource :messages do
-  #   collection do
-  #     post 'reply'
-  #   end
-  # end
-
   post 'friendships/:id/accept' => 'friendships#accept', as: 'accept_friend'
   delete 'friendships/:id/deny' => 'friendships#deny', as: 'deny_friend'
-  root 'welcome#index'
   get "/home" => "welcome#home"
   post 'twilio/receive_sms' => 'twilio#receive_sms'
   post 'twilio/reply' => 'twilio#reply'
 
-  resources :conversations do
-    resources :messages
-  end
+  root 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
