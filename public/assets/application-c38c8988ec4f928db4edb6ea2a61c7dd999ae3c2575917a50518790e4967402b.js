@@ -11562,32 +11562,46 @@ return jQuery;
   }
 
 })( jQuery );
-/*
-Turbolinks 5.0.0
-Copyright © 2016 Basecamp, LLC
- */
-
-(function(){(function(){(function(){this.Turbolinks={supported:function(){return null!=window.history.pushState&&null!=window.requestAnimationFrame}(),visit:function(e,r){return t.controller.visit(e,r)},clearCache:function(){return t.controller.clearCache()}}}).call(this)}).call(this);var t=this.Turbolinks;(function(){(function(){var e,r;t.copyObject=function(t){var e,r,n;r={};for(e in t)n=t[e],r[e]=n;return r},t.closest=function(t,r){return e.call(t,r)},e=function(){var t,e;return t=document.documentElement,null!=(e=t.closest)?e:function(t){var e;for(e=this;e;){if(e.nodeType===Node.ELEMENT_NODE&&r.call(e,t))return e;e=e.parentNode}}}(),t.defer=function(t){return setTimeout(t,1)},t.dispatch=function(t,e){var r,n,o,i,s;return i=null!=e?e:{},s=i.target,r=i.cancelable,n=i.data,o=document.createEvent("Events"),o.initEvent(t,!0,r===!0),o.data=null!=n?n:{},(null!=s?s:document).dispatchEvent(o),o},t.match=function(t,e){return r.call(t,e)},r=function(){var t,e,r,n;return t=document.documentElement,null!=(e=null!=(r=null!=(n=t.matchesSelector)?n:t.webkitMatchesSelector)?r:t.msMatchesSelector)?e:t.mozMatchesSelector}(),t.uuid=function(){var t,e,r;for(r="",t=e=1;36>=e;t=++e)r+=9===t||14===t||19===t||24===t?"-":15===t?"4":20===t?(Math.floor(4*Math.random())+8).toString(16):Math.floor(15*Math.random()).toString(16);return r}}).call(this),function(){t.Location=function(){function t(t){var e,r;null==t&&(t=""),r=document.createElement("a"),r.href=t.toString(),this.absoluteURL=r.href,e=r.hash.length,2>e?this.requestURL=this.absoluteURL:(this.requestURL=this.absoluteURL.slice(0,-e),this.anchor=r.hash.slice(1))}var e,r,n,o;return t.wrap=function(t){return t instanceof this?t:new this(t)},t.prototype.getOrigin=function(){return this.absoluteURL.split("/",3).join("/")},t.prototype.getPath=function(){var t,e;return null!=(t=null!=(e=this.absoluteURL.match(/\/\/[^\/]*(\/[^?;]*)/))?e[1]:void 0)?t:"/"},t.prototype.getPathComponents=function(){return this.getPath().split("/").slice(1)},t.prototype.getLastPathComponent=function(){return this.getPathComponents().slice(-1)[0]},t.prototype.getExtension=function(){var t,e;return null!=(t=null!=(e=this.getLastPathComponent().match(/\.[^.]*$/))?e[0]:void 0)?t:""},t.prototype.isHTML=function(){return this.getExtension().match(/^(?:|\.(?:htm|html|xhtml))$/)},t.prototype.isPrefixedBy=function(t){var e;return e=r(t),this.isEqualTo(t)||o(this.absoluteURL,e)},t.prototype.isEqualTo=function(t){return this.absoluteURL===(null!=t?t.absoluteURL:void 0)},t.prototype.toCacheKey=function(){return this.requestURL},t.prototype.toJSON=function(){return this.absoluteURL},t.prototype.toString=function(){return this.absoluteURL},t.prototype.valueOf=function(){return this.absoluteURL},r=function(t){return e(t.getOrigin()+t.getPath())},e=function(t){return n(t,"/")?t:t+"/"},o=function(t,e){return t.slice(0,e.length)===e},n=function(t,e){return t.slice(-e.length)===e},t}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.HttpRequest=function(){function r(r,n,o){this.delegate=r,this.requestCanceled=e(this.requestCanceled,this),this.requestTimedOut=e(this.requestTimedOut,this),this.requestFailed=e(this.requestFailed,this),this.requestLoaded=e(this.requestLoaded,this),this.requestProgressed=e(this.requestProgressed,this),this.url=t.Location.wrap(n).requestURL,this.referrer=t.Location.wrap(o).absoluteURL,this.createXHR()}return r.NETWORK_FAILURE=0,r.TIMEOUT_FAILURE=-1,r.timeout=60,r.prototype.send=function(){var t;return this.xhr&&!this.sent?(this.notifyApplicationBeforeRequestStart(),this.setProgress(0),this.xhr.send(),this.sent=!0,"function"==typeof(t=this.delegate).requestStarted?t.requestStarted():void 0):void 0},r.prototype.cancel=function(){return this.xhr&&this.sent?this.xhr.abort():void 0},r.prototype.requestProgressed=function(t){return t.lengthComputable?this.setProgress(t.loaded/t.total):void 0},r.prototype.requestLoaded=function(){return this.endRequest(function(t){return function(){var e;return 200<=(e=t.xhr.status)&&300>e?t.delegate.requestCompletedWithResponse(t.xhr.responseText,t.xhr.getResponseHeader("Turbolinks-Location")):(t.failed=!0,t.delegate.requestFailedWithStatusCode(t.xhr.status,t.xhr.responseText))}}(this))},r.prototype.requestFailed=function(){return this.endRequest(function(t){return function(){return t.failed=!0,t.delegate.requestFailedWithStatusCode(t.constructor.NETWORK_FAILURE)}}(this))},r.prototype.requestTimedOut=function(){return this.endRequest(function(t){return function(){return t.failed=!0,t.delegate.requestFailedWithStatusCode(t.constructor.TIMEOUT_FAILURE)}}(this))},r.prototype.requestCanceled=function(){return this.endRequest()},r.prototype.notifyApplicationBeforeRequestStart=function(){return t.dispatch("turbolinks:request-start",{data:{url:this.url,xhr:this.xhr}})},r.prototype.notifyApplicationAfterRequestEnd=function(){return t.dispatch("turbolinks:request-end",{data:{url:this.url,xhr:this.xhr}})},r.prototype.createXHR=function(){return this.xhr=new XMLHttpRequest,this.xhr.open("GET",this.url,!0),this.xhr.timeout=1e3*this.constructor.timeout,this.xhr.setRequestHeader("Accept","text/html, application/xhtml+xml"),this.xhr.setRequestHeader("Turbolinks-Referrer",this.referrer),this.xhr.onprogress=this.requestProgressed,this.xhr.onload=this.requestLoaded,this.xhr.onerror=this.requestFailed,this.xhr.ontimeout=this.requestTimedOut,this.xhr.onabort=this.requestCanceled},r.prototype.endRequest=function(t){return this.xhr?(this.notifyApplicationAfterRequestEnd(),null!=t&&t.call(this),this.destroy()):void 0},r.prototype.setProgress=function(t){var e;return this.progress=t,"function"==typeof(e=this.delegate).requestProgressed?e.requestProgressed(this.progress):void 0},r.prototype.destroy=function(){var t;return this.setProgress(1),"function"==typeof(t=this.delegate).requestFinished&&t.requestFinished(),this.delegate=null,this.xhr=null},r}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.ProgressBar=function(){function t(){this.trickle=e(this.trickle,this),this.stylesheetElement=this.createStylesheetElement(),this.progressElement=this.createProgressElement()}var r;return r=300,t.defaultCSS=".turbolinks-progress-bar {\n  position: fixed;\n  display: block;\n  top: 0;\n  left: 0;\n  height: 3px;\n  background: #0076ff;\n  z-index: 9999;\n  transition: width "+r+"ms ease-out, opacity "+r/2+"ms "+r/2+"ms ease-in;\n  transform: translate3d(0, 0, 0);\n}",t.prototype.show=function(){return this.visible?void 0:(this.visible=!0,this.installStylesheetElement(),this.installProgressElement(),this.startTrickling())},t.prototype.hide=function(){return this.visible&&!this.hiding?(this.hiding=!0,this.fadeProgressElement(function(t){return function(){return t.uninstallProgressElement(),t.stopTrickling(),t.visible=!1,t.hiding=!1}}(this))):void 0},t.prototype.setValue=function(t){return this.value=t,this.refresh()},t.prototype.installStylesheetElement=function(){return document.head.insertBefore(this.stylesheetElement,document.head.firstChild)},t.prototype.installProgressElement=function(){return this.progressElement.style.width=0,this.progressElement.style.opacity=1,document.documentElement.insertBefore(this.progressElement,document.body),this.refresh()},t.prototype.fadeProgressElement=function(t){return this.progressElement.style.opacity=0,setTimeout(t,1.5*r)},t.prototype.uninstallProgressElement=function(){return this.progressElement.parentNode?document.documentElement.removeChild(this.progressElement):void 0},t.prototype.startTrickling=function(){return null!=this.trickleInterval?this.trickleInterval:this.trickleInterval=setInterval(this.trickle,r)},t.prototype.stopTrickling=function(){return clearInterval(this.trickleInterval),this.trickleInterval=null},t.prototype.trickle=function(){return this.setValue(this.value+Math.random()/100)},t.prototype.refresh=function(){return requestAnimationFrame(function(t){return function(){return t.progressElement.style.width=10+90*t.value+"%"}}(this))},t.prototype.createStylesheetElement=function(){var t;return t=document.createElement("style"),t.type="text/css",t.textContent=this.constructor.defaultCSS,t},t.prototype.createProgressElement=function(){var t;return t=document.createElement("div"),t.className="turbolinks-progress-bar",t},t}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.BrowserAdapter=function(){function r(r){this.controller=r,this.showProgressBar=e(this.showProgressBar,this),this.progressBar=new t.ProgressBar}var n,o,i,s;return s=t.HttpRequest,n=s.NETWORK_FAILURE,i=s.TIMEOUT_FAILURE,o=500,r.prototype.visitProposedToLocationWithAction=function(t,e){return this.controller.startVisitToLocationWithAction(t,e)},r.prototype.visitStarted=function(t){return t.issueRequest(),t.changeHistory(),t.loadCachedSnapshot()},r.prototype.visitRequestStarted=function(t){return this.progressBar.setValue(0),t.hasCachedSnapshot()||"restore"!==t.action?this.showProgressBarAfterDelay():this.showProgressBar()},r.prototype.visitRequestProgressed=function(t){return this.progressBar.setValue(t.progress)},r.prototype.visitRequestCompleted=function(t){return t.loadResponse()},r.prototype.visitRequestFailedWithStatusCode=function(t,e){switch(e){case n:case i:return this.reload();default:return t.loadResponse()}},r.prototype.visitRequestFinished=function(t){return this.hideProgressBar()},r.prototype.visitCompleted=function(t){return t.followRedirect()},r.prototype.pageInvalidated=function(){return this.reload()},r.prototype.showProgressBarAfterDelay=function(){return this.progressBarTimeout=setTimeout(this.showProgressBar,o)},r.prototype.showProgressBar=function(){return this.progressBar.show()},r.prototype.hideProgressBar=function(){return this.progressBar.hide(),clearTimeout(this.progressBarTimeout)},r.prototype.reload=function(){return window.location.reload()},r}()}.call(this),function(){var e,r=function(t,e){return function(){return t.apply(e,arguments)}};e=!1,addEventListener("load",function(){return t.defer(function(){return e=!0})},!1),t.History=function(){function n(t){this.delegate=t,this.onPopState=r(this.onPopState,this)}return n.prototype.start=function(){return this.started?void 0:(addEventListener("popstate",this.onPopState,!1),this.started=!0)},n.prototype.stop=function(){return this.started?(removeEventListener("popstate",this.onPopState,!1),this.started=!1):void 0},n.prototype.push=function(e,r){return e=t.Location.wrap(e),this.update("push",e,r)},n.prototype.replace=function(e,r){return e=t.Location.wrap(e),this.update("replace",e,r)},n.prototype.onPopState=function(e){var r,n,o,i;return this.shouldHandlePopState()&&(i=null!=(n=e.state)?n.turbolinks:void 0)?(r=t.Location.wrap(window.location),o=i.restorationIdentifier,this.delegate.historyPoppedToLocationWithRestorationIdentifier(r,o)):void 0},n.prototype.shouldHandlePopState=function(){return e===!0},n.prototype.update=function(t,e,r){var n;return n={turbolinks:{restorationIdentifier:r}},history[t+"State"](n,null,e)},n}()}.call(this),function(){t.Snapshot=function(){function e(t){var e,r;r=t.head,e=t.body,this.head=null!=r?r:document.createElement("head"),this.body=null!=e?e:document.createElement("body")}return e.wrap=function(t){return t instanceof this?t:this.fromHTML(t)},e.fromHTML=function(t){var e;return e=document.createElement("html"),e.innerHTML=t,this.fromElement(e)},e.fromElement=function(t){return new this({head:t.querySelector("head"),body:t.querySelector("body")})},e.prototype.clone=function(){return new e({head:this.head.cloneNode(!0),body:this.body.cloneNode(!0)})},e.prototype.getRootLocation=function(){var e,r;return r=null!=(e=this.getSetting("root"))?e:"/",new t.Location(r)},e.prototype.getCacheControlValue=function(){return this.getSetting("cache-control")},e.prototype.hasAnchor=function(t){try{return null!=this.body.querySelector("[id='"+t+"']")}catch(e){}},e.prototype.isPreviewable=function(){return"no-preview"!==this.getCacheControlValue()},e.prototype.isCacheable=function(){return"no-cache"!==this.getCacheControlValue()},e.prototype.getSetting=function(t){var e,r;return r=this.head.querySelectorAll("meta[name='turbolinks-"+t+"']"),e=r[r.length-1],null!=e?e.getAttribute("content"):void 0},e}()}.call(this),function(){var e=[].slice;t.Renderer=function(){function t(){}var r;return t.render=function(){var t,r,n,o;return n=arguments[0],r=arguments[1],t=3<=arguments.length?e.call(arguments,2):[],o=function(t,e,r){r.prototype=t.prototype;var n=new r,o=t.apply(n,e);return Object(o)===o?o:n}(this,t,function(){}),o.delegate=n,o.render(r),o},t.prototype.renderView=function(t){return this.delegate.viewWillRender(this.newBody),t(),this.delegate.viewRendered(this.newBody)},t.prototype.invalidateView=function(){return this.delegate.viewInvalidated()},t.prototype.createScriptElement=function(t){var e;return"false"===t.getAttribute("data-turbolinks-eval")?t:(e=document.createElement("script"),e.textContent=t.textContent,r(e,t),e)},r=function(t,e){var r,n,o,i,s,a,u;for(i=e.attributes,a=[],r=0,n=i.length;n>r;r++)s=i[r],o=s.name,u=s.value,a.push(t.setAttribute(o,u));return a},t}()}.call(this),function(){t.HeadDetails=function(){function t(t){var e,r,i,s,a,u,c;for(this.element=t,this.elements={},c=this.element.childNodes,s=0,u=c.length;u>s;s++)i=c[s],i.nodeType===Node.ELEMENT_NODE&&(a=i.outerHTML,r=null!=(e=this.elements)[a]?e[a]:e[a]={type:o(i),tracked:n(i),elements:[]},r.elements.push(i))}var e,r,n,o;return t.prototype.hasElementWithKey=function(t){return t in this.elements},t.prototype.getTrackedElementSignature=function(){var t,e;return function(){var r,n;r=this.elements,n=[];for(t in r)e=r[t].tracked,e&&n.push(t);return n}.call(this).join("")},t.prototype.getScriptElementsNotInDetails=function(t){return this.getElementsMatchingTypeNotInDetails("script",t)},t.prototype.getStylesheetElementsNotInDetails=function(t){return this.getElementsMatchingTypeNotInDetails("stylesheet",t)},t.prototype.getElementsMatchingTypeNotInDetails=function(t,e){var r,n,o,i,s,a;o=this.elements,s=[];for(n in o)i=o[n],a=i.type,r=i.elements,a!==t||e.hasElementWithKey(n)||s.push(r[0]);return s},t.prototype.getProvisionalElements=function(){var t,e,r,n,o,i,s;r=[],n=this.elements;for(e in n)o=n[e],s=o.type,i=o.tracked,t=o.elements,null!=s||i?t.length>1&&r.push.apply(r,t.slice(1)):r.push.apply(r,t);return r},o=function(t){return e(t)?"script":r(t)?"stylesheet":void 0},n=function(t){return"reload"===t.getAttribute("data-turbolinks-track")},e=function(t){var e;return e=t.tagName.toLowerCase(),"script"===e},r=function(t){var e;return e=t.tagName.toLowerCase(),"style"===e||"link"===e&&"stylesheet"===t.getAttribute("rel")},t}()}.call(this),function(){var e=function(t,e){function n(){this.constructor=t}for(var o in e)r.call(e,o)&&(t[o]=e[o]);return n.prototype=e.prototype,t.prototype=new n,t.__super__=e.prototype,t},r={}.hasOwnProperty;t.SnapshotRenderer=function(r){function n(e,r){this.currentSnapshot=e,this.newSnapshot=r,this.currentHeadDetails=new t.HeadDetails(this.currentSnapshot.head),this.newHeadDetails=new t.HeadDetails(this.newSnapshot.head),this.newBody=this.newSnapshot.body}return e(n,r),n.prototype.render=function(t){return this.trackedElementsAreIdentical()?(this.mergeHead(),this.renderView(function(e){return function(){return e.replaceBody(),e.focusFirstAutofocusableElement(),t()}}(this))):this.invalidateView()},n.prototype.mergeHead=function(){return this.copyNewHeadStylesheetElements(),this.copyNewHeadScriptElements(),this.removeCurrentHeadProvisionalElements(),this.copyNewHeadProvisionalElements()},n.prototype.replaceBody=function(){return this.activateBodyScriptElements(),this.importBodyPermanentElements(),this.assignNewBody()},n.prototype.trackedElementsAreIdentical=function(){return this.currentHeadDetails.getTrackedElementSignature()===this.newHeadDetails.getTrackedElementSignature()},n.prototype.copyNewHeadStylesheetElements=function(){var t,e,r,n,o;for(n=this.getNewHeadStylesheetElements(),o=[],e=0,r=n.length;r>e;e++)t=n[e],o.push(document.head.appendChild(t));return o},n.prototype.copyNewHeadScriptElements=function(){var t,e,r,n,o;for(n=this.getNewHeadScriptElements(),o=[],e=0,r=n.length;r>e;e++)t=n[e],o.push(document.head.appendChild(this.createScriptElement(t)));return o},n.prototype.removeCurrentHeadProvisionalElements=function(){var t,e,r,n,o;for(n=this.getCurrentHeadProvisionalElements(),o=[],e=0,r=n.length;r>e;e++)t=n[e],o.push(document.head.removeChild(t));return o},n.prototype.copyNewHeadProvisionalElements=function(){var t,e,r,n,o;for(n=this.getNewHeadProvisionalElements(),o=[],e=0,r=n.length;r>e;e++)t=n[e],o.push(document.head.appendChild(t));return o},n.prototype.importBodyPermanentElements=function(){var t,e,r,n,o,i;for(n=this.getNewBodyPermanentElements(),i=[],e=0,r=n.length;r>e;e++)o=n[e],(t=this.findCurrentBodyPermanentElement(o))?i.push(o.parentNode.replaceChild(t,o)):i.push(void 0);return i},n.prototype.activateBodyScriptElements=function(){var t,e,r,n,o,i;for(n=this.getNewBodyScriptElements(),i=[],e=0,r=n.length;r>e;e++)o=n[e],t=this.createScriptElement(o),i.push(o.parentNode.replaceChild(t,o));return i},n.prototype.assignNewBody=function(){return document.body=this.newBody},n.prototype.focusFirstAutofocusableElement=function(){var t;return null!=(t=this.findFirstAutofocusableElement())?t.focus():void 0},n.prototype.getNewHeadStylesheetElements=function(){return this.newHeadDetails.getStylesheetElementsNotInDetails(this.currentHeadDetails)},n.prototype.getNewHeadScriptElements=function(){return this.newHeadDetails.getScriptElementsNotInDetails(this.currentHeadDetails)},n.prototype.getCurrentHeadProvisionalElements=function(){return this.currentHeadDetails.getProvisionalElements()},n.prototype.getNewHeadProvisionalElements=function(){return this.newHeadDetails.getProvisionalElements()},n.prototype.getNewBodyPermanentElements=function(){return this.newBody.querySelectorAll("[id][data-turbolinks-permanent]")},n.prototype.findCurrentBodyPermanentElement=function(t){return document.body.querySelector("#"+t.id+"[data-turbolinks-permanent]")},n.prototype.getNewBodyScriptElements=function(){return this.newBody.querySelectorAll("script")},n.prototype.findFirstAutofocusableElement=function(){return document.body.querySelector("[autofocus]")},n}(t.Renderer)}.call(this),function(){var e=function(t,e){function n(){this.constructor=t}for(var o in e)r.call(e,o)&&(t[o]=e[o]);return n.prototype=e.prototype,t.prototype=new n,t.__super__=e.prototype,t},r={}.hasOwnProperty;t.ErrorRenderer=function(t){function r(t){this.html=t}return e(r,t),r.prototype.render=function(t){return this.renderView(function(e){return function(){return e.replaceDocumentHTML(),e.activateBodyScriptElements(),t()}}(this))},r.prototype.replaceDocumentHTML=function(){return document.documentElement.innerHTML=this.html},r.prototype.activateBodyScriptElements=function(){var t,e,r,n,o,i;for(n=this.getScriptElements(),i=[],e=0,r=n.length;r>e;e++)o=n[e],t=this.createScriptElement(o),i.push(o.parentNode.replaceChild(t,o));return i},r.prototype.getScriptElements=function(){return document.documentElement.querySelectorAll("script")},r}(t.Renderer)}.call(this),function(){t.View=function(){function e(t){this.delegate=t,this.element=document.documentElement}return e.prototype.getRootLocation=function(){return this.getSnapshot().getRootLocation()},e.prototype.getSnapshot=function(){return t.Snapshot.fromElement(this.element)},e.prototype.render=function(t,e){var r,n,o;return o=t.snapshot,r=t.error,n=t.isPreview,this.markAsPreview(n),null!=o?this.renderSnapshot(o,e):this.renderError(r,e)},e.prototype.markAsPreview=function(t){return t?this.element.setAttribute("data-turbolinks-preview",""):this.element.removeAttribute("data-turbolinks-preview")},e.prototype.renderSnapshot=function(e,r){return t.SnapshotRenderer.render(this.delegate,r,this.getSnapshot(),t.Snapshot.wrap(e))},e.prototype.renderError=function(e,r){return t.ErrorRenderer.render(this.delegate,r,e)},e}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.ScrollManager=function(){function t(t){this.delegate=t,this.onScroll=e(this.onScroll,this)}return t.prototype.start=function(){return this.started?void 0:(addEventListener("scroll",this.onScroll,!1),this.onScroll(),this.started=!0)},t.prototype.stop=function(){return this.started?(removeEventListener("scroll",this.onScroll,!1),this.started=!1):void 0},t.prototype.scrollToElement=function(t){return t.scrollIntoView()},t.prototype.scrollToPosition=function(t){var e,r;return e=t.x,r=t.y,window.scrollTo(e,r)},t.prototype.onScroll=function(t){return this.updatePosition({x:window.pageXOffset,y:window.pageYOffset})},t.prototype.updatePosition=function(t){var e;return this.position=t,null!=(e=this.delegate)?e.scrollPositionChanged(this.position):void 0},t}()}.call(this),function(){t.SnapshotCache=function(){function e(t){this.size=t,this.keys=[],this.snapshots={}}var r;return e.prototype.has=function(t){var e;return e=r(t),e in this.snapshots},e.prototype.get=function(t){var e;if(this.has(t))return e=this.read(t),this.touch(t),e},e.prototype.put=function(t,e){return this.write(t,e),this.touch(t),e},e.prototype.read=function(t){var e;return e=r(t),this.snapshots[e]},e.prototype.write=function(t,e){var n;return n=r(t),this.snapshots[n]=e},e.prototype.touch=function(t){var e,n;return n=r(t),e=this.keys.indexOf(n),e>-1&&this.keys.splice(e,1),this.keys.unshift(n),this.trim()},e.prototype.trim=function(){var t,e,r,n,o;for(n=this.keys.splice(this.size),o=[],t=0,r=n.length;r>t;t++)e=n[t],o.push(delete this.snapshots[e]);return o},r=function(e){return t.Location.wrap(e).toCacheKey()},e}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.Visit=function(){function r(r,n,o){this.controller=r,this.action=o,this.performScroll=e(this.performScroll,this),this.identifier=t.uuid(),this.location=t.Location.wrap(n),this.adapter=this.controller.adapter,this.state="initialized",this.timingMetrics={}}var n;return r.prototype.start=function(){return"initialized"===this.state?(this.recordTimingMetric("visitStart"),this.state="started",this.adapter.visitStarted(this)):void 0},r.prototype.cancel=function(){var t;return"started"===this.state?(null!=(t=this.request)&&t.cancel(),this.cancelRender(),this.state="canceled"):void 0},r.prototype.complete=function(){var t;return"started"===this.state?(this.recordTimingMetric("visitEnd"),this.state="completed","function"==typeof(t=this.adapter).visitCompleted&&t.visitCompleted(this),this.controller.visitCompleted(this)):void 0},r.prototype.fail=function(){var t;return"started"===this.state?(this.state="failed","function"==typeof(t=this.adapter).visitFailed?t.visitFailed(this):void 0):void 0},r.prototype.changeHistory=function(){var t,e;return this.historyChanged?void 0:(t=this.location.isEqualTo(this.referrer)?"replace":this.action,e=n(t),this.controller[e](this.location,this.restorationIdentifier),this.historyChanged=!0)},r.prototype.issueRequest=function(){return this.shouldIssueRequest()&&null==this.request?(this.progress=0,this.request=new t.HttpRequest(this,this.location,this.referrer),this.request.send()):void 0},r.prototype.getCachedSnapshot=function(){var t;return!(t=this.controller.getCachedSnapshotForLocation(this.location))||null!=this.location.anchor&&!t.hasAnchor(this.location.anchor)||"restore"!==this.action&&!t.isPreviewable()?void 0:t},r.prototype.hasCachedSnapshot=function(){return null!=this.getCachedSnapshot()},r.prototype.loadCachedSnapshot=function(){var t,e;return(e=this.getCachedSnapshot())?(t=this.shouldIssueRequest(),this.render(function(){var r;return this.cacheSnapshot(),this.controller.render({snapshot:e,isPreview:t},this.performScroll),"function"==typeof(r=this.adapter).visitRendered&&r.visitRendered(this),t?void 0:this.complete()})):void 0},r.prototype.loadResponse=function(){return null!=this.response?this.render(function(){var t,e;return this.cacheSnapshot(),this.request.failed?(this.controller.render({error:this.response},this.performScroll),"function"==typeof(t=this.adapter).visitRendered&&t.visitRendered(this),this.fail()):(this.controller.render({snapshot:this.response},this.performScroll),"function"==typeof(e=this.adapter).visitRendered&&e.visitRendered(this),this.complete())}):void 0},r.prototype.followRedirect=function(){return this.redirectedToLocation&&!this.followedRedirect?(this.location=this.redirectedToLocation,this.controller.replaceHistoryWithLocationAndRestorationIdentifier(this.redirectedToLocation,this.restorationIdentifier),this.followedRedirect=!0):void 0},r.prototype.requestStarted=function(){var t;return this.recordTimingMetric("requestStart"),"function"==typeof(t=this.adapter).visitRequestStarted?t.visitRequestStarted(this):void 0},r.prototype.requestProgressed=function(t){var e;return this.progress=t,"function"==typeof(e=this.adapter).visitRequestProgressed?e.visitRequestProgressed(this):void 0},r.prototype.requestCompletedWithResponse=function(e,r){return this.response=e,null!=r&&(this.redirectedToLocation=t.Location.wrap(r)),this.adapter.visitRequestCompleted(this)},r.prototype.requestFailedWithStatusCode=function(t,e){return this.response=e,this.adapter.visitRequestFailedWithStatusCode(this,t)},r.prototype.requestFinished=function(){var t;return this.recordTimingMetric("requestEnd"),"function"==typeof(t=this.adapter).visitRequestFinished?t.visitRequestFinished(this):void 0},r.prototype.performScroll=function(){return this.scrolled?void 0:("restore"===this.action?this.scrollToRestoredPosition()||this.scrollToTop():this.scrollToAnchor()||this.scrollToTop(),this.scrolled=!0)},r.prototype.scrollToRestoredPosition=function(){var t,e;return t=null!=(e=this.restorationData)?e.scrollPosition:void 0,null!=t?(this.controller.scrollToPosition(t),!0):void 0},r.prototype.scrollToAnchor=function(){return null!=this.location.anchor?(this.controller.scrollToAnchor(this.location.anchor),!0):void 0},r.prototype.scrollToTop=function(){return this.controller.scrollToPosition({x:0,y:0})},r.prototype.recordTimingMetric=function(t){var e;return null!=(e=this.timingMetrics)[t]?e[t]:e[t]=(new Date).getTime()},r.prototype.getTimingMetrics=function(){return t.copyObject(this.timingMetrics)},n=function(t){switch(t){case"replace":return"replaceHistoryWithLocationAndRestorationIdentifier";case"advance":case"restore":return"pushHistoryWithLocationAndRestorationIdentifier"}},r.prototype.shouldIssueRequest=function(){return"restore"===this.action?!this.hasCachedSnapshot():!0},r.prototype.cacheSnapshot=function(){return this.snapshotCached?void 0:(this.controller.cacheSnapshot(),this.snapshotCached=!0)},r.prototype.render=function(t){return this.cancelRender(),this.frame=requestAnimationFrame(function(e){return function(){return e.frame=null,t.call(e)}}(this))},r.prototype.cancelRender=function(){return this.frame?cancelAnimationFrame(this.frame):void 0},r}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.Controller=function(){function r(){this.clickBubbled=e(this.clickBubbled,this),this.clickCaptured=e(this.clickCaptured,this),this.pageLoaded=e(this.pageLoaded,this),this.history=new t.History(this),this.view=new t.View(this),this.scrollManager=new t.ScrollManager(this),this.restorationData={},this.clearCache()}return r.prototype.start=function(){return t.supported&&!this.started?(addEventListener("click",this.clickCaptured,!0),addEventListener("DOMContentLoaded",this.pageLoaded,!1),this.scrollManager.start(),this.startHistory(),this.started=!0,this.enabled=!0):void 0},r.prototype.disable=function(){return this.enabled=!1},r.prototype.stop=function(){return this.started?(removeEventListener("click",this.clickCaptured,!0),removeEventListener("DOMContentLoaded",this.pageLoaded,!1),this.scrollManager.stop(),this.stopHistory(),this.started=!1):void 0},r.prototype.clearCache=function(){return this.cache=new t.SnapshotCache(10)},r.prototype.visit=function(e,r){var n,o;return null==r&&(r={}),e=t.Location.wrap(e),this.applicationAllowsVisitingLocation(e)?this.locationIsVisitable(e)?(n=null!=(o=r.action)?o:"advance",this.adapter.visitProposedToLocationWithAction(e,n)):window.location=e:void 0},r.prototype.startVisitToLocationWithAction=function(e,r,n){var o;return t.supported?(o=this.getRestorationDataForIdentifier(n),this.startVisit(e,r,{restorationData:o})):window.location=e},r.prototype.startHistory=function(){return this.location=t.Location.wrap(window.location),this.restorationIdentifier=t.uuid(),this.history.start(),this.history.replace(this.location,this.restorationIdentifier)},r.prototype.stopHistory=function(){return this.history.stop()},r.prototype.pushHistoryWithLocationAndRestorationIdentifier=function(e,r){return this.restorationIdentifier=r,this.location=t.Location.wrap(e),this.history.push(this.location,this.restorationIdentifier)},r.prototype.replaceHistoryWithLocationAndRestorationIdentifier=function(e,r){return this.restorationIdentifier=r,this.location=t.Location.wrap(e),this.history.replace(this.location,this.restorationIdentifier)},r.prototype.historyPoppedToLocationWithRestorationIdentifier=function(e,r){var n;return this.restorationIdentifier=r,this.enabled?(n=this.getRestorationDataForIdentifier(this.restorationIdentifier),this.startVisit(e,"restore",{restorationIdentifier:this.restorationIdentifier,restorationData:n,historyChanged:!0}),this.location=t.Location.wrap(e)):this.adapter.pageInvalidated()},r.prototype.getCachedSnapshotForLocation=function(t){var e;return e=this.cache.get(t),e?e.clone():void 0},r.prototype.shouldCacheSnapshot=function(){return this.view.getSnapshot().isCacheable()},r.prototype.cacheSnapshot=function(){var t;return this.shouldCacheSnapshot()?(this.notifyApplicationBeforeCachingSnapshot(),t=this.view.getSnapshot(),this.cache.put(this.lastRenderedLocation,t.clone())):void 0},r.prototype.scrollToAnchor=function(t){var e;return(e=document.getElementById(t))?this.scrollToElement(e):this.scrollToPosition({x:0,y:0})},r.prototype.scrollToElement=function(t){return this.scrollManager.scrollToElement(t)},r.prototype.scrollToPosition=function(t){return this.scrollManager.scrollToPosition(t)},r.prototype.scrollPositionChanged=function(t){var e;return e=this.getCurrentRestorationData(),e.scrollPosition=t},r.prototype.render=function(t,e){return this.view.render(t,e)},r.prototype.viewInvalidated=function(){return this.adapter.pageInvalidated()},r.prototype.viewWillRender=function(t){return this.notifyApplicationBeforeRender(t)},r.prototype.viewRendered=function(){return this.lastRenderedLocation=this.currentVisit.location,this.notifyApplicationAfterRender()},r.prototype.pageLoaded=function(){return this.lastRenderedLocation=this.location,this.notifyApplicationAfterPageLoad()},r.prototype.clickCaptured=function(){return removeEventListener("click",this.clickBubbled,!1),addEventListener("click",this.clickBubbled,!1)},r.prototype.clickBubbled=function(t){var e,r,n;return this.enabled&&this.clickEventIsSignificant(t)&&(r=this.getVisitableLinkForNode(t.target))&&(n=this.getVisitableLocationForLink(r))&&this.applicationAllowsFollowingLinkToLocation(r,n)?(t.preventDefault(),e=this.getActionForLink(r),this.visit(n,{action:e})):void 0},r.prototype.applicationAllowsFollowingLinkToLocation=function(t,e){var r;return r=this.notifyApplicationAfterClickingLinkToLocation(t,e),!r.defaultPrevented},r.prototype.applicationAllowsVisitingLocation=function(t){var e;return e=this.notifyApplicationBeforeVisitingLocation(t),!e.defaultPrevented},r.prototype.notifyApplicationAfterClickingLinkToLocation=function(e,r){return t.dispatch("turbolinks:click",{target:e,data:{url:r.absoluteURL},cancelable:!0})},r.prototype.notifyApplicationBeforeVisitingLocation=function(e){return t.dispatch("turbolinks:before-visit",{data:{url:e.absoluteURL},cancelable:!0})},r.prototype.notifyApplicationAfterVisitingLocation=function(e){return t.dispatch("turbolinks:visit",{data:{url:e.absoluteURL}})},r.prototype.notifyApplicationBeforeCachingSnapshot=function(){return t.dispatch("turbolinks:before-cache")},r.prototype.notifyApplicationBeforeRender=function(e){return t.dispatch("turbolinks:before-render",{data:{newBody:e}})},r.prototype.notifyApplicationAfterRender=function(){return t.dispatch("turbolinks:render")},r.prototype.notifyApplicationAfterPageLoad=function(e){return null==e&&(e={}),t.dispatch("turbolinks:load",{data:{url:this.location.absoluteURL,timing:e}})},r.prototype.startVisit=function(t,e,r){var n;return null!=(n=this.currentVisit)&&n.cancel(),this.currentVisit=this.createVisit(t,e,r),this.currentVisit.start(),this.notifyApplicationAfterVisitingLocation(t)},r.prototype.createVisit=function(e,r,n){
-var o,i,s,a,u;return i=null!=n?n:{},a=i.restorationIdentifier,s=i.restorationData,o=i.historyChanged,u=new t.Visit(this,e,r),u.restorationIdentifier=null!=a?a:t.uuid(),u.restorationData=t.copyObject(s),u.historyChanged=o,u.referrer=this.location,u},r.prototype.visitCompleted=function(t){return this.notifyApplicationAfterPageLoad(t.getTimingMetrics())},r.prototype.clickEventIsSignificant=function(t){return!(t.defaultPrevented||t.target.isContentEditable||t.which>1||t.altKey||t.ctrlKey||t.metaKey||t.shiftKey)},r.prototype.getVisitableLinkForNode=function(e){return this.nodeIsVisitable(e)?t.closest(e,"a[href]:not([target])"):void 0},r.prototype.getVisitableLocationForLink=function(e){var r;return r=new t.Location(e.getAttribute("href")),this.locationIsVisitable(r)?r:void 0},r.prototype.getActionForLink=function(t){var e;return null!=(e=t.getAttribute("data-turbolinks-action"))?e:"advance"},r.prototype.nodeIsVisitable=function(e){var r;return(r=t.closest(e,"[data-turbolinks]"))?"false"!==r.getAttribute("data-turbolinks"):!0},r.prototype.locationIsVisitable=function(t){return t.isPrefixedBy(this.view.getRootLocation())&&t.isHTML()},r.prototype.getCurrentRestorationData=function(){return this.getRestorationDataForIdentifier(this.restorationIdentifier)},r.prototype.getRestorationDataForIdentifier=function(t){var e;return null!=(e=this.restorationData)[t]?e[t]:e[t]={}},r}()}.call(this),function(){var e,r,n;t.start=function(){return r()?(null==t.controller&&(t.controller=e()),t.controller.start()):void 0},r=function(){return null==window.Turbolinks&&(window.Turbolinks=t),n()},e=function(){var e;return e=new t.Controller,e.adapter=new t.BrowserAdapter(e),e},n=function(){return window.Turbolinks===t},n()&&t.start()}.call(this)}).call(this),"object"==typeof module&&module.exports?module.exports=t:"function"==typeof define&&define.amd&&define(t)}).call(this);
 $(document).ready(function() {
-  $("#new-pref").on("click", function(e) {
-    e.preventDefault();
-    hideLinks();
+  $('body').click(function(){
+  $("div#flash_notice").hide();
+  });
+  // AJAX call to new preference call; works on home page and user profile page
+  $("div.container").on("click", "#new-pref", function(event) {
+    event.preventDefault();
     $.ajax({url:"/preferences/new", method: "GET"}).done(function(response) {
-      $("#pref").html(response.newPrefForm);
+      $(".container").html(response.newPrefForm);
     })
   });
 
-  $("#pref").on("click", "#update-pref", function(e) {
+// AJAX call to edit preference call; works on home page and user profile page
+  $("body").on("click", "#update-pref", function(e) {
     e.preventDefault();
     var action = $(this).attr("href");
-    hideLinks();
     $.ajax({url:action, method: "GET"}).done(function(response) {
-      $("#pref").html(response.editPrefForm);
+      $(".container").html(response.editPrefForm);
     })
   });
 
-  $("#gyms-link").on('click', function(event) {
+// AJAX call to append pic upload form on user profile page
+  $("body").on("click", "#pic-upload", function(event) {
+    event.preventDefault();
+    var $picUploadLink = $(this);
+    var action = $picUploadLink.attr("href");
+    $.ajax({url: action, method: "GET"}).done(function(response) {
+      $("#bringFormHere").html(response.picUpload);
+    });
+  })
+
+// AJAX call to submit photo on user profile page. Makes the call to update attributes for user, waits for a second, and then makes an AJAX call to bring in updated user profile page
+  $("body").on("submit", "form.edit_user", function(event) {
+    var $picForm = $(this);
+    action = $picForm.closest("body").find("a.user-page").attr("href");
+    setTimeout(userProfile, 800);
+  });
+
+// AJAX call to show list of gyms specific to the user, and adds "Add New Gym" link at the end of the list
+  $(".container").on('click', "#gyms-link", function(event) {
     event.preventDefault();
     hideLinks();
     $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
@@ -11596,18 +11610,24 @@ $(document).ready(function() {
     });
   });
 
+// Displays form to add new gym, appends it to the bottom of the page
   $("#pref").on("click", "#new-gym", function(event) {
     event.preventDefault();
-    $.ajax({url: "/gyms/new", method: "GET"}).done(function(response) {
-      $("div#pref").html(response.newGymForm);
+    var action = $(this).attr("href");
+    $.ajax({url: action, method: "GET"}).done(function(response) {
+      console.log(response)
+      // $("div#pref").html(response.newGymForm);
     })
-  })
+  });
 
-  $("#pref").on('click', '#matched-users',function(event) {
+// AJAX call to hide all links on home page and display list of matched users
+  $("body").on('click', '#matched-users',function(event) {
     event.preventDefault();
     hideLinks();
     loadUsers();
   });
+
+// AJAX call to display user profile
   $("body").on('click', ".user-page", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
@@ -11616,22 +11636,44 @@ $(document).ready(function() {
     })
   });
 
-  $('body').on('click', 'a#add', function(event) {
-    console.log("add friend");
+// AJAX call to update user preferences; works on home and user profile page; redirects back to user profile
+  $("body").on("submit", ".edit_preference", function(event) {
     event.preventDefault();
-  });
+    var action = $(this).attr("action");
+    var data = $(this).serialize();
+    $.ajax({url: action, method: "PATCH", data: data}).done(function(response) {
+      $(".container").html(response.userInfo);
+    })
+  })
 
-  $('#pref').on('click', '.cancel', function(event) {
+// AJAX call to create new user preferences; works on home and user profile page; redirects back to user profile
+  $("body").on("submit", ".new_preference", function(event) {
     event.preventDefault();
-    console.log("cancel request");
-  });
+    var action = $(this).attr("action");
+    var data = $(this).serialize();
+    $.ajax({url: action, method: "POST", data: data}).done(function(response) {
+      $(".container").html(response.userInfo);
+    })
+  })
 
-  $('#pref').on('click', '.unfriend', function(event) {
-    event.preventDefault();
-    console.log("unfriend");
-  });
+
+  // $('body').on('click', 'a#add', function(event) {
+  //   console.log("add friend");
+  //   event.preventDefault();
+  // });
+
+  // $('#pref').on('click', '.cancel', function(event) {
+  //   event.preventDefault();
+  //   console.log("cancel request");
+  // });
+
+  // $('#pref').on('click', '.unfriend', function(event) {
+  //   event.preventDefault();
+  //   console.log("unfriend");
+  // });
 
 });
+
 
 function renderGyms(response){
   var all_gyms = "";
@@ -11674,11 +11716,12 @@ function getUsers() {
 
 
 function renderUsers(response) {
-  var all_users = "";
+  var all_users = "<ul>";
   response.forEach(function(user) {
     all_users += generateOneUser(user);
+    all_users + "</ul>";
   });
-  $("#users-pylon").html(all_users);
+  $(".container").html(all_users);
 }
 
 function generateOneUser(user){
@@ -11694,867 +11737,22 @@ function generateOneUser(user){
         </li>`;
 }
 
+function userProfile() {
+  $.ajax({url: action, method: "GET"}).done(function(response) {
+      $("div.container").html(response.userInfo)});
+}
 
+  // $(".home").on('click',function(event) {
+  //   event.preventDefault();
+  //     $.ajax({url: '/home',type: 'GET'}).done(function(response){
+  //       $(".container").html(response.indexPage);
+  //     });
+  //   })
 ;
-/*!
- * jQuery Raty - A Star Rating Plugin
- *
- * The MIT License
- *
- * @author  : Washington Botelho
- * @doc     : http://wbotelhos.com/raty
- * @version : 2.7.0
- *
- */
+(function() {
 
 
-;
-(function($) {
-  'use strict';
-
-  var methods = {
-    init: function(options) {
-      return this.each(function() {
-        this.self = $(this);
-
-        methods.destroy.call(this.self);
-
-        this.opt = $.extend(true, {}, $.fn.raty.defaults, options);
-
-        methods._adjustCallback.call(this);
-        methods._adjustNumber.call(this);
-        methods._adjustHints.call(this);
-
-        this.opt.score = methods._adjustedScore.call(this, this.opt.score);
-
-        if (this.opt.starType !== 'img') {
-          methods._adjustStarType.call(this);
-        }
-
-        methods._adjustPath.call(this);
-        methods._createStars.call(this);
-
-        if (this.opt.cancel) {
-          methods._createCancel.call(this);
-        }
-
-        if (this.opt.precision) {
-          methods._adjustPrecision.call(this);
-        }
-
-        methods._createScore.call(this);
-        methods._apply.call(this, this.opt.score);
-        methods._setTitle.call(this, this.opt.score);
-        methods._target.call(this, this.opt.score);
-
-        if (this.opt.readOnly) {
-          methods._lock.call(this);
-        } else {
-          this.style.cursor = 'pointer';
-
-          methods._binds.call(this);
-        }
-      });
-    },
-
-    _adjustCallback: function() {
-      var options = ['number', 'readOnly', 'score', 'scoreName', 'target'];
-
-      for (var i = 0; i < options.length; i++) {
-        if (typeof this.opt[options[i]] === 'function') {
-          this.opt[options[i]] = this.opt[options[i]].call(this);
-        }
-      }
-    },
-
-    _adjustedScore: function(score) {
-      if (!score) {
-        return score;
-      }
-
-      return methods._between(score, 0, this.opt.number);
-    },
-
-    _adjustHints: function() {
-      if (!this.opt.hints) {
-        this.opt.hints = [];
-      }
-
-      if (!this.opt.halfShow && !this.opt.half) {
-        return;
-      }
-
-      var steps = this.opt.precision ? 10 : 2;
-
-      for (var i = 0; i < this.opt.number; i++) {
-        var group = this.opt.hints[i];
-
-        if (Object.prototype.toString.call(group) !== '[object Array]') {
-          group = [group];
-        }
-
-        this.opt.hints[i] = [];
-
-        for (var j = 0; j < steps; j++) {
-          var
-            hint = group[j],
-            last = group[group.length - 1];
-
-          if (last === undefined) {
-            last = null;
-          }
-
-          this.opt.hints[i][j] = hint === undefined ? last : hint;
-        }
-      }
-    },
-
-    _adjustNumber: function() {
-      this.opt.number = methods._between(this.opt.number, 1, this.opt.numberMax);
-    },
-
-    _adjustPath: function() {
-      this.opt.path = this.opt.path || '';
-
-      if (this.opt.path && this.opt.path.charAt(this.opt.path.length - 1) !== '/') {
-        this.opt.path += '/';
-      }
-    },
-
-    _adjustPrecision: function() {
-      this.opt.half = true;
-    },
-
-    _adjustStarType: function() {
-      var replaces = ['cancelOff', 'cancelOn', 'starHalf', 'starOff', 'starOn'];
-
-      this.opt.path = '';
-
-      for (var i = 0; i < replaces.length; i++) {
-        this.opt[replaces[i]] = this.opt[replaces[i]].replace('.', '-');
-      }
-    },
-
-    _apply: function(score) {
-      methods._fill.call(this, score);
-
-      if (score) {
-        if (score > 0) {
-          this.score.val(score);
-        }
-
-        methods._roundStars.call(this, score);
-      }
-    },
-
-    _between: function(value, min, max) {
-      return Math.min(Math.max(parseFloat(value), min), max);
-    },
-
-    _binds: function() {
-      if (this.cancel) {
-        methods._bindOverCancel.call(this);
-        methods._bindClickCancel.call(this);
-        methods._bindOutCancel.call(this);
-      }
-
-      methods._bindOver.call(this);
-      methods._bindClick.call(this);
-      methods._bindOut.call(this);
-    },
-
-    _bindClick: function() {
-      var that = this;
-
-      that.stars.on('click.raty', function(evt) {
-        var
-          execute = true,
-          score   = (that.opt.half || that.opt.precision) ? that.self.data('score') : (this.alt || $(this).data('alt'));
-
-        if (that.opt.click) {
-          execute = that.opt.click.call(that, +score, evt);
-        }
-
-        if (execute || execute === undefined) {
-          if (that.opt.half && !that.opt.precision) {
-            score = methods._roundHalfScore.call(that, score);
-          }
-
-          methods._apply.call(that, score);
-        }
-      });
-    },
-
-    _bindClickCancel: function() {
-      var that = this;
-
-      that.cancel.on('click.raty', function(evt) {
-        that.score.removeAttr('value');
-
-        if (that.opt.click) {
-          that.opt.click.call(that, null, evt);
-        }
-      });
-    },
-
-    _bindOut: function() {
-      var that = this;
-
-      that.self.on('mouseleave.raty', function(evt) {
-        var score = +that.score.val() || undefined;
-
-        methods._apply.call(that, score);
-        methods._target.call(that, score, evt);
-        methods._resetTitle.call(that);
-
-        if (that.opt.mouseout) {
-          that.opt.mouseout.call(that, score, evt);
-        }
-      });
-    },
-
-    _bindOutCancel: function() {
-      var that = this;
-
-      that.cancel.on('mouseleave.raty', function(evt) {
-        var icon = that.opt.cancelOff;
-
-        if (that.opt.starType !== 'img') {
-          icon = that.opt.cancelClass + ' ' + icon;
-        }
-
-        methods._setIcon.call(that, this, icon);
-
-        if (that.opt.mouseout) {
-          var score = +that.score.val() || undefined;
-
-          that.opt.mouseout.call(that, score, evt);
-        }
-      });
-    },
-
-    _bindOver: function() {
-      var that   = this,
-          action = that.opt.half ? 'mousemove.raty' : 'mouseover.raty';
-
-      that.stars.on(action, function(evt) {
-        var score = methods._getScoreByPosition.call(that, evt, this);
-
-        methods._fill.call(that, score);
-
-        if (that.opt.half) {
-          methods._roundStars.call(that, score, evt);
-          methods._setTitle.call(that, score, evt);
-
-          that.self.data('score', score);
-        }
-
-        methods._target.call(that, score, evt);
-
-        if (that.opt.mouseover) {
-          that.opt.mouseover.call(that, score, evt);
-        }
-      });
-    },
-
-    _bindOverCancel: function() {
-      var that = this;
-
-      that.cancel.on('mouseover.raty', function(evt) {
-        var
-          starOff = that.opt.path + that.opt.starOff,
-          icon    = that.opt.cancelOn;
-
-        if (that.opt.starType === 'img') {
-          that.stars.attr('src', starOff);
-        } else {
-          icon = that.opt.cancelClass + ' ' + icon;
-
-          that.stars.attr('class', starOff);
-        }
-
-        methods._setIcon.call(that, this, icon);
-        methods._target.call(that, null, evt);
-
-        if (that.opt.mouseover) {
-          that.opt.mouseover.call(that, null);
-        }
-      });
-    },
-
-    _buildScoreField: function() {
-      return $('<input />', { name: this.opt.scoreName, type: 'hidden' }).appendTo(this);
-    },
-
-    _createCancel: function() {
-      var icon   = this.opt.path + this.opt.cancelOff,
-          cancel = $('<' + this.opt.starType + ' />', { title: this.opt.cancelHint, 'class': this.opt.cancelClass });
-
-      if (this.opt.starType === 'img') {
-        cancel.attr({ src: icon, alt: 'x' });
-      } else {
-        // TODO: use $.data
-        cancel.attr('data-alt', 'x').addClass(icon);
-      }
-
-      if (this.opt.cancelPlace === 'left') {
-        this.self.prepend('&#160;').prepend(cancel);
-      } else {
-        this.self.append('&#160;').append(cancel);
-      }
-
-      this.cancel = cancel;
-    },
-
-    _createScore: function() {
-      var score = $(this.opt.targetScore);
-
-      this.score = score.length ? score : methods._buildScoreField.call(this);
-    },
-
-    _createStars: function() {
-      for (var i = 1; i <= this.opt.number; i++) {
-        var
-          name  = methods._nameForIndex.call(this, i),
-          attrs = { alt: i, src: this.opt.path + this.opt[name] };
-
-        if (this.opt.starType !== 'img') {
-          attrs = { 'data-alt': i, 'class': attrs.src }; // TODO: use $.data.
-        }
-
-        attrs.title = methods._getHint.call(this, i);
-
-        $('<' + this.opt.starType + ' />', attrs).appendTo(this);
-
-        if (this.opt.space) {
-          this.self.append(i < this.opt.number ? '&#160;' : '');
-        }
-      }
-
-      this.stars = this.self.children(this.opt.starType);
-    },
-
-    _error: function(message) {
-      $(this).text(message);
-
-      $.error(message);
-    },
-
-    _fill: function(score) {
-      var hash = 0;
-
-      for (var i = 1; i <= this.stars.length; i++) {
-        var
-          icon,
-          star   = this.stars[i - 1],
-          turnOn = methods._turnOn.call(this, i, score);
-
-        if (this.opt.iconRange && this.opt.iconRange.length > hash) {
-          var irange = this.opt.iconRange[hash];
-
-          icon = methods._getRangeIcon.call(this, irange, turnOn);
-
-          if (i <= irange.range) {
-            methods._setIcon.call(this, star, icon);
-          }
-
-          if (i === irange.range) {
-            hash++;
-          }
-        } else {
-          icon = this.opt[turnOn ? 'starOn' : 'starOff'];
-
-          methods._setIcon.call(this, star, icon);
-        }
-      }
-    },
-
-    _getFirstDecimal: function(number) {
-      var
-        decimal = number.toString().split('.')[1],
-        result  = 0;
-
-      if (decimal) {
-        result = parseInt(decimal.charAt(0), 10);
-
-        if (decimal.slice(1, 5) === '9999') {
-          result++;
-        }
-      }
-
-      return result;
-    },
-
-    _getRangeIcon: function(irange, turnOn) {
-      return turnOn ? irange.on || this.opt.starOn : irange.off || this.opt.starOff;
-    },
-
-    _getScoreByPosition: function(evt, icon) {
-      var score = parseInt(icon.alt || icon.getAttribute('data-alt'), 10);
-
-      if (this.opt.half) {
-        var
-          size    = methods._getWidth.call(this),
-          percent = parseFloat((evt.pageX - $(icon).offset().left) / size);
-
-        score = score - 1 + percent;
-      }
-
-      return score;
-    },
-
-    _getHint: function(score, evt) {
-      if (score !== 0 && !score) {
-        return this.opt.noRatedMsg;
-      }
-
-      var
-        decimal = methods._getFirstDecimal.call(this, score),
-        integer = Math.ceil(score),
-        group   = this.opt.hints[(integer || 1) - 1],
-        hint    = group,
-        set     = !evt || this.move;
-
-      if (this.opt.precision) {
-        if (set) {
-          decimal = decimal === 0 ? 9 : decimal - 1;
-        }
-
-        hint = group[decimal];
-      } else if (this.opt.halfShow || this.opt.half) {
-        decimal = set && decimal === 0 ? 1 : decimal > 5 ? 1 : 0;
-
-        hint = group[decimal];
-      }
-
-      return hint === '' ? '' : hint || score;
-    },
-
-    _getWidth: function() {
-      var width = this.stars[0].width || parseFloat(this.stars.eq(0).css('font-size'));
-
-      if (!width) {
-        methods._error.call(this, 'Could not get the icon width!');
-      }
-
-      return width;
-    },
-
-    _lock: function() {
-      var hint = methods._getHint.call(this, this.score.val());
-
-      this.style.cursor = '';
-      this.title        = hint;
-
-      this.score.prop('readonly', true);
-      this.stars.prop('title', hint);
-
-      if (this.cancel) {
-        this.cancel.hide();
-      }
-
-      this.self.data('readonly', true);
-    },
-
-    _nameForIndex: function(i) {
-      return this.opt.score && this.opt.score >= i ? 'starOn' : 'starOff';
-    },
-
-    _resetTitle: function(star) {
-      for (var i = 0; i < this.opt.number; i++) {
-        this.stars[i].title = methods._getHint.call(this, i + 1);
-      }
-    },
-
-     _roundHalfScore: function(score) {
-      var integer = parseInt(score, 10),
-          decimal = methods._getFirstDecimal.call(this, score);
-
-      if (decimal !== 0) {
-        decimal = decimal > 5 ? 1 : 0.5;
-      }
-
-      return integer + decimal;
-    },
-
-    _roundStars: function(score, evt) {
-      var
-        decimal = (score % 1).toFixed(2),
-        name    ;
-
-      if (evt || this.move) {
-        name = decimal > 0.5 ? 'starOn' : 'starHalf';
-      } else if (decimal > this.opt.round.down) {               // Up:   [x.76 .. x.99]
-        name = 'starOn';
-
-        if (this.opt.halfShow && decimal < this.opt.round.up) { // Half: [x.26 .. x.75]
-          name = 'starHalf';
-        } else if (decimal < this.opt.round.full) {             // Down: [x.00 .. x.5]
-          name = 'starOff';
-        }
-      }
-
-      if (name) {
-        var
-          icon = this.opt[name],
-          star = this.stars[Math.ceil(score) - 1];
-
-        methods._setIcon.call(this, star, icon);
-      }                                                         // Full down: [x.00 .. x.25]
-    },
-
-    _setIcon: function(star, icon) {
-      star[this.opt.starType === 'img' ? 'src' : 'className'] = this.opt.path + icon;
-    },
-
-    _setTarget: function(target, score) {
-      if (score) {
-        score = this.opt.targetFormat.toString().replace('{score}', score);
-      }
-
-      if (target.is(':input')) {
-        target.val(score);
-      } else {
-        target.html(score);
-      }
-    },
-
-    _setTitle: function(score, evt) {
-      if (score) {
-        var
-          integer = parseInt(Math.ceil(score), 10),
-          star    = this.stars[integer - 1];
-
-        star.title = methods._getHint.call(this, score, evt);
-      }
-    },
-
-    _target: function(score, evt) {
-      if (this.opt.target) {
-        var target = $(this.opt.target);
-
-        if (!target.length) {
-          methods._error.call(this, 'Target selector invalid or missing!');
-        }
-
-        var mouseover = evt && evt.type === 'mouseover';
-
-        if (score === undefined) {
-          score = this.opt.targetText;
-        } else if (score === null) {
-          score = mouseover ? this.opt.cancelHint : this.opt.targetText;
-        } else {
-          if (this.opt.targetType === 'hint') {
-            score = methods._getHint.call(this, score, evt);
-          } else if (this.opt.precision) {
-            score = parseFloat(score).toFixed(1);
-          }
-
-          var mousemove = evt && evt.type === 'mousemove';
-
-          if (!mouseover && !mousemove && !this.opt.targetKeep) {
-            score = this.opt.targetText;
-          }
-        }
-
-        methods._setTarget.call(this, target, score);
-      }
-    },
-
-    _turnOn: function(i, score) {
-      return this.opt.single ? (i === score) : (i <= score);
-    },
-
-    _unlock: function() {
-      this.style.cursor = 'pointer';
-      this.removeAttribute('title');
-
-      this.score.removeAttr('readonly');
-
-      this.self.data('readonly', false);
-
-      for (var i = 0; i < this.opt.number; i++) {
-        this.stars[i].title = methods._getHint.call(this, i + 1);
-      }
-
-      if (this.cancel) {
-        this.cancel.css('display', '');
-      }
-    },
-
-    cancel: function(click) {
-      return this.each(function() {
-        var self = $(this);
-
-        if (self.data('readonly') !== true) {
-          methods[click ? 'click' : 'score'].call(self, null);
-
-          this.score.removeAttr('value');
-        }
-      });
-    },
-
-    click: function(score) {
-      return this.each(function() {
-        if ($(this).data('readonly') !== true) {
-          score = methods._adjustedScore.call(this, score);
-
-          methods._apply.call(this, score);
-
-          if (this.opt.click) {
-            this.opt.click.call(this, score, $.Event('click'));
-          }
-
-          methods._target.call(this, score);
-        }
-      });
-    },
-
-    destroy: function() {
-      return this.each(function() {
-        var self = $(this),
-            raw  = self.data('raw');
-
-        if (raw) {
-          self.off('.raty').empty().css({ cursor: raw.style.cursor }).removeData('readonly');
-        } else {
-          self.data('raw', self.clone()[0]);
-        }
-      });
-    },
-
-    getScore: function() {
-      var score = [],
-          value ;
-
-      this.each(function() {
-        value = this.score.val();
-
-        score.push(value ? +value : undefined);
-      });
-
-      return (score.length > 1) ? score : score[0];
-    },
-
-    move: function(score) {
-      return this.each(function() {
-        var
-          integer  = parseInt(score, 10),
-          decimal  = methods._getFirstDecimal.call(this, score);
-
-        if (integer >= this.opt.number) {
-          integer = this.opt.number - 1;
-          decimal = 10;
-        }
-
-        var
-          width   = methods._getWidth.call(this),
-          steps   = width / 10,
-          star    = $(this.stars[integer]),
-          percent = star.offset().left + steps * decimal,
-          evt     = $.Event('mousemove', { pageX: percent });
-
-        this.move = true;
-
-        star.trigger(evt);
-
-        this.move = false;
-      });
-    },
-
-    readOnly: function(readonly) {
-      return this.each(function() {
-        var self = $(this);
-
-        if (self.data('readonly') !== readonly) {
-          if (readonly) {
-            self.off('.raty').children('img').off('.raty');
-
-            methods._lock.call(this);
-          } else {
-            methods._binds.call(this);
-            methods._unlock.call(this);
-          }
-
-          self.data('readonly', readonly);
-        }
-      });
-    },
-
-    reload: function() {
-      return methods.set.call(this, {});
-    },
-
-    score: function() {
-      var self = $(this);
-
-      return arguments.length ? methods.setScore.apply(self, arguments) : methods.getScore.call(self);
-    },
-
-    set: function(options) {
-      return this.each(function() {
-        $(this).raty($.extend({}, this.opt, options));
-      });
-    },
-
-    setScore: function(score) {
-      return this.each(function() {
-        if ($(this).data('readonly') !== true) {
-          score = methods._adjustedScore.call(this, score);
-
-          methods._apply.call(this, score);
-          methods._target.call(this, score);
-        }
-      });
-    }
-  };
-
-  $.fn.raty = function(method) {
-    if (methods[method]) {
-      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-    } else if (typeof method === 'object' || !method) {
-      return methods.init.apply(this, arguments);
-    } else {
-      $.error('Method ' + method + ' does not exist!');
-    }
-  };
-
-  $.fn.raty.defaults = {
-    cancel       : false,
-    cancelClass  : 'raty-cancel',
-    cancelHint   : 'Cancel this rating!',
-    cancelOff    : 'cancel-off.png',
-    cancelOn     : 'cancel-on.png',
-    cancelPlace  : 'left',
-    click        : undefined,
-    half         : false,
-    halfShow     : true,
-    hints        : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
-    iconRange    : undefined,
-    mouseout     : undefined,
-    mouseover    : undefined,
-    noRatedMsg   : 'Not rated yet!',
-    number       : 5,
-    numberMax    : 20,
-    path         : undefined,
-    precision    : false,
-    readOnly     : false,
-    round        : { down: 0.25, full: 0.6, up: 0.76 },
-    score        : undefined,
-    scoreName    : 'score',
-    single       : false,
-    space        : true,
-    starHalf     : 'star-half.png',
-    starOff      : 'star-off.png',
-    starOn       : 'star-on.png',
-    starType     : 'img',
-    target       : undefined,
-    targetFormat : '{score}',
-    targetKeep   : false,
-    targetScore  : undefined,
-    targetText   : '',
-    targetType   : 'hint'
-  };
-
-})(jQuery);
-$.fn.raty.defaults.path = "/assets";
-$.fn.raty.defaults.half_show = true;
-
-$(function(){
-  $(".star").each(function() {
-    var $readonly = ($(this).attr('data-readonly') == 'true');
-    $(this).raty({
-      score: function(){
-        return $(this).attr('data-rating')
-      },
-      number: function() {
-        return $(this).attr('data-star-count')
-      },
-      readOnly: $readonly,
-      click: function(score, evt) {
-        var _this = this;
-        $.post('/rate',
-        {
-          score: score,
-          dimension: $(this).attr('data-dimension'),
-          id: $(this).attr('data-id'),
-          klass: $(this).attr('data-classname')
-        },
-        function(data) {
-          if(data) {
-            // success code goes here ...
-
-            if ($(_this).attr('data-disable-after-rate') == 'true') {
-              $(_this).raty('set', { readOnly: true, score: score });
-            }
-          }
-        });
-      }
-    });
-  });
-});
-$.fn.raty.defaults.half = false;
-$.fn.raty.defaults.halfShow = true;
-$.fn.raty.defaults.path = "/assets";
-$.fn.raty.defaults.cancel = false;
-
-$(function(){
-  $(".star").each(function() {
-    var $readonly = ($(this).attr('data-readonly') == 'true');
-    var $half     = ($(this).attr('data-enable-half') == 'true');
-    var $halfShow = ($(this).attr('data-half-show') == 'true');
-    var $single   = ($(this).attr('data-single') == 'true');
-    $(this).raty({
-      score: function() {
-        return $(this).attr('data-rating')
-      },
-      number: function() {
-        return $(this).attr('data-star-count')
-      },
-      half:        $half,
-      halfShow:    $halfShow,
-      single:      $single,
-      path:        $(this).attr('data-star-path'),
-      starOn:      $(this).attr('data-star-on'),
-      starOff:     $(this).attr('data-star-off'),
-      starHalf:    $(this).attr('data-star-half'),
-      cancel:      $(this).attr('data-cancel'),
-      cancelPlace: $(this).attr('data-cancel-place'),
-      cancelHint:  $(this).attr('data-cancel-hint'),
-      cancelOn:    $(this).attr('data-cancel-on'),
-      cancelOff:   $(this).attr('data-cancel-off'),
-      noRatedMsg:  $(this).attr('data-no-rated-message'),
-      round:       $(this).attr('data-round'),
-      space:       $(this).attr('data-space'),
-      target:      $(this).attr('data-target'),
-      targetText:  $(this).attr('data-target-text'),
-      targetType:  $(this).attr('data-target-type'),
-      targetFormat: $(this).attr('data-target-format'),
-      targetScoret: $(this).attr('data-target-score'),
-      readOnly: $readonly,
-      click: function(score, evt) {
-        var _this = this;
-        if (score == null) { score = 0; }
-        $.post('/rate',
-        {
-          score: score,
-          dimension: $(this).attr('data-dimension'),
-          id: $(this).attr('data-id'),
-          klass: $(this).attr('data-classname')
-        },
-        function(data) {
-          if(data) {
-            // success code goes here ...
-
-            if ($(_this).attr('data-disable-after-rate') == 'true') {
-              $(_this).raty('set', { readOnly: true, score: score });
-            }
-          }
-        });
-      }
-    });
-  });
-});
+}).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -12567,7 +11765,6 @@ $(function(){
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
 
 
 

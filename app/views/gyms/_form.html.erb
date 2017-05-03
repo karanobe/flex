@@ -1,28 +1,40 @@
+<div class="search-for-gym">
 <div id="locationField">
   <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
 </div>
-
-<table id="address">
-  <tr>
-    <td class="label">Street address</td>
-    <td class="slimField"><input class="field" id="street_number" disabled="true"></input></td>
-    <td class="wideField" colspan="2"><input class="field" id="route" disabled="true"></input></td>
-  </tr>
-  <tr>
-    <td class="label">City</td>
-    <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true"></input></td>
-  </tr>
-  <tr>
-    <td class="label">State</td>
-    <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true"></input></td>
-    <td class="label">Zip code</td>
-    <td class="wideField"><input class="field" id="postal_code" disabled="true"></input></td>
-  </tr>
-  <tr>
-    <td class="label">Country</td>
-    <td class="wideField" colspan="3"><input class="field" id="country" disabled="true"></input></td>
-  </tr>
-</table>
+<div id="gym-form">
+   <form action="/gyms" method="POST" id="gym-submit">
+   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <table id="address">
+      <tr>
+        <td class="label">Name</td>
+        <td class="slimField"><input class="field" id="name" ></input></td>
+      </tr>
+      <tr>
+        <td class="label">Street address</td>
+        <td class="slimField"><input class="field" id="street_number" disabled="true"></input></td>
+        <td class="wideField" colspan="2"><input class="field" id="route" disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">City</td>
+        <td class="slimField" colspan="3"><input class="field" id="locality" disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">State</td>
+        <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">Zip code</td>
+        <td class="slimField"><input class="field" id="postal_code" disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">Country</td>
+        <td class="slimField" colspan="3"><input class="field" id="country" disabled="true"></input></td>
+      </tr>
+    </table>
+   <input type="Submit" value="Submit Gym">
+ </form>
+</div>
 
 <script>
   var placeSearch, autocomplete;
@@ -84,3 +96,4 @@
   }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= @google_key %>&libraries=places&callback=initAutocomplete" async defer></script>
+</div>

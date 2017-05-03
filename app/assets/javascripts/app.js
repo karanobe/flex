@@ -1,6 +1,7 @@
 $(document).ready(function() {
+  // AJAX call to get rid of Devise flash message
   $('body').click(function(){
-  $("div#flash_notice").hide();
+    $("div#flash_notice").hide();
   });
   // AJAX call to new preference call; works on home page and user profile page
   $("div.container").on("click", "#new-pref", function(event) {
@@ -25,7 +26,7 @@ $(document).ready(function() {
     var $picUploadLink = $(this);
     var action = $picUploadLink.attr("href");
     $.ajax({url: action, method: "GET"}).done(function(response) {
-      $("#bringFormHere").html(response.picUpload);
+      $(".container").html(response.picUpload);
     });
   })
 
@@ -33,7 +34,7 @@ $(document).ready(function() {
   $("body").on("submit", "form.edit_user", function(event) {
     var $picForm = $(this);
     action = $picForm.closest("body").find("a.user-page").attr("href");
-    setTimeout(userProfile, 800);
+    setTimeout(userProfile, 1000);
   });
 
 // AJAX call to show list of gyms specific to the user, and adds "Add New Gym" link at the end of the list
@@ -42,19 +43,36 @@ $(document).ready(function() {
     hideLinks();
     $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
       renderGyms(response);
-      $("div#pref").html("<a id='new-gym' href='/gyms/new'>Add a new gym!</a>");
+      $(".container").append("<a id='new-gym' href='/gyms/new'>Add a new gym!</a>");
     });
   });
 
-// Displays form to add new gym, appends it to the bottom of the page
-  $("#pref").on("click", "#new-gym", function(event) {
+// Displays form to add new gym, on new page
+  $(".container").on("click", "#new-gym", function(event) {
     event.preventDefault();
     var action = $(this).attr("href");
     $.ajax({url: action, method: "GET"}).done(function(response) {
-      console.log(response)
-      // $("div#pref").html(response.newGymForm);
+      $(".container").html(response)
     })
   });
+
+  $(".container").on("submit", "#gym-submit", function(event) {
+    event.preventDefault();
+    var $gymSubmitButton = $(this);
+    var table = $gymSubmitButton.closest("div#gym-form").find("table");
+    var name = table.find("#name").val();
+    var streetAddress = table.find("#street_number").val() + " " + table.find("#route").val();
+    var city = table.find("#locality").val();
+    var state = table.find("#administrative_area_level_1").val();
+    var zip = table.find("#postal_code").val();
+    var data = {gym: {name: name, street_address: streetAddress, city: city, state: state, zip: zip}};
+    $.ajax({url: "/gyms",
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      method: "POST",
+      data: data}).done(function(){
+        location.reload();
+      })
+  })
 
 // AJAX call to hide all links on home page and display list of matched users
   $("body").on('click', '#matched-users',function(event) {
