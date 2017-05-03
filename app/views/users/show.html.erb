@@ -28,7 +28,7 @@
 
 <div class="profile-info">
 <% if user != current_user %>
-  <h2><%= user.first_name %> <%= user.last_name %>'s Profile Info</h2>
+  <h2><%= user.first_name %>'s Profile Info</h2>
   <% if user.avatar %>
     <%= image_tag user.avatar.url(:square) %>
   <% end %>
