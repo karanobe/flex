@@ -218,8 +218,9 @@ a:hover#choose {
 
 .buttonize, .buttonize-add, .buttonize_cancel, #new-gym{
   width: 100%;
-  left: 0;
-  position: fixed;
+  /*left: 0;*/
+  right: 0;
+  /*position: fixed;*/
   display: block;
   height: 45px;
   color: white;
@@ -387,6 +388,15 @@ td {
 }
 
 .autofill {
+  border: none;
+  padding: 10 5 10 5;
+  width: 180px;
+  margin-left: 5px;
+  font-size: 1.2em;
+  border-radius: 5px;
+}
+
+.autofillz {
   border: 1px solid #E1E1E1;
   padding: 10 5 10 5;
   width: 180px;
