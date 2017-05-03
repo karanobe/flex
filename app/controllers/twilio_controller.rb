@@ -6,12 +6,11 @@ class TwilioController < ApplicationController
   skip_before_action :verify_authenticity_token
 
 	def receive_sms
-		content_type 'text/xml'
-
-	    response = Twilio::TwiML::Response.new do |r|
-	      r.Message "Welcome to FLEX. Friends who love exercising"
-	    end
-    render :xml => response.to_xml
+    p Rails.application.secrets.twilio_account_sid
+    p Rails.application.secrets.twilio_token
+    p params
+    reply
+    render nothing: true
   end
 
   def reply
@@ -21,10 +20,12 @@ class TwilioController < ApplicationController
     sms = @client.messages.create(
       from: Rails.application.secrets.twilio_number,
       to: '+17735766373',
-      body: "Hello."
+      body: message_body
     )
   end
 
+
+# find user by params 'from',
 private
   def boot_twilio
     account_sid = Rails.application.secrets.twilio_account_sid
