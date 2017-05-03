@@ -76,10 +76,10 @@ $(document).ready(function() {
       })
   });
 
-// AJAX
+// AJAX set primary gym
   $("body").on('click', '.set-primary', function(event) {
     event.preventDefault();
-    var id = $(this)[0].id;
+    var id = $(this).find("a")[0].id;
     $.ajax({url: "/gyms/"+id+ "/set_primary",
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
             method: "PATCH"}).done(function(response) {
