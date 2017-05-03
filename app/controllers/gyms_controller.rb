@@ -1,13 +1,13 @@
 class GymsController < ApplicationController
   def index
-    p @gyms = current_user.gyms
+    @gyms = current_user.gyms
     render json: {gymsInfo: render_to_string('gyms/index', layout: false, locals: {gyms: @gyms})}
     # render json: gyms
   end
 
   def new
-    google_key = ENV['GOOGLE']
-    render :new, layout: false, locals: {google_key: google_key}
+    p @google_key = ENV['GOOGLE']
+    render :new, layout: false, locals: {google_key: @google_key}
   end
 
   def show
@@ -28,7 +28,7 @@ class GymsController < ApplicationController
   def set_primary
     gym = Gym.find(params[:id])
     current_user.set_primary_on_click(gym)
-    p @gyms = current_user.gyms
+    @gyms = current_user.gyms
     render json: {gymsInfo: render_to_string('gyms/index', layout: false, locals: {gyms: @gyms})}
   end
 
