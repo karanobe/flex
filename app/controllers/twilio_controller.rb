@@ -15,8 +15,12 @@ class TwilioController < ApplicationController
   end
 
 	def receive_sms
+    if params["Body"].include?("Tutorial")
+      first_text
+    else
       reply
       render nothing: true
+    end
   end
 
   def reply

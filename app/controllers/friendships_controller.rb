@@ -13,7 +13,6 @@ class FriendshipsController < ApplicationController
     confirm = Friendship.find_by(user_id: @user.id, friend_id: helpers.current_user.id)
     confirm.update_attributes(status: "Accepted")
     Friendship.create(user_id: helpers.current_user.id, friend_id: @user.id, status: "Accepted")
-    # current_user.send_text
     render json: {friendInfo: render_to_string("users/_friends", :layout => false, locals: {user: @user})}
   end
 

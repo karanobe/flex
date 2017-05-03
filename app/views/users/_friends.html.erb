@@ -1,6 +1,6 @@
 <div class="friend">
       <% if user != current_user && current_user.friends.include?(user)%>
-
+      <p>Text the word "Tutorial" to (224) 521-5864 begin communicating with <%= user.first_name %>.</p>
       <p><%= link_to "Unfriend", unfriend_path(user), class: "buttonize unfriend", id: "unfriend" %></p>
 
       <% elsif user != current_user && (current_user.all_friends.include?(user) && current_user.request_sent.include?(user)) %>
