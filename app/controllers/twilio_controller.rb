@@ -6,25 +6,27 @@ class TwilioController < ApplicationController
   skip_before_action :verify_authenticity_token
 
 	def receive_sms
-		content_type 'text/xml'
-
-	    response = Twilio::TwiML::Response.new do |r|
-	      r.Message "Welcome to FLEX. Friends who love exercising"
-	    end
-    render :xml => response.to_xml
+    reply
+    render nothing: true
   end
 
   def reply
-    message_body = params["Body"]
-    from_number = '+12245215864'
+    sender = User.find_by(phone: params["From"][2..-1])
+    receiver_first_name =  params["Body"].match(/:(.*)/)[1][1..-1]
+    receiver_number = User.find_by(first_name: receiver_first_name).phone
+    text_body = params["Body"]
+   # OUR METHOD
+    message_body = text_body
     boot_twilio
     sms = @client.messages.create(
       from: Rails.application.secrets.twilio_number,
-      to: '+17735766373',
-      body: "Hello."
+      to: "+1#{receiver_number}",
+      body: message_body + "\n-From #{sender.first_name}"
     )
   end
 
+
+# user.find_by params['from'], locate the recipient by the 'TO': info included in body of the text, update the 'reply' method and send along the body of the text.
 private
   def boot_twilio
     account_sid = Rails.application.secrets.twilio_account_sid
