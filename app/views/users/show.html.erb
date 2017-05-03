@@ -1,3 +1,4 @@
+<br>
 <% if user == current_user %>
   <h2> Welcome, <%= user.first_name %> <%= user.last_name %></h2>
 
@@ -13,13 +14,14 @@
     <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
     <p>Your current bio: <%= user.profile_bio %></p>
   </div>
+
   <a id ="edit-info" class="buttonizing" href="<%= edit_user_registration_path %>">Edit Personal Information</a><br>
   <a id="pic-upload" class="buttonizing" href="<%= profile_load_path(current_user) %>">Upload Profile Picture</a><br>
   <% if user.preference == nil %>
       <%= link_to "Set Preferences",  new_preference_path, id: "new-pref" %>
   <% else %>
-    <p><%= link_to "Update FlexMate Preferences", edit_preference_path(current_user.preference.id), id:"update-pref" %></p><br>
-    <p><%= link_to "View FlexMates", users_path, id: "matched-users"  %></p><br>
+    <a class="buttonizing" href="<%= edit_preference_path(current_user.preference.id) %>">Update FlexMate Preferences</a><br>
+    <a class="buttonizing" href="<% users_path %>">View FlexMates</a><br>
   <% end %>
 
   <div class="spacer"></div>

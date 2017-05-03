@@ -2,6 +2,7 @@
 <% if !user_signed_in? %>
 <div class="spacer"></div>
 <br>
+<br>
 <h1 class="center">Welcome to FLEX</h1>
   <h3 class="center">Stay accountable, make friends and hit the gym!</h3>
   <br>
@@ -9,7 +10,11 @@
 <% end %>
 
 <% if user_signed_in? %>
-  <div class='container align' id="gyms">
+  <div class='container' id="gyms">
+  <div class="align">
+  <br>
+  <img class="logo" src="https://www.emojibase.com/resources/img/emojis/apple/x1f4aa.png.pagespeed.ic.qZG9DBXHxk.png" alt="Flex Logo">
+  <br>
     <% if current_user.gyms.empty? && current_user.preference == nil %>
       <p><a id='new-gym' href='/gyms/new'>Add a new gym!</a></p>
     <% elsif current_user.gyms != nil && current_user.preference == nil %>
@@ -19,7 +24,7 @@
         <p><%= link_to "Update FlexMate Preferences", edit_preference_path(current_user.preference.id), id:"update-pref", class: "buttonizing" %></p>
         <p><%= link_to "View FlexMates", users_path, id: "matched-users", class: "buttonizing"  %></p>
     <% end %>
-    <img class="logo" src="https://www.emojibase.com/resources/img/emojis/apple/x1f4aa.png.pagespeed.ic.qZG9DBXHxk.png" alt="Flex Logo">
+  </div>
   </div>
 <% end %>
 
