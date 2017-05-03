@@ -1,11 +1,11 @@
-<br>
+
 <% if user == current_user %>
   <h2> Welcome, <%= user.first_name %> <%= user.last_name %></h2>
 
   <% if user.avatar %>
     <%= image_tag user.avatar.url(:square) %>
   <% end %>
-
+<br>
   <div class="profile-info">
     <p>Your Age: <%= user.age %></p>
     <% if user.gyms != nil %>
@@ -24,7 +24,6 @@
     <a class="buttonizing" id="matched-users" href="<% users_path %>">View FlexMates</a><br>
   <% end %>
 
-  <div class="spacer"></div>
 <% end %>
 
 <div class="profile-info">

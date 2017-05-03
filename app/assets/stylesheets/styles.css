@@ -23,6 +23,10 @@
 - Media Queries
 */
 
+body {
+  margin: 0;
+}
+
 ul {
  list-style: none;
 }
@@ -49,6 +53,7 @@ nav {
 
 @media (min-width: 250px) {
   nav li {
+    margin-left: -5px;
     padding: 10px 10px 0px 5px;
     float: left;
     display: inline-block;
@@ -98,7 +103,6 @@ footer {
   text-decoration: none;
   text-align: center;
   font-size: 0.75em;
-  margin-left: -200px;
   bottom: 0;
   position: fixed;
   width: 200%;
@@ -112,10 +116,12 @@ footer {
 .center {
   text-align: center;
   margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .center-big {
-  font-size: 8em;
+  font-size: 6em;
   font-weight: bold;
   text-align: center;
   margin: auto;
@@ -198,7 +204,7 @@ a:hover#choose {
 }
 
 .label {
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: #333;
   margin-left: 20px;
 }
@@ -243,6 +249,15 @@ a:hover#choose {
   box-sizing: border-box;
 }
 
+input#user_email, #user_password, #user_first_name, #user_last_name, #user_age, #user_phone, #user_gender_pronoun, #user_profile_bio, #user_password_confirmation, #preference_min_age, #preference_max_age, #preference_gender, #user_current_password {
+  max-width: 280px;
+  color: #08917c;
+  font-size: 1.2em;
+}
+
+#gym-title {
+  margin-left: 3px;
+}
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -255,6 +270,7 @@ a:hover#choose {
   box-sizing: border-box;
   margin-top: 20px;
    }
+
 .column,
 .columns {
   width: 100%;
@@ -364,8 +380,26 @@ td {
 .autofill {
   border: 1px solid #E1E1E1;
   padding: 10 5 10 5;
-  width: 200px;
+  width: 180px;
+  margin-left: 5px;
+  font-size: 1.2em;
+  border-radius: 5px;
 }
+
+#autocomplete {
+  margin-left: 0px;
+  width: 292px;
+  border-radius: 5px;
+  font-size: 1.3em;
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 5px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -394,14 +428,15 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
 }
 
 p {
+  line-height: 1em;
   margin-left: 15px;
   margin-top: 0; }
 
-em {
+em, i {
   margin-left: 15px;
 }
 
-#flash-notice {
+#flash-notice, #flash_alert {
   margin-left: 15px;
 }
 
@@ -424,7 +459,7 @@ a:hover.buttonizing{
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.button,
+/*.button,
 button,
 input[type="submit"],
 input[type="reset"],
@@ -443,7 +478,7 @@ input[type="button"] {
   text-decoration: none;
   white-space: nowrap;
   background-color: orange;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid #bbb;
   cursor: pointer;
   box-sizing: border-box; }
@@ -483,7 +518,7 @@ input[type="button"].button-primary:focus {
   margin-left: 15px;
   color: #FFF;
   background-color: #FFF;
-  border-color: #1EAEDB; }
+  border-color: #1EAEDB; }*/
 
 /* Mobile Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -496,7 +531,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
   margin-left: -15px;
-  width: 110%;
+  width: 104%;
   display: block;
   height: 45px;
   padding: 0 50px;
@@ -523,19 +558,21 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-  margin-left: 15px;
+  margin-left: -15px;
   color: #333;
   border-color: #888;
-  outline: 0; }
+  outline: 0;
+  color: #08917c; }
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
-  margin-left: 15px;
+  margin-left: -15px;
   color: #FFF;
   background-color: #33C3F0;
-  border-color: #33C3F0; }
+  border-color: #33C3F0;
+  color: #08917c;}
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -546,7 +583,7 @@ button.button-primary:focus,
 input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
-  margin-left: 15px;
+  margin-left: -15px;
   color: #FFF;
   background-color: #FFF;
   border-color: #1EAEDB; }
@@ -571,7 +608,7 @@ select {
   width: 300px;
   background-color: #fff;
   border: 1px solid #D1D1D1;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: none;
   box-sizing: border-box; }
 /* Removes awkward default styles on some inputs for iOS */
@@ -610,7 +647,8 @@ legend {
   margin-left: 15px;
   display: block;
   margin-bottom: .5rem;
-  font-weight: 600; }
+  font-size: 1.3em;
+  }
 fieldset {
   margin-left: 15px;
   padding: 0;
@@ -643,7 +681,7 @@ select {
 
   background-color: #fff;
   border: 1px solid #D1D1D1;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: none;
   box-sizing: border-box; }
 /* Removes awkward default styles on some inputs for iOS */
@@ -724,7 +762,7 @@ code {
   white-space: nowrap;
   background: #F1F1F1;
   border: 1px solid #E1E1E1;
-  border-radius: 4px; }
+  border-radius: 5px; }
 pre > code {
   display: block;
   padding: 1rem 1.5rem;

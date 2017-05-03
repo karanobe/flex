@@ -12,7 +12,7 @@ function generateOneGym(gym){
           <div class="gym-content">
             <p>
               <span class = "name">
-              <h4><a id=${gym.id} class="set-primary">${gym.name}</a></h4>  </span>
+              <h4 id="gym-title"><a id=${gym.id} class="set-primary">${gym.name}</a></h4>  </span>
               <span class= "address"> ${gym.street_address}</span><br>
               <span class= "city"> ${gym.city}</span><br>
               <span class= "zip"> ${gym.zip}</span><br>
