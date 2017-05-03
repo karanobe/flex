@@ -125,21 +125,72 @@ $(document).ready(function() {
   });
 
 
-  // $('body').on('click', 'a#add', function(event) {
-  //   console.log("add friend");
-  //   event.preventDefault();
-  // });
+  $("body").on("click", "a#add", function(event) {
+    event.preventDefault();
+    var $addFriend = $(this);
+    var action = $addFriend.attr("href");
+    $.ajax({url: action,
+            method: "POST",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
 
-  // $('#pref').on('click', '.cancel', function(event) {
-  //   event.preventDefault();
-  //   console.log("cancel request");
-  // });
+  $('body').on('click', 'a#cancel', function(event) {
+    event.preventDefault();
+    var $deleteFriendRequest = $(this);
+    var action = $deleteFriendRequest.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
 
-  // $('#pref').on('click', '.unfriend', function(event) {
-  //   event.preventDefault();
-  //   console.log("unfriend");
-  // });
+  $('body').on('click', 'a#accept', function(event) {
+    event.preventDefault();
+    var $acceptRequest = $(this);
+    var action = $acceptRequest.attr("href");
+    $.ajax({url: action,
+            method: "POST",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  })
 
-});
+
+  $('body').on('click', 'a#unfriend', function(event) {
+    event.preventDefault();
+    var $unfriend = $(this);
+    var action = $unfriend.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
+
+  $('body').on('click', 'a#deny', function(event) {
+    event.preventDefault();
+    var $denyRequest = $(this);
+    var action = $denyRequest.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
+
+})
 
 
