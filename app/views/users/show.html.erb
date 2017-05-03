@@ -36,6 +36,7 @@
   <p>Home Gym: <%= user.gyms.name %></p>
   <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
   <p>Bio: <%= user.profile_bio %></p>
+  <div id= "message-div"> <%= link_to "Send Message", root_path, id: "send-message"  %> </div>
   </div>
 
   <%= render partial: 'users/friends', layout: false, locals: {user: user} %>

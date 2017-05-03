@@ -6,8 +6,8 @@ class TwilioController < ApplicationController
   skip_before_action :verify_authenticity_token
 
 	def receive_sms
-    reply
-    render nothing: true
+      reply
+      render nothing: true
   end
 
   def reply
@@ -23,6 +23,18 @@ class TwilioController < ApplicationController
       to: "+1#{receiver_number}",
       body: message_body + "\n-From #{sender.first_name}"
     )
+  end
+
+  def send_sms
+      boot_twilio
+      receiver = params[:receiver].match(/:(.*)/)[1].strip
+      receiver_number = User.find_by(first_name: receiver_first_name).phone
+      message_body = params[:body]
+      sms = @client.messages.create(
+        from: Rails.application.secrets.twilio_number,
+        to: "+1#{receiver_number}",
+        body: message_body + "\n-From #{sender.first_name}"
+      )
   end
 
 
