@@ -1,28 +1,28 @@
 <% if user == current_user %>
-  <h2> Welcome <%= user.first_name %> <%= user.last_name %></h2>
+  <h2> Welcome, <%= user.first_name %> <%= user.last_name %></h2>
 
   <% if user.avatar %>
     <%= image_tag user.avatar.url(:square) %>
   <% end %>
 
-  <p>Your Age: <%= user.age %></p>
-  <% if user.gyms != nil %>
-    <p>Home Gym: <%= user.gyms.first.name %></p>
-  <% end %>
-  <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
-  <p>Your current bio: <%= user.profile_bio %></p>
-
+  <div class="profile-info">
+    <p>Your Age: <%= user.age %></p>
+    <% if user.gyms != nil %>
+      <p>Home Gym: <%= user.gyms.first.name %></p>
+    <% end %>
+    <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
+    <p>Your current bio: <%= user.profile_bio %></p>
+  </div>
   <a id ="edit-info" class="buttonizing" href=<%= edit_user_registration_path %>>Edit Personal Information</a><br>
   <div id="bringFormHere">
     <a id="pic-upload" class="buttonizing" href="<%= profile_load_path(current_user) %>">Upload Profile Picture</a>
   </div>
-
-<% end %>
 <div class="spacer"></div>
+<% end %>
 
-
+<div class="profile-info">
 <% if user != current_user %>
-  <p><%= user.first_name %> <%= user.last_name %></p>
+  <h2><%= user.first_name %> <%= user.last_name %>'s Profile Info</h2>
   <% if user.avatar %>
     <%= image_tag user.avatar.url(:square) %>
   <% end %>
@@ -30,6 +30,7 @@
   <p>Home Gym: <%= user.gyms.name %></p>
   <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
   <p>Bio: <%= user.profile_bio %></p>
+  </div>
 
   <div class="friend">
       <% if user != current_user && current_user.friends.include?(user)%>
@@ -37,7 +38,7 @@
       <p><%= link_to "Unfriend", unfriend_path(user), class: "buttonize unfriend", method: :delete %></p>
 
       <% elsif user != current_user && (current_user.all_friends.include?(user) && current_user.request_sent.include?(user)) %>
-      <p>Friend Request Sent</p>
+      <p class="indent">Friend Request Sent</p>
       <p><%= link_to "Cancel Friend Request", friendship_path(user), class: "buttonize cancel", method: :delete %></p>
       <% elsif user != current_user && current_user.request_received.include?(user) %>
       <p><%= link_to "Accept", accept_friend_path(user), class: "buttonize", method: :post %> / <%= link_to "Deny", deny_friend_path(user), class: "buttonize", method: :delete %> Friendship</p>
@@ -45,8 +46,8 @@
       <% elsif user != current_user && current_user.all_friends.exclude?(user) %>
       <p><%= link_to "Add Friend", friendships_path(user), class: "buttonize-add", id: "add", method: :post %></p>
       <% end %>
+      <br>
   </div>
 <% end %>
 <div calss="spacer"></div>
-
 <footer></footer>
