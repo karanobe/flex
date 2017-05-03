@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
+//= require chat
+//= require users
+//= require private_pub
 
 
 

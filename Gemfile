@@ -34,6 +34,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 
+gem 'private_pub'
+gem 'thin'
+
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk', '~> 2.3'
 # Use Capistrano for deployment
