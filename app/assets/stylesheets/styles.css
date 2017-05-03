@@ -287,20 +287,20 @@ input#user_email, #user_password, #user_first_name, #user_last_name, #user_age, 
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-@media (max-width: 350px) { .container {
+/*@media (max-width: 800px) { .container {
     position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 0px;
   box-sizing: border-box;
   margin-top: 20px;
-}}
+}}*/
 
 .container {
   position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 0px;
   box-sizing: border-box;
