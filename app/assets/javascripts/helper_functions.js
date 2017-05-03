@@ -1,25 +1,25 @@
-function renderGyms(response){
-  var all_gyms = "<ul>";
-  response.forEach(function(gym) {
-    all_gyms += generateOneGym(gym);
-  });
-  all_gyms + "</ul>"
-  $(".container").html(all_gyms);
-}
+// function renderGyms(response){
+//   var all_gyms = "<ul>";
+//   response.forEach(function(gym) {
+//     all_gyms += generateOneGym(gym);
+//   });
+//   all_gyms + "</ul>"
+//   $(".container").html(all_gyms);
+// }
 
-function generateOneGym(gym){
-  return `<li class="gym">
-          <div class="gym-content">
-            <p>
-              <span class = "name">
-              <h4><a id=${gym.id} class="set-primary">${gym.name}</a></h4>  </span>
-              <span class= "address"> ${gym.street_address}</span><br>
-              <span class= "city"> ${gym.city}</span><br>
-              <span class= "zip"> ${gym.zip}</span><br>
-            </p>
-          </div>
-        </li>`;
-}
+// function generateOneGym(gym){
+//   return `<li class="gym">
+//           <div class="gym-content">
+//             <p>
+//               <span class = "name">
+//               <h4><a href="/gyms/${gym.id}" id=${gym.id} class="set-primary">${gym.name}</a></h4>  </span>
+//               <span class= "address"> ${gym.street_address}</span><br>
+//               <span class= "city"> ${gym.city}</span><br>
+//               <span class= "zip"> ${gym.zip}</span><br>
+//             </p>
+//           </div>
+//         </li>`;
+// }
 
 //<h4><a href="place url for specific gym profile page" >${gym.name} </a></h4>  </span><br>
 

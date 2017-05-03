@@ -4,5 +4,4 @@ class Gym < ApplicationRecord
 
   validates :name, :street_address, :city, :state, :zip, presence: true
 
-
 end

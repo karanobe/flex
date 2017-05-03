@@ -1,0 +1,25 @@
+<ul>
+  <% gyms.each do |gym|%>
+    <% if current_user.check_primary != gym  %>
+      <li class="gym">
+    <% elsif current_user.check_primary == gym %>
+      <li class='gym primary_gym'>
+    <% end %>
+        <div class="gym-content">
+          <p>
+              <span class = "name">
+              <h4><a href="/gyms/<%= gym.id %>/set_primary" id=<%= gym.id %> class="set-primary"><%= gym.name %></a></h4>  </span>
+              <span class= "address"> <%= gym.street_address %></span><br>
+              <span class= "city"><%= gym.city %></span><br>
+              <span class= "zip"><%= gym.zip %></span><br>
+          </p>
+        </div>
+        <%= form_for(gym) do |f| %>
+    </li>
+    <% end %>
+  <% end %>
+</ul>
+
+
+
+<a id='new-gym' href='/gyms/new'>Add a new gym!</a>"

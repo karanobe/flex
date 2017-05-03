@@ -44,8 +44,7 @@ $(document).ready(function() {
     event.preventDefault();
     hideLinks();
     $.ajax({url:"/gyms", method: "GET"}).done(function(response) {
-      renderGyms(response);
-      $(".container").append("<a id='new-gym' href='/gyms/new'>Add a new gym!</a>");
+      $(".container").html(response.gymsInfo);
     });
   });
 
@@ -79,10 +78,13 @@ $(document).ready(function() {
 
 // AJAX
   $("body").on('click', '.set-primary', function(event) {
+    event.preventDefault();
     var id = $(this)[0].id;
-    var data = {membership: {id: id}};
-    // $.ajax({url: "/memberships"})
-    console.log(id);
+    $.ajax({url: "/gyms/"+id+ "/set_primary",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            method: "PATCH"}).done(function(response) {
+      $(".container").html(response.gymsInfo);
+    })
   })
 
 
