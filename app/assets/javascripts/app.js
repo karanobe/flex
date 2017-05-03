@@ -28,7 +28,7 @@ $(document).ready(function() {
     $.ajax({url: action, method: "GET"}).done(function(response) {
       $(".container").html(response.picUpload);
     });
-  })
+  });
 
 // AJAX call to submit photo on user profile page. Makes the call to update attributes for user, waits for a second, and then makes an AJAX call to bring in updated user profile page
   $("body").on("submit", "form.edit_user", function(event) {
@@ -56,6 +56,7 @@ $(document).ready(function() {
     })
   });
 
+// AJAX call to submit new gym
   $(".container").on("submit", "#gym-submit", function(event) {
     event.preventDefault();
     var $gymSubmitButton = $(this);
@@ -72,7 +73,16 @@ $(document).ready(function() {
       data: data}).done(function(){
         location.reload();
       })
+  });
+
+// AJAX
+  $("body").on('click', '.set-primary', function(event) {
+    var id = $(this)[0].id;
+    var data = {membership: {id: id}};
+    // $.ajax({url: "/memberships"})
+    console.log(id);
   })
+
 
 // AJAX call to hide all links on home page and display list of matched users
   $("body").on('click', '#matched-users',function(event) {
@@ -98,7 +108,7 @@ $(document).ready(function() {
     $.ajax({url: action, method: "PATCH", data: data}).done(function(response) {
       $(".container").html(response.userInfo);
     })
-  })
+  });
 
 // AJAX call to create new user preferences; works on home and user profile page; redirects back to user profile
   $("body").on("submit", ".new_preference", function(event) {
@@ -108,7 +118,7 @@ $(document).ready(function() {
     $.ajax({url: action, method: "POST", data: data}).done(function(response) {
       $(".container").html(response.userInfo);
     })
-  })
+  });
 
 
   // $('body').on('click', 'a#add', function(event) {
