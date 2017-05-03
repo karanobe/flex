@@ -1,6 +1,6 @@
 class GymsController < ApplicationController
   def index
-    @gyms = current_user.gyms
+    p @gyms = current_user.gyms
     render json: {gymsInfo: render_to_string('gyms/index', layout: false, locals: {gyms: @gyms})}
     # render json: gyms
   end
@@ -20,14 +20,15 @@ class GymsController < ApplicationController
     if gym.save
         current_user.set_primary_false
       Membership.create(user_id: current_user.id, gym_id: gym.id, primary_gym: true)
-      render nothing: true
+      @gyms = current_user.gyms
+      render json: {gymsInfo: render_to_string('gyms/index', layout: false, locals: {gyms: @gyms})}
     end
   end
 
   def set_primary
     gym = Gym.find(params[:id])
     current_user.set_primary_on_click(gym)
-    @gyms = current_user.gyms
+    p @gyms = current_user.gyms
     render json: {gymsInfo: render_to_string('gyms/index', layout: false, locals: {gyms: @gyms})}
   end
 
