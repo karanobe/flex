@@ -15,8 +15,8 @@ class TwilioController < ApplicationController
   end
 
 	def receive_sms
-    reply
-    render nothing: true
+      reply
+      render nothing: true
   end
 
   def reply
@@ -33,6 +33,7 @@ class TwilioController < ApplicationController
       body: message_body + "\n-From #{sender.first_name}"
     )
   end
+
 
 
 # user.find_by params['from'], locate the recipient by the 'TO': info included in body of the text, update the 'reply' method and send along the body of the text.

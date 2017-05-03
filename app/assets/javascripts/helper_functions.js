@@ -55,7 +55,7 @@ function generateOneUser(user){
           <div class="user-content">
             <div class="column-left">
               <span class = "name">
-              <h2><a class="user-page" id="user-link" href="/users/${user.id}" >${user.first_name} ${user.last_name}</a></h2>  </span>
+              <h3><a class="user-page" id="user-link" href="/users/${user.id}" >${user.first_name}</a></h3>  </span>
               </div>
               <div class="column-middle">
               <h4><span class= "age"> ${user.age}</span></h4>
@@ -65,6 +65,13 @@ function generateOneUser(user){
               </div>
           </div>
         </li>`;
+}
+
+function generateTextArea(){
+  return `<form action="/twilio/send_sms" method="POST" id="message-form">
+  Message: <input id="txt" type="text" >
+  <input id='message-submit-button' type="submit">
+</form>`;
 }
 
 // function userProfile() {
