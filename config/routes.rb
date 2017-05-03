@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources  :preferences
   resources :gyms
   resources :friendships, only: [:create, :destroy]
+  patch '/memberships/:id' => "memberships#update"
 
   post 'friendships/:id/accept' => 'friendships#accept', as: 'accept_friend'
   delete 'friendships/:id/deny' => 'friendships#deny', as: 'deny_friend'
