@@ -163,7 +163,8 @@ img {
 }
 
 .align {
-  margin-left: -15px;
+  margin: -15px;
+
 }
 
 .search-for-gym {
@@ -181,12 +182,18 @@ a:hover#choose {
   color: orange;
 }
 
-.friend {
+.friendm {
   margin-left: -15px;
 }
 
+.label {
+  font-size: 1.2em;
+  color: #333;
+  margin-left: 20px;
+}
+
 .buttonize, .buttonize-add, .buttonize_cancel, #new-gym{
-  width: 100%;
+  width: 106%;
   display: block;
   height: 45px;
   color: white;
