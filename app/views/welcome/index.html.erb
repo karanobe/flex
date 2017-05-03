@@ -9,28 +9,17 @@
 <% end %>
 
 <% if user_signed_in? %>
-  <div class='container'>
-    <img class="logo" src="https://www.emojibase.com/resources/img/emojis/apple/x1f4aa.png.pagespeed.ic.qZG9DBXHxk.png" alt="Flex Logo">
-    <div id="gyms" class="align">
-    <br>
-      <p><%= link_to "View Gyms", root_path, id: "gyms-link", class: "buttonizing"  %></p>
-      <ul id="gyms-pylon">
-      </ul>
-    </div>
-
-    <div id="pref" class="align">
-
-    <% if current_user.preference == nil %>
-        <%= link_to "Preferences",  new_preference_path, id: "new-pref", class: "buttonizing" %>
-    <% else %>
+  <div class='container align' id="gyms">
+    <% if current_user.gyms.empty? && current_user.preference == nil %>
+      <p><a id='new-gym' href='/gyms/new'>Add a new gym!</a></p>
+    <% elsif current_user.gyms != nil && current_user.preference == nil %>
+      <p><%= link_to "Set Preferences",  new_preference_path, id: "new-pref", class: "buttonizing" %></p>
+    <% elsif current_user != nil && current_user.preference != nil %>
+        <p><%= link_to "View Gyms", gyms_path, id: "gyms-link", class: "buttonizing"  %></p>
         <p><%= link_to "Update FlexMate Preferences", edit_preference_path(current_user.preference.id), id:"update-pref", class: "buttonizing" %></p>
-      <!-- <div id="show-users"> -->
         <p><%= link_to "View FlexMates", users_path, id: "matched-users", class: "buttonizing"  %></p>
     <% end %>
     <img class="logo" src="https://www.emojibase.com/resources/img/emojis/apple/x1f4aa.png.pagespeed.ic.qZG9DBXHxk.png" alt="Flex Logo">
-    <div id="gyms" class="align">
-    </div>
   </div>
 <% end %>
-
 

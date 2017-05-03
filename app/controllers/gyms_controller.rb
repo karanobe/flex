@@ -13,5 +13,18 @@ class GymsController < ApplicationController
     gym = Gym.find(params[:id])
     render json:gym
   end
+
+  def create
+    gym = Gym.new(gym_params)
+    if gym.save
+        current_user.set_primary_on_add_new
+      Membership.create(user_id: current_user.id, gym_id: gym.id, primary_gym: true)
+      render nothing: true
+    end
+  end
+
+  def gym_params
+    params.require(:gym).permit(:name, :street_address, :city, :state, :zip)
+  end
 end
 
