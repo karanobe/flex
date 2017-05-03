@@ -41,10 +41,8 @@ class User < ApplicationRecord
 
   def ordered_json
 
-    gym_mates =
-
     gym_zip = self.memberships.find_by(primary_gym: true).gym.zip
-
+    p gym_zip
     gym_area = Gym.where(zip: gym_zip)
 
     age_mates = gym_mates.where("age >= ? AND age <= ?", self.preference.min_age, self.preference.max_age)
