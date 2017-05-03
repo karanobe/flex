@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   resources  :preferences
   resources :gyms
   patch '/gyms/:id/set_primary' => 'gyms#set_primary'
-  resources :friendships, only: [:create, :destroy]
 
+  post 'friendships/:id' => 'friendships#create', as: 'add_friend'
   post 'friendships/:id/accept' => 'friendships#accept', as: 'accept_friend'
   delete 'friendships/:id/deny' => 'friendships#deny', as: 'deny_friend'
+  delete 'friendships/:id' => 'friendships#destroy', as: 'unfriend'
+
   get "/home" => "welcome#home"
   post 'twilio/receive_sms' => 'twilio#receive_sms'
   post 'twilio/reply' => 'twilio#reply'

@@ -7,12 +7,12 @@
   <% end %>
 <br>
   <div class="profile-info">
-    <p>Your Age: <%= user.age %></p>
     <% if user.gyms != nil %>
-      <p>Home Gym: <%= user.gyms.first.name %></p>
+      <p>Preferred Gym: <%= user.gyms.first.name %></p>
     <% end %>
+    <p>Your Age: <%= user.age %></p>
     <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
-    <p>Your current bio: <%= user.profile_bio %></p>
+    <p>Your Account Bio: <%= user.profile_bio %></p>
   </div>
 
   <a id ="edit-info" class="buttonizing" href="<%= edit_user_registration_path %>">Edit Personal Information</a><br>
@@ -39,21 +39,8 @@
   <div id= "message-div"> <%= link_to "Send Message", root_path, id: "send-message"  %> </div>
   </div>
 
-  <div class="friend">
-      <% if user != current_user && current_user.friends.include?(user)%>
+  <%= render partial: 'users/friends', layout: false, locals: {user: user} %>
 
-      <p><%= link_to "Unfriend", unfriend_path(user), class: "buttonize unfriend", method: :delete %></p>
-
-      <% elsif user != current_user && (current_user.all_friends.include?(user) && current_user.request_sent.include?(user)) %>
-      <p class="indent">Friend Request Sent</p>
-      <p><%= link_to "Cancel Friend Request", friendship_path(user), class: "buttonize cancel", method: :delete %></p>
-      <% elsif user != current_user && current_user.request_received.include?(user) %>
-      <p><%= link_to "Accept", accept_friend_path(user), class: "buttonize", method: :post %> / <%= link_to "Deny", deny_friend_path(user), class: "buttonize", method: :delete %> Friendship</p>
-
-      <% elsif user != current_user && current_user.all_friends.exclude?(user) %>
-      <p><%= link_to "Add Friend", friendships_path(user), class: "buttonize-add", id: "add", method: :post %></p>
-      <% end %>
-  </div>
 <% end %>
 <div calss="spacer"></div>
 <footer></footer>
