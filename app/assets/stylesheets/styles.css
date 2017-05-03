@@ -219,7 +219,7 @@ a:hover#choose {
 .buttonize, .buttonize-add, .buttonize_cancel, #new-gym{
   width: 100%;
   left: 0;
-  position: fixed;
+  /*position: fixed;*/
   display: block;
   height: 45px;
   color: white;
