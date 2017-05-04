@@ -9,6 +9,8 @@ class TwilioController < ApplicationController
     response = Twilio::TwiML::Response.new do |r|
       r.Message "Thank you for using FLEX Chat! To message a flexmate please use the following template: To:(Flexmates Name) Body: 'Fill in message here'."
       end
+
+    response.to_xml
   end
 
 	def receive_sms
