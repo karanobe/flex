@@ -109,6 +109,13 @@ footer {
   width: 100%;
 }
 
+p.friend {
+  color: orange;
+  font-weight: bold;
+  margin-left: 15px;
+  font-size: 2em;
+  text-align: center;
+}
 
 .container-below-nav {
   padding-top: 60px;
