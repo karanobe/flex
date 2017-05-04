@@ -1,27 +1,4 @@
-/*
-* Skeleton V2.0.4
-* Copyright 2014, Dave Gamache
-* www.getskeleton.com
-* Free to use under the MIT license.
-* http://www.opensource.org/licenses/mit-license.php
-* 12/29/2014
-*/
 
-
-/* Table of contents
-––––––––––––––––––––––––––––––––––––––––––––––––––
-- Grid
-- Base Styles
-- Typography
-- Links
-- Buttons
-- Forms
-- Tables
-- Spacing
-- Utilities
-- Clearing
-- Media Queries
-*/
 
 body {
   margin: 0;
@@ -109,6 +86,15 @@ footer {
   width: 100%;
 }
 
+.text {
+  color: #08917c;
+  font-weight: bold;
+  margin: auto;
+  font-size: 2em;
+  text-align: center;
+  padding-right: 15px;
+  padding-left: 15px;
+}
 
 .container-below-nav {
   padding-top: 60px;
