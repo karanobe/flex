@@ -11567,6 +11567,8 @@ $(document).ready(function() {
   $('body').click(function(){
     $("div#flash_notice").hide();
   });
+
+
   // AJAX call to new preference call; works on home page and user profile page
   $("div.container").on("click", "#new-pref", function(event) {
     event.preventDefault();
@@ -11635,15 +11637,15 @@ $(document).ready(function() {
     $.ajax({url: "/gyms",
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       method: "POST",
-      data: data}).done(function(){
-        location.reload();
+      data: data}).done(function(response){
+        $(".container").html(response.gymsInfo);
       })
   });
 
-// AJAX
+// AJAX set primary gym
   $("body").on('click', '.set-primary', function(event) {
     event.preventDefault();
-    var id = $(this)[0].id;
+    var id = $(this).find("a")[0].id;
     $.ajax({url: "/gyms/"+id+ "/set_primary",
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
             method: "PATCH"}).done(function(response) {
@@ -11689,24 +11691,76 @@ $(document).ready(function() {
   });
 
 
-  // $('body').on('click', 'a#add', function(event) {
-  //   console.log("add friend");
-  //   event.preventDefault();
-  // });
+  $("body").on("click", "a#add", function(event) {
+    event.preventDefault();
+    var $addFriend = $(this);
+    var action = $addFriend.attr("href");
+    $.ajax({url: action,
+            method: "POST",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
 
-  // $('#pref').on('click', '.cancel', function(event) {
-  //   event.preventDefault();
-  //   console.log("cancel request");
-  // });
+  $('body').on('click', 'a#cancel', function(event) {
+    event.preventDefault();
+    var $deleteFriendRequest = $(this);
+    var action = $deleteFriendRequest.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
 
-  // $('#pref').on('click', '.unfriend', function(event) {
-  //   event.preventDefault();
-  //   console.log("unfriend");
-  // });
+  $('body').on('click', 'a#accept', function(event) {
+    event.preventDefault();
+    var $acceptRequest = $(this);
+    var action = $acceptRequest.attr("href");
+    $.ajax({url: action,
+            method: "POST",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  })
 
-});
+
+  $('body').on('click', 'a#unfriend', function(event) {
+    event.preventDefault();
+    var $unfriend = $(this);
+    var action = $unfriend.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
+
+  $('body').on('click', 'a#deny', function(event) {
+    event.preventDefault();
+    var $denyRequest = $(this);
+    var action = $denyRequest.attr("href");
+    $.ajax({url: action,
+            method: "DELETE",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            })
+      .done(function(response) {
+      $(".friend").html(response.friendInfo)
+    });
+  });
+
+})
 
 
+;
 // function renderGyms(response){
 //   var all_gyms = "<ul>";
 //   response.forEach(function(gym) {
@@ -11764,7 +11818,7 @@ function generateOneUser(user){
           <div class="user-content">
             <div class="column-left">
               <span class = "name">
-              <h2><a class="user-page" id="user-link" href="/users/${user.id}" >${user.first_name} ${user.last_name}</a></h2>  </span>
+              <h3><a class="user-page" id="user-link" href="/users/${user.id}" >${user.first_name}</a></h3>  </span>
               </div>
               <div class="column-middle">
               <h4><span class= "age"> ${user.age}</span></h4>
@@ -11774,6 +11828,13 @@ function generateOneUser(user){
               </div>
           </div>
         </li>`;
+}
+
+function generateTextArea(){
+  return `<form action="/twilio/send_sms" method="POST" id="message-form">
+  Message: <input id="txt" type="text" >
+  <input id='message-submit-button' type="submit">
+</form>`;
 }
 
 // function userProfile() {
@@ -11863,6 +11924,7 @@ function generateOneUser(user){
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= requre gmaps/google
 
 
 
