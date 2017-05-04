@@ -57,6 +57,7 @@
 
 
 # Users
+
 ko = User.create!(first_name: "Karan", last_name: "Oberoi", age: 25,  phone: '9518807001', gender_pronoun: "He/Him", profile_bio: "I'm excited to get started. My workout goals are to get swole for da summer. They say a summer body is born in the winter, but I missed the boat on that one. I'm free M-F, anytime after 6:30pm. Hit me up!", email: "k@gmail.com", password: "password", password_confirmation: "password")
 tn = User.create!(first_name: "Ted", last_name: "N", age: 99, phone: '2246169035', gender_pronoun: "He/Him", profile_bio: "I'm excited to get started. My workout goals are to get swole for da summer. They say a summer body is born in the winter, but I missed the boat on that one. I'm free M-F, anytime after 6:30pm. Hit me up!", email: "t@gmail.com", password: "password", password_confirmation: "password")
 jg = User.create!(first_name: "Jerry", last_name: "Gerou", age: 25, phone: '7736101700', gender_pronoun: "She/Her", profile_bio: "Oh hello! I'm really excited to get started! I'm in excellent shape as is, so mostly I just want someone else to walk around the gym with and feel accomplished without doing any work. Let's schedule something!", email: "j@gmail.com", password: "password", password_confirmation: "password")
