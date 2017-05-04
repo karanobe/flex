@@ -6,15 +6,16 @@ class TwilioController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def first_text
-    response = Twilio::TwiML::Response.new do |r|
-      r.Message "Thank you for using FLEX Chat! To message a flexmate please use the following template: To:(Flexmates Name) Body: 'Fill in message here'."
-      end
-
-    response.to_xml
+    boot_twilio
+    sms = @client.messages.create(
+      from: Rails.application.secrets.twilio_number,
+      to: params["From"],
+      body: "Thank you for using FLEX Chat!\nTo message a flexmate please use the following template:\nTo:(Flexmates Name)\nBody: (Fill in message here)."
+    )
   end
 
 	def receive_sms
-    if params["Body"].include?("Tutorial")
+    if params.values.include?("Tutorial")
       first_text
     else
       reply
