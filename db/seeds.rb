@@ -16,7 +16,7 @@
 
 
 
-# Users
+# # Users
 # ko = User.create!(first_name: "Karan", last_name: "Oberoi", age: 25,  phone: '9518807001', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "k@gmail.com", password: "password", password_confirmation: "password")
 # tn = User.create!(first_name: "Ted", last_name: "N", age: 99, phone: '2246169035', gender_pronoun: "He/Him", profile_bio: "Profile Biography", email: "t@gmail.com", password: "password", password_confirmation: "password")
 # sg = User.create!(first_name: "Sara", last_name: "Gerou", age: 25, phone: '7736101700', gender_pronoun: "She/Her", profile_bio: "Profile Biography", email: "s@gmail.com", password: "password", password_confirmation: "password")
@@ -39,20 +39,20 @@
 
 # # Memberships
 # ko.memberships.create(gym_id: 1,primary_gym: true)
-# ko.memberships.create(gym_id: 2)
-# tn.memberships.create(gym_id: 2)
+# ko.memberships.create(gym_id: 2,primary_gym: false)
+# tn.memberships.create(gym_id: 2,primary_gym: false)
 # tn.memberships.create(gym_id: 3, primary_gym: true)
 # sg.memberships.create(gym_id: 3, primary_gym: true)
-# sg.memberships.create(gym_id: 4)
-# ek.memberships.create(gym_id: 4)
+# sg.memberships.create(gym_id: 4,primary_gym: false)
+# ek.memberships.create(gym_id: 4,primary_gym: false)
 # ek.memberships.create(gym_id: 5, primary_gym: true)
 # dg.memberships.create(gym_id: 5, primary_gym: true)
-# dg.memberships.create(gym_id: 6)
+# dg.memberships.create(gym_id: 6,primary_gym: false)
 # cf.memberships.create(gym_id: 6, primary_gym: true)
-# cf.memberships.create(gym_id: 1)
-# bw.memberships.create(gym_id: 1)
+# cf.memberships.create(gym_id: 1,primary_gym: false)
+# bw.memberships.create(gym_id: 1,primary_gym: false)
 # bw.memberships.create(gym_id: 2, primary_gym: true)
-# ao.memberships.create(gym_id: 2)
+# ao.memberships.create(gym_id: 2,primary_gym: false)
 # ao.memberships.create(gym_id: 3, primary_gym: true)
 
 
