@@ -6756,30 +6756,6 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-/*
-* Skeleton V2.0.4
-* Copyright 2014, Dave Gamache
-* www.getskeleton.com
-* Free to use under the MIT license.
-* http://www.opensource.org/licenses/mit-license.php
-* 12/29/2014
-*/
-
-
-/* Table of contents
-––––––––––––––––––––––––––––––––––––––––––––––––––
-- Grid
-- Base Styles
-- Typography
-- Links
-- Buttons
-- Forms
-- Tables
-- Spacing
-- Utilities
-- Clearing
-- Media Queries
-*/
 
 
 body {
@@ -6868,6 +6844,15 @@ footer {
   width: 100%;
 }
 
+.text {
+  color: #08917c;
+  font-weight: bold;
+  margin: auto;
+  font-size: 2em;
+  text-align: center;
+  padding-right: 15px;
+  padding-left: 15px;
+}
 
 .container-below-nav {
   padding-top: 60px;
@@ -6902,7 +6887,7 @@ img {
 
 .column-left {
   display: block;
-  width: 30%;
+  width: 40%;
   float: left;
 }
 
@@ -6918,7 +6903,7 @@ img {
   vertical-align: middle;
   margin-top: 5px;
   display: block;
-  width: 50%;
+  width: 40%;
   float: right;
   padding-left: 5px;
   font-size: 1.3em;
@@ -6975,7 +6960,19 @@ a:hover#choose {
   margin-left: 20px;
 }
 
-.buttonize, .buttonize-add, .buttonize_cancel, #new-gym{
+a:hover.buttonize, .buttonize-add, .buttonize_cancel {
+  color: #08917c;
+}
+
+a:hover#new-gym {
+  color: #08917c;
+}
+
+a:hover#new-pref {
+  color: #08917c;
+}
+
+.buttonize, .buttonize-add, .buttonize_cancel, #new-gym, #new-pref{
   width: 100%;
   /*left: 0;*/
   right: 0;
@@ -7025,15 +7022,29 @@ input#user_email, #user_password, #user_first_name, #user_last_name, #user_age, 
 }
 
 .set-primary {
-  margin-left: 3px;
+  margin-left: 30px;
+}
+
+.set-primary h4 {
+  margin-left: 0px;
 }
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*@media (max-width: 800px) { .container {
+    position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0px;
+  box-sizing: border-box;
+  margin-top: 20px;
+}}*/
+
 .container {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 0px;
   box-sizing: border-box;
@@ -7227,6 +7238,11 @@ a {
   }
 
 a:hover {
+  color: #08917c;
+  text-decoration: none;
+}
+
+li a:hover {
   color: orange;
   text-decoration: none;
 }
@@ -7234,6 +7250,7 @@ a:hover {
 a:hover.buttonizing{
   color: #08917c;
 }
+
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
