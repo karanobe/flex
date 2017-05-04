@@ -33,7 +33,7 @@
     <%= image_tag user.avatar.url(:square) %>
   <% end %>
   <p>Age: <%= user.age %></p>
-  <p>Home Gym: <%= user.gyms.name %></p>
+  <p>Preferred Gym: <%= user.gyms.first.name %></p>
   <p>Gender Pronoun: <%= user.gender_pronoun  %> </p>
   <p>Bio: <%= user.profile_bio %></p>
 
