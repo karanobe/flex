@@ -11,7 +11,7 @@
 ### What problem is it solving?
 FLEX allows users to find gym buddies! Users can answer a few quick quesitons, including their gym location and workout buddy preferences and find others nearby who are looking to make friends and help each other stay accountable.
 
-Once you are able to search for "flex-mates," you can send a request to connet as friends and start texting with each other!
+Once you are able to search for "flex-mates," you can send a request to connect as friends and start texting with each other!
 
 ### Features
 - Seach for locaitons using built in Google Maps search box
